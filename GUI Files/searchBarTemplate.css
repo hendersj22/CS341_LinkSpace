@@ -1,0 +1,25 @@
+body {
+  font: Arial;
+  background-color: #A6ACEC;
+}
+tr {
+  background-color: #CEFFF1;
+}
+#bar {
+  background-color: #ACE7EF;
+}
+th {
+  font-size: 24px;
+  color: #A56CC1;
+}
+h3 {
+  font-size: 30px;
+  color: #212121;
+}
+p {
+  font-size: 20px;
+  color: 757575;
+}
+#search {
+  width: 80%;
+}
