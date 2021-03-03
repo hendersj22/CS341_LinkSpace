@@ -1,0 +1,65 @@
+:root {
+	--backgroundColor1: #4992a7;
+  --backgroundColor: #A6ACEC;
+	--hoverColor: #ffe2e2;
+	--borderColor: #f6f6f6;
+	--headerColor: #b7ebde;
+}
+body {
+  font-family: arial;
+  background-color: var(--backgroundColor);
+}
+tr {
+  background-color: var(--headerColor);
+}
+
+td, th {
+    border: 6px solid var(--borderColor);
+    text-align: left;
+    padding: 10px;
+}
+th {
+  font-size: 24px;
+  color: #670d94;
+}
+h3 {
+  	font-size: 30px;
+  	color: #212121;
+	margin-left: 15px;
+}
+
+#search {
+  width: 60%;
+  
+}
+
+.btn-group button {
+  background-color: var(--backgroundColor);
+  font-family: arial;
+  border: 10px solid var(--headerColor);
+  text-align: center;
+  font-size: 15px;
+  color: white; /* White text */
+  padding: 10px; /*Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  width: 100%; /* Set a width if needed */
+  display: block; /* Make the buttons appear below each other */
+  position: relative;
+
+}
+
+.btn-group button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: var(--hoverColor);
+}
+/* .rectangle {
+  text-align: center;
+  border: 5px solid var(--headerColor);
+  height: 100px;
+  width: 200px;
+  background-color: var(--hoverColor);
+} */
