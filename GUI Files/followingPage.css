@@ -1,0 +1,79 @@
+/*body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #A6ACEC;
+}*/
+
+:root{
+	--main:#0033cc;
+	--secondary:#99ccff;
+	--accent:#ffe680;
+	--background:#f0f0f5;
+	--text1:#ffffff;
+	--text2:#212121;
+}
+/*:root{
+	--main:#4e5285;
+	--secondary:#858CDC;
+	--accent:#dddddd;
+	--background:#CEFFF1;
+	--text1:#212121;
+}*/
+
+.followerMain {
+	background-color: var(--main);
+	margin-top: 25px;
+	padding: 10px;
+	border-radius: 25px;
+	text-align: center;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.follower { /* I would like this to have less space between each line but I don't have time to fix it yet*/
+	background-color: var(--secondary);
+	color: var(--text1);
+
+	margin-top: 25px;
+	padding-left: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 25px;
+	
+	text-align: left;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table {
+    /*font-family: arial, sans-serif;*/
+    border-collapse: collapse;
+    width: 100%;
+}
+tr {
+	background-color: var(--background);
+}
+th {
+	font-size: 24px;
+	color: #A56CC1;
+}
+td, th {
+    border: 1px solid var(--main);
+    text-align: left;
+    padding: 8px;
+}
+h1{
+	color: var(--text2);
+}
+h3 {
+  	font-size: 30px;
+  	color: var(--text1);
+	margin-left: 15px;
+}
+p, a {
+  font-size: 20px;
+}
+a{
+	color: var(--accent);
+}
