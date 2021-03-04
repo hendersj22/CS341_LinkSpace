@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="searchBarTemplate.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="logInSignUp.css">
+	<title>Sign Up</title>
+</head>
+
+<body>
+
+    <div class="topnav">
+        <a class="active" href="#">LINKSPACE</a>
+        <button type="button" id="create">Create</button>
+        <button type="button" id="profile"><i class="material-icons" id="account">account_circle</i></button>
+        <div class="searchbar">
+            <i class="material-icons" id="searchmag">search</i>
+            <input type="text" id="search" name="search" placeholder="Search"/>
+        </div>
+    </div> 
+
+    <div class="sidenav">
+        <a href="#home" id="home"><i class="material-icons">home</i> Home</a>
+        <a href="#mycatalogs" id="mycatalogs"><i class="material-icons">collections_bookmark</i> My Catalogs</a>
+        <a href="#following" id="following"><i class="material-icons">person</i> Following</a>
+        <a href="#trending" id="trending"><i class="material-icons" id="trendingicon">trending_up</i> Trending</a>
+    </div>
+	
+	<div class="loginForm">
+		<h3>Sign Up</h3>
+		<form>
+			<input class="login" type="text" placeholder="  Name"/><br>
+			<input class="login" type="email" placeholder="  example@me.com"/><br>
+			<input class="login" type="password" placeholder="  Password"/><br>
+			<input class="login" type="checkbox" checked/>Sign up for email alerts<br>
+			<button class="button">Sign Up</button><br>
+			<a href="#"><button style="margin-top: 20px">Already have an account? Log in here</button></a>
+		</form>	
+	</div>
+
+</body>
+
+</html>
