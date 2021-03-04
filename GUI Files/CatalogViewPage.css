@@ -1,0 +1,53 @@
+html, body, .container
+{
+    height: 100%; 
+    min-height: 100%;
+    font: Arial;
+    background-color: #A6ACEC;
+    
+} 
+
+/* Styling for the tiles-links*/
+
+.link1{
+    grid-area: link1;
+}
+
+.link2{
+    grid-area: link2;
+}
+
+
+.link3{
+    grid-area: link3;
+}
+
+.link4 {
+    grid-area: link4;
+}
+
+.link5{
+    grid-area: link5;
+}
+
+
+ .grid-container{
+    margin-top: 100px;
+    display: grid;
+    grid-template-areas:
+    'link1 link1 link1 link2 link2 link2'
+    'link4 link3 link3 link3 link5 link5'
+    'link4 link3 link3 link3 link5 link5';
+    
+    grid-gap: 10px;
+    background-color: #2196F3;
+    padding: 10px;
+
+ }
+
+ .grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 20px 10;
+    font-size: 30px;
+  }
