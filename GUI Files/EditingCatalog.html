@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<link rel="stylesheet" href="BarTemplate.css"> 
+<link rel = "stylesheet" href = "searchBarTemplate.css">
+<title>Edit Catalog</title>
+<style>
+.item1 { grid-area: header; }
+.item2 { grid-area: menu; }
+.item3 { grid-area: main; }
+.item4 { grid-area: right; }
+.item5 { grid-area: footer; }
+.item6 { grid-area: left; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header  header header'
+    'menu main  left  left right right'
+    'menu footer footer footer right right';
+  grid-gap: 10px;
+  background-color: #f6f6f6;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: #b7ebde;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 20px;
+}
+table {
+    font-family: arial;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+</style>
+</head>
+<body>
+<table>
+  <tr>
+    <th>LinkSpace</th>
+    <td>Your Catalogs</td>
+    <td>Trending Catalogs</td>
+    <td>
+      <input type="text" id="search"
+        id="search"
+        name="search"
+        rows="1"
+        value="Recipe"
+        placeholder="Search...">
+      </input>
+      <input type="button" value="Search"></input>
+    </td>
+    <td>Login</td>
+  </tr>
+</table>
+<p></p>
+<table border-collapse="collapse", width= "100%">
+  <tr>
+<div class="grid-container">
+  <div class="item1"><strong>My Catalog</strong></div>
+  <div class="item2">
+    <div class="btn-group">
+      <button>Name of Catalog</button>
+      <button>Create new </button>
+      <button>Edit Catalog</button>
+      <button>Add from Existing</button>
+      <button>Delete Catalog</button>
+    </div>
+  </div>
+  <div class="item3">
+    <p style="text-align: center"><strong>Flashcards:</strong> </p>
+    <!-- <p><u>What is a Generic?..</u></p> -->
+   
+  </div>
+  <div class="item6">
+     <p style="text-align: center"><strong>Favorite Recipes:</strong> </p>
+    <!-- <p><u>How to make pizza..</u></p></div> -->
+  </div>
+  <div class="item5">
+    <p style="text-align: center"><strong>Helpful Resources:</strong> </p>
+    <!-- <p><u>Top 10 mistakes..</u></p></div> -->
+  </div>
+  <div class="item4"><strong>What's trending?</strong></div>
+  
+  
+</div>
+</tr>
+</table>
+
+
+</body>
+</html>
