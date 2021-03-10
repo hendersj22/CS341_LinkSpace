@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  background-color: #f0f0f5;
+}
+
+div.topnav {
+  overflow: hidden;
+  background-color: #0033cc;
+}
+
+div.topnav a {
+  float: left;
+  color: #ffffff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 25px;
+}
+
+div.topnav #create {
+  color: #0033cc;
+  border-radius: 30px;
+  background-color: #ffe680;
+  border-color: #0033cc;
+  font-family: 'Raleway', sans-serif;
+  font-size: 17px;
+  margin-top: 14px;
+  width: 80px;
+  height: 30px;
+}
+
+.searchbar {
+  color: #ffffff;
+  background-color: #99ccff;
+  border-color: #0033cc;
+  float: right;
+  border-radius: 8px;
+  font-family: 'Raleway', sans-serif;
+  text-align: left;
+  margin-top: 14px;
+  width: 170px;
+}
+
+#search {
+  color: #ffffff;
+  background-color: #99ccff;
+  float: right;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  border: none;
+  text-align: inherit;
+  border-radius: 10px;
+  width: 140px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+#searchmag {
+  font-size: 14px;
+  vertical-align: middle;
+  padding-left: 8px;
+  padding-right: 0px;
+  padding-top: 5px;
+}
+
+::placeholder {
+  color: #ffffff;
+}
+
+#profile {
+  border: none;
+  background-color: #0033cc;
+  float: right;
+  text-align: center;
+  padding: 8px;
+  padding-left: 8px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+.sidenav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  background-color: rgb(255, 255, 255);
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 12px 10px 10px 16px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #000000;
+  display: block;
+}
+
+.sidenav a:hover {
+  background-color: #ffe680;
+}
+
+.main {
+  margin-left: 250px;
+  padding: 0px 10px;
+}
+
+.material-icons {
+  font-size: 20px;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+#trendingicon {
+  font-weight: bold;
+}
+
+#account {
+  font-size: 40px;
+}
