@@ -5,19 +5,15 @@
 	--borderColor: #f6f6f6;
 	--headerColor: #b7ebde;
 }
-body {
-  font-family: arial;
-  background-color: var(--backgroundColor);
-}
 
-td, th {
+td, th{
   border: 1px solid #dddddd;
-  text-align: left;
+  text-align: right;
   padding: 8px;
 }
 
 h3 {
-	margin-left: 15px;
+	margin-right: 15px;
 }
 
 
@@ -48,6 +44,6 @@ h3 {
   text-align: center;
   border: 5px solid var(--headerColor);
   height: 100px;
-  width: 200px;
+  width: 100px;
   background-color: var(--hoverColor);
 } */
