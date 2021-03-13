@@ -1,44 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
-
-
-
-h3 {
-  font-family: 'Raleway', sans-serif; 
-  font-weight: lighter;
-  font-size: 25px;
-  color: #212121;
-  padding-left: 100px; 
-}
-
+/* For now, CSS is exactly the same as file for homepage */
 
 .grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-gap: 10px;
-  grid-column-gap: 23px;
-  grid-row-margin-left: 500px;
-  grid-template-rows: 120px 120px 120px 120px 120px 120px;
-  padding-left: 100px;
-  padding-right: 100px;
-  border-radius: 25px;
-  
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-column-gap: 18px;
+    grid-row-gap: 16px;
+    padding-left: 40px;
+    padding-right: 160px;
 }
 
-.grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 20px 0;
-  
-  /*Learned to indent here: 
-  https://stackoverflow.com/questions/16552397/css-how-to-add-white-space-before-elements-content  */
-  text-indent: 1em;
-  text-align: left;
-  font-size: 20px;
-  font-weight: bold;
-  
-  /*Learned to round corners here:
-  https://stackoverflow.com/questions/58199457/how-to-add-border-radius-to-css-grid-element */
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+.grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0.25px 0.5px;
+    height: 120px;
+    width: auto;
+    /* vertical-align: middle; */
+}
+
+.catalog {
+    float: left;
+}
+
+#title {
+    padding-left: 40px;
+    padding-top: 12px;
+    font-weight: lighter;
+}
+
+.set-title {
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 16px;
+    padding-top: 14px;
+    padding-bottom: 6px;
+}
+
+.set-link {
+    padding-left: 16px;
+    font-weight: lighter;
+    font-size: 14px;
+}
+
+.set-author {
+    padding-left: 16px;
+    font-weight: lighter;
+    font-size: 14px;
+}
+
+
+.image {
+    height: 90px;
+    width: 80px;
+    background-color: rgb(187, 184, 184);
+    border-radius: 8px;
+    margin-top: 18px;
+    margin-bottom: 6px;
+    margin-right: 16px;
+    float: right;
+}
+
+#catalogtitle {
+    text-align: left;
+    font-size: 18px;
+}
+
+p {
+    margin: 2px;
+}
+
+a.fill-div {
+    display: block;
+    height: 100%;
+    width: 100%;
 }
