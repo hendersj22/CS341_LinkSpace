@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
 p {
     font-size: 20px;
     color: #212121;
+    margin: 2px;
 }
 
 h1 {
@@ -30,20 +33,18 @@ h3{
     color: #f0f0f5;
     border-radius: 4px 4px 0 0;
     -webkit-border-radius: 4px 4px 0 0;
-    /*padding: 30px;*/
     text-align: center;
 }
 
 .profile-nav .user-heading.round a  {
     border-radius: 50%;
     -webkit-border-radius: 50%;
-    border: 10px solid rgba(255,255,255,0.3);
     display: inline-block;
 }
 
 .profile-nav .user-heading a img {
-    width: 150px;
-    height: 150px;
+    width: 175px;
+    height: 175px;
     border-radius: 50%;
     -webkit-border-radius: 50%;
 }
@@ -99,7 +100,7 @@ h3{
 .image {
     height: 90px;
     width: 80px;
-    background-color: rgb(187, 184, 184);
+    background-color: rgb(187, 184, 184); 
     border-radius: 8px;
     margin-top: 18px;
     margin-bottom: 6px;
@@ -110,10 +111,6 @@ h3{
 #catalogtitle {
     text-align: left;
     font-size: 18px;
-}
-
-p {
-    margin: 2px;
 }
 
 a.fill-div {
@@ -142,4 +139,45 @@ a.fill-div {
 
 .linebreak {
     padding-bottom:250px;
+}
+
+/* External Citation: Wanted to align the followTable to the middle of the screen*/
+/* Link: https://wpdatatables.com/center-a-table/ */
+#followTable {
+    text-align: center;
+    width: 25%; 
+    border-spacing: 5px;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+   
+}
+
+#buttonTable{
+    text-align: center;
+    border-collapse: collapse;
+    width: 10%;
+    border-spacing: 5px;
+    margin-left: auto;
+    margin-right: 50px;
+    /* background-color: #212121; */
+}
+
+td{
+    padding: 5px;
+    font-size: 25px;    
+}
+
+
+#followButton, #messageButton{
+	background-color: #ffe680;
+	border-style: none;
+	border-radius: 30px;
+	font-size: 17px;
+	margin-top: 14px;
+	width: 80px;
+	height: 30px;
+    color: #0033cc;
+    font-family: 'Raleway', sans-serif;
+    
 }
