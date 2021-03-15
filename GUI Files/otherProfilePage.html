@@ -35,7 +35,6 @@
 
 </body>
 
-
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container bootstrap snippets bootdey">
 <div class="row">
@@ -43,12 +42,17 @@
       <div class="panel">
           <div class="user-heading round">
               <a href="#">
-                  <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Jordi_cat_portrait.jpg/1200px-Jordi_cat_portrait.jpg" alt=""> -->
+                  <!-- Default user profile picture-->
                   <img src="https://www.materialui.co/materialIcons/action/account_circle_grey_192x192.png" alt="">
-
               </a>
+               <!-- Follow and Message Button-->
+              <table id="buttonTable">
+                <tr id="buttonRow">
+                    <td><button type="button" class="button" id="followButton">Follow</button></td>
+                    <td><button type="button" class="button" id="messageButton">Message</button></td>
+                </tr>
+              </table> 
               <h1>account_name</h1>
-              <!-- <p>theuser@email.com</p> -->
           </div>
       </div>
   </div>
@@ -57,19 +61,32 @@
     <!-- <button>Follow</button> -->
 </div>
 
-
-
 <!-- <div class="panel">
     <div class="bio-graph-heading">
          Featured Catalogs 
     </div>
 </div> -->
+<table id="followTable">
+    <!-- Follower and Following counts-->
+    <tr>
+        <td id="followerCount">999</td>
+        <td id="followingCount">321</td>
+    </tr>
+    <!-- Followers and Following labels-->
+    <tr>
+        <td>Followers</td>
+        <td>Following</td>
+    </tr>
+    
+</table> 
+
+<!-- <h2 id="title">Followers Following</h2> -->
 
 <div class="main">
-    <h2 id="title">Followers</h2>
-    
+    <!-- Label for another users public catalgos-->
     <h3 id="title">Catalogs</h3>
-
+    
+    <!-- Grid container for another users three catalgos -->
     <div class="grid-container">
       <div class="grid-item">
         <div class="catalog">
@@ -97,6 +114,7 @@
         </div>
         <div class="image"></div>
         <a href="#" class="fill-div"></a>
-      </div>  
-    </div>    
+      </div>
+    </div>
+
 </html>
