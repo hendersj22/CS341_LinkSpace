@@ -6,35 +6,7 @@
 <link rel="stylesheet" href="BarTemplate.css"> 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <title>Edit Catalog</title>
-<style>
-.item1 { grid-area: header; }
-.item2 { grid-area: menu; }
-.item3 { grid-area: main; }
-.item4 { grid-area: right; }
-.item5 { grid-area: footer; }
-.item6 { grid-area: left; }
 
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    'header header header header  header header'
-    'menu main  left  left right right'
-    'menu footer footer footer right right';
-  grid-gap: 10px;
-  background-color: #f6f6f6;
-  padding: 10px;
-}
-
-.grid-container > div {
-  background-color: #b7ebde;
-  text-align: center;
-  padding: 20px 0;
-  font-size: 20px;
-}
-
-
-
-</style>
 </head>
 <body>
 <div class="topnav">
@@ -55,40 +27,22 @@
     </div>
 
 <p></p>
-<div class = "main">
-<table border-collapse="collapse">
-  <tr align="right">
-<div class="grid-container">
-  <div class="item1"><strong>My Catalog</strong></div>
-  <div class="item2">
-    <div class="btn-group">
-      <button>Name of Catalog</button>
-      <button>Create new </button>
-      <button>Edit Catalog</button>
-      <button>Add from Existing</button>
-      <button>Delete Catalog</button>
+<div class="main">
+
+  <div class="grid-container">
+    <div class="grid-item">
+      <div class="catalog">
+        <p class="catalog_title">Add Title</p>
+        <p class="catalog_author">by Author</p>
+        <p class="catalog_link">Link</p>
+        <p class="catalog_description">Add Discription</p>
+        <p class="catalog_add"><img src="https://image.flaticon.com/icons/png/512/32/32360.png" style='width:30px;height:30px;'><p class="catalog_s"> Add New</p></p>
+      </div>
+      <div class="catalog_image"></div>
     </div>
   </div>
-  <div class="item3">
-    <p style="text-align: center"><strong>Flashcards:</strong> </p>
-    <p><u>What is a Generic?..</u></p>
-   
-  </div>
-  <div class="item6">
-     <p style="text-align: center"><strong>Favorite Recipes:</strong> </p>
-    <p><u>How to make pizza..</u></p>
-  </div>
-  <div class="item5">
-    <p style="text-align: center"><strong>Helpful Resources:</strong> </p>
-    <p><u>Top 10 mistakes..</u></p>
-  </div>
-  <div class="item4"><strong>What's trending?</strong></div>
-  
-  
 </div>
-</div>
-</tr>
-</table>
+
 
 
 </body>
