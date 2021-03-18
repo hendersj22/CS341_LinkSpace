@@ -37,49 +37,83 @@ html, body, .container
   margin-left: 160px; 
   padding: 0px 10px;
   padding-top: 150px;
+}
+
+/* Style the big container for the catalog */
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 18px;
+  grid-row-gap: 16px;
+
+  padding-left: 150px;
+  padding-right: 160px;
+  padding-top: 50px;
+
+  justify-content: center;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  border-width: 10px;
+  border-color: blue;
+  border-style:solid;
+
+  height: 480px;
+  width: 800px;
   
 }
 
-/* Styling for the tiles-links*/
-
-.link1{
-    grid-area: link1;
+p{
+  margin: 5px;
 }
 
-.link2{
-    grid-area: link2;
+.catalog {
+  float:left;
 }
 
+/*Styling the catalog title, links and descriptions*/
+.catalog_title {
+  font-size: 50px;
+  font-weight: bold;
 
-.link3{
-    grid-area: link3;
+  padding-left: 25px;
+  padding-top: 14px;
+  padding-bottom: 6px;
+ 
+  
+}
+.catalog_link {
+  padding-left: 25px;
+  font-weight: normal;
+  font-size: 30px;
+  padding-top: 15px;
 }
 
-.link4 {
-    grid-area: link4;
+.catalog_author {
+  padding-left: 25px;
+  font-weight: lighter;
+  font-size: 20px;
+  padding-bottom: 10px;
 }
 
-.link5{
-    grid-area: link5;
+.catalog_description{
+  padding-left: 25px;
+  font-weight:lighter;
+  color: rgb(187, 184, 184);  
+  font-size: 13px;
+} 
+
+/*Default Image*/
+.catalog_image {
+  height: 180px;
+  width: 180px;
+  background-color: rgb(187, 184, 184);
+
+  border-radius: 8px;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  margin-right: 16px;
+  float: right;
 }
-
-
- .grid-container{
-    display: grid;
-    grid-template-areas:
-    'link1 link1 link1 link2 link2 link2'
-    'link4 link3 link3 link3 link5 link5'
-    'link4 link3 link3 link3 link5 link5';
-    
-    grid-gap: 10px;
-    background-color: #2196F3;
-    padding: 10px;
-
- }
-
- .grid-container > div {
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-    padding: 20px 10;
-    font-size: 30px;
-  }

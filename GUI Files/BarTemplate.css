@@ -1,49 +1,135 @@
-:root {
-	--backgroundColor1: #4992a7;
-  --backgroundColor: #A6ACEC;
-	--hoverColor: #ffe2e2;
-	--borderColor: #f6f6f6;
-	--headerColor: #b7ebde;
+html, body, .container
+{
+    height: 100%; 
+    min-height: 100%;
+    font: Arial;
+    
+    
+} 
+.sidebar {
+  height: 100%;
+  width: 160px;
+  position: fixed;;
+  z-index: 1;
+  top: 60px;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  padding-top: 16px;
 }
 
-td, th{
-  border: 1px solid #dddddd;
-  text-align: right;
-  padding: 8px;
+/* Style sidebar links */
+.sidebar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
 }
 
-h3 {
-	margin-right: 15px;
+/* Style links on mouse-over */
+.sidebar a:hover {
+  color: #f1f1f1;
 }
 
-
-.btn-group button {
-  background-color: var(--backgroundColor);
-  font-family: arial;
-  border: 10px solid var(--headerColor);
-  text-align: center;
-  font-size: 15px;
-  color: white; /* White text */
-  padding: 10px; /*Some padding */
-  cursor: pointer; /* Pointer/hand icon */
-  width: 100%; /* Set a width if needed */
-  display: block; /* Make the buttons appear below each other */
-  position: relative;
-
+/* Style the main content */
+.main {
+  margin-left: 160px; 
+  padding: 0px 10px;
 }
 
-.btn-group button:not(:last-child) {
-  border-bottom: none; /* Prevent double borders */
+/* Style the big container for the catalog */
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 18px;
+  grid-row-gap: 16px;
+
+  padding-left: 150px;
+  padding-right: 160px;
+  padding-top: 50px;
+
+  justify-content: center;
 }
 
-/* Add a background color on hover */
-.btn-group button:hover {
-  background-color: var(--hoverColor);
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 45px;
+  border-width: 15px;
+  border-color: #0033cc;
+  border-style:solid;
+
+  height: 370px;
+  width: 1400px;
+  
 }
-/* .rectangle {
-  text-align: center;
-  border: 5px solid var(--headerColor);
-  height: 100px;
-  width: 100px;
-  background-color: var(--hoverColor);
-} */
+
+p{
+  margin: 5px;
+}
+
+.catalog {
+  float:left;
+}
+
+/*Styling the catalog title, links and descriptions*/
+.catalog_title {
+  font-size: 50px;
+
+  padding-left: 25px;
+  padding-top: 14px;
+  padding-bottom: 3px;
+  text-decoration: underline;
+  text-decoration-color: blue; 
+  text-decoration-thickness: 8%;
+  text-underline-position: under;
+  font-weight: bold;
+ 
+  
+}
+.catalog_link {
+  padding-left: 25px;
+  font-weight: normal;
+  font-size: 45px;
+  padding-top: 15px;
+}
+
+.catalog_author {
+  padding-left: 25px;
+  font-weight: lighter;
+  font-size: 24px;
+  padding-bottom: 10px;
+}
+
+.catalog_description{
+  padding-left: 25px;
+  font-weight:lighter;
+  color: rgb(170, 170, 170);  
+  font-size: 26px;
+  text-decoration: underline;
+  text-decoration-color: blue; 
+  text-decoration-thickness: 12%;
+  text-underline-position: under;
+  padding-bottom: 18px;
+} 
+.catalog_add{ 
+  padding-left: 25px; 
+}
+.catalog_s{ 
+  padding-left: 65px;
+  margin-top: -32px; 
+  color: #808080;
+}
+
+/*Default Image*/
+.catalog_image {
+  height: 180px;
+  width: 180px;
+  background-color: rgb(187, 184, 184);
+
+  border-radius: 8px;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  margin-right: 16px;
+  float: right;
+}

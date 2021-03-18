@@ -4,62 +4,127 @@
 }*/
 
 :root{
-	--main:#0033cc;
-	--secondary:#99ccff;
-	--accent:#ffe680;
-	--background:#f0f0f5;
+	--main:#00C2CB;
+	--accent:#FFDE59;
+	--background:#F4F4F4;
+	--darkmain:#2D3137;
+	--darkaccent:#00C2CB;
+	--darkbackground:#121C22;
 	--text1:#ffffff;
 	--text2:#212121;
 }
-/*:root{
-	--main:#4e5285;
-	--secondary:#858CDC;
-	--accent:#dddddd;
-	--background:#CEFFF1;
-	--text1:#212121;
-}*/
 
-.followerMain {
-	background-color: var(--main);
+.suggested-catalogs{
+	width: min-content;
+}
+
+.page-content{
+	margin-left: 210px;
+	margin-right:50px;
+}
+
+.user{
+	border-top: 1px, var(--background);
+	border-bottom: 1px, var(--background);
+}
+
+.container{
+	background-color: white;
 	margin-top: 25px;
 	padding: 10px;
-	border-radius: 25px;
+	border-radius: 10px;
 	text-align: center;
-	width: 90%;
+	width:fit-content;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.follower { /* I would like this to have less space between each line but I don't have time to fix it yet*/
-	background-color: var(--secondary);
-	color: var(--text1);
+.button{
+	background-color: var(--accent);
+	border-style: none;
+	border-radius: 30px;
+	font-size: 17px;
+	margin-top: 14px;
+	width: 80px;
+	height: 30px;
+}
 
-	margin-top: 25px;
-	padding-left: 20px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	border-radius: 25px;
-	
-	text-align: left;
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
+.mdc-card{
+	margin: 5px;
+}
+
+/*dropdown related css based off of w3 schools implimentation*/
+.dropbtn {
+	background-color: var(--background);
+	color: var(--text2);
+	padding: 10px;
+	font-size: 16px;
+	margin: 5px;
+	border: 2px solid var(--main);
+	cursor: pointer;
+  }
+  
+  .dropdown {
+	position: relative;
+	display: inline-block;
+  }
+  
+  .dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+  }
+  
+  .dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #f1f1f1}
+  
+  .dropdown:hover .dropdown-content {
+	display: block;
+  }
+  
+  .dropdown:hover .dropbtn {
+	background-color: var(--main);
+  }
+  /*end of dropdown css*/
+
+#left-col{
+	float:left;
+	width:60%;
+}
+
+#right-col{
+	width:35%;
+	float: right;
+}
+
+
+
+#following-search{
+	float: right;
+}
+
+#following-dropdown{
+	float: left;
 }
 
 table {
-    /*font-family: arial, sans-serif;*/
     border-collapse: collapse;
     width: 100%;
 }
 tr {
-	background-color: var(--background);
-}
-th {
-	font-size: 24px;
-	color: #A56CC1;
+	background-color: var(--text1);
+	border: 3px solid var(--background);
 }
 td, th {
-    border: 1px solid var(--main);
     text-align: left;
     padding: 8px;
 }
@@ -68,8 +133,7 @@ h1{
 }
 h3 {
   	font-size: 30px;
-  	color: var(--text1);
-	margin-left: 15px;
+  	color: var(--text2);
 }
 p, a {
   font-size: 20px;
