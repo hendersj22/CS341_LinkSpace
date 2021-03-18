@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="followingPage.css">
 	<link rel="stylesheet" href="searchBarTemplate.css">
+	<link rel="stylesheet" href="followingPage.css">
 
 	<!--material design resources-->
 	<link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
@@ -42,16 +42,16 @@
 
 				<!--dropdown for sort by-->
 				<div class="dropdown" id="following-dropdown">
-					<button class="dropbtn">Sort By: </button>
+					<button class="dropbtn">Sort By: Name</button>
 					<div class="dropdown-content">
 					<a href="#">Name</a>
 					<a href="#">Recent</a>
 					</div>
 				  </div>
 
-				<div class="searchbar" id="following-search">
+				<div class="searchbar" id="following-searchbar">
 					<i class="material-icons" id="searchmag">search</i>
-					<input type="text" id="search" name="search" placeholder="Search"></input>
+					<input type="text" id="following-search" name="following-search" placeholder="Search"></input>
 				</div>
 
 				<!--list of users (circle icon, name, button)-->
@@ -89,11 +89,33 @@
 
 				<!--material design cards used for catalogs-->
 				<div class="mdc-card">
-					<h4>card1</h4>
+					<table>
+						<tr class="card-row">
+						  <td>card1</td>
+						  <td rowspan="3"><div class="image"></div></td>
+						</tr>						
+						<tr class="card-row">
+							<td>author</td>
+						</tr>
+						<tr class="card-row">
+							<td>description</td>
+						</tr>
+					  </table> 
 				</div> 
 				
 				<div class="mdc-card">
-					<h3>card2</h3>
+					<table>
+						<tr class="card-row">
+						  <td>card2</td>
+						  <td rowspan="3"><div class="image"></div></td>
+						</tr>						
+						<tr class="card-row">
+							<td>author</td>
+						</tr>
+						<tr class="card-row">
+							<td>description</td>
+						</tr>
+					  </table> 
 				</div> 
 			</div>
 
@@ -101,7 +123,7 @@
 			<div class="container" id="suggested-users-container">
 				<h3>Suggested Users</h3>
 
-				<table style="width:100%">
+				<table>
 					<tr>
 					  <td><i class="material-icons" id="account">account_circle</i></td>
 					  <td>@account_name</td>
