@@ -4,7 +4,8 @@
     grid-column-gap: 18px;
     grid-row-gap: 16px;
     padding-left: 40px;
-    padding-right: 160px;
+    /* padding-right: 160px; */
+    margin-right: 160px;
 }
 
 .grid-item {
@@ -13,6 +14,7 @@
     box-shadow: 0.25px 0.5px;
     height: 120px;
     width: auto;
+    overflow: hidden;
     /* vertical-align: middle; */
 }
 
@@ -45,7 +47,6 @@
     font-weight: lighter;
     font-size: 14px;
 }
-
 
 .image {
     height: 90px;

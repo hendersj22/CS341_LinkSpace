@@ -7,26 +7,47 @@
   <link rel="stylesheet" href="searchBarTemplate.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="homepage.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+
+      $("#account").click(function () {
+        $("#dropdown-menu").toggle();
+      });
+      $("#dropdown-menu").click(function () {
+        $("#dropdown-menu").hide();
+      });
+      $("#dropdown-menu").mouseleave(function(){
+        $("#dropdown-menu").hide();
+      });
+    });
+
+  </script>
 </head>
 
 <body>
-
   <div class="topnav">
     <a class="active" href="#">LINKSPACE</a>
     <button type="button" id="create">Create</button>
-    <button class="dropbtn" type="button" id="profile"><i class="material-icons"
-        id="account">account_circle</i></button>
+    <i class="material-icons dropbtn" id="account">account_circle</i>
     <div class="searchbar">
       <i class="material-icons" id="searchmag">search</i>
       <input type="text" id="search" name="search" placeholder="Search"></input>
     </div>
   </div>
 
+  <div id="dropdown-menu" class="dropdown-content">
+    <p><strong>Username</strong></p>
+    <p>Profile</p>
+    <p>Settings</p>
+    <p>Logout</p><br>
+  </div>
+
   <div class="sidenav">
-    <a href="#home" id="home"><i class="material-icons">home</i> Home</a>
-    <a href="#mycatalogs" id="mycatalogs"><i class="material-icons">collections_bookmark</i> My Catalogs</a>
-    <a href="#following" id="following"><i class="material-icons">person</i> Following</a>
-    <a href="#trending" id="trending"><i class="material-icons" id="trendingicon">trending_up</i> Trending</a>
+    <button type="button" id="home"><i class="material-icons">home</i> Home</button>
+    <button type="button" id="mycatalogs"><i class="material-icons">collections_bookmark</i> My Catalogs</button>
+    <button type="button" id="following"><i class="material-icons">person</i> Following</button>
+    <button type="button" id="trending"><i class="material-icons" id="trendingicon">trending_up</i> Trending</button>
   </div>
 
   <div class="main">
@@ -36,56 +57,56 @@
     <div class="grid-container">
       <div class="grid-item">
         <div class="catalog">
-          <p class="set-title">Set Title</p>
-          <p class="set-link">X links</p>
-          <p class="set-author">Author</p>
+          <p class="set-title" id="setTitle1">Set Title</p>
+          <p class="set-link" id="setLink1">X links</p>
+          <p class="set-author" id="setAuthor1">Author</p>
         </div>
-        <div class="image"></div>
+        <div class="image" id="setImage1"></div>
         <a href="#" class="fill-div"></a>
       </div>
       <div class="grid-item">
         <div class="catalog">
-          <p class="set-title">Set Title</p>
-          <p class="set-link">X links</p>
-          <p class="set-author">Author</p>
+          <p class="set-title" id="setTitle2">Set Title</p>
+          <p class="set-link" id="setLink2">X links</p>
+          <p class="set-author" id="setAuthor2">Author</p>
         </div>
-        <div class="image"></div>
+        <div class="image" id="setImage2"></div>
         <a href="#" class="fill-div"></a>
       </div>
       <div class="grid-item">
         <div class="catalog">
-          <p class="set-title">Set Title</p>
-          <p class="set-link">X links</p>
-          <p class="set-author">Author</p>
+          <p class="set-title" id="setTitle3">Set Title</p>
+          <p class="set-link" id="setLink3">X links</p>
+          <p class="set-author" id="setAuthor3">Author</p>
         </div>
-        <div class="image"></div>
+        <div class="image" id="setImage3"></div>
         <a href="#" class="fill-div"></a>
       </div>
       <div class="grid-item">
         <div class="catalog">
-          <p class="set-title">Set Title</p>
-          <p class="set-link">X links</p>
-          <p class="set-author">Author</p>
+          <p class="set-title" id="setTitle4">Set Title</p>
+          <p class="set-link" id="setLink4">X links</p>
+          <p class="set-author" id="setAuthor4">Author</p>
         </div>
-        <div class="image"></div>
+        <div class="image" id="setImage4"></div>
         <a href="#" class="fill-div"></a>
       </div>
       <div class="grid-item">
         <div class="catalog">
-          <p class="set-title">Set Title</p>
-          <p class="set-link">X links</p>
-          <p class="set-author">Author</p>
+          <p class="set-title" id="setTitle5">Set Title</p>
+          <p class="set-link" id="setLink5">X links</p>
+          <p class="set-author" id="setAuthor5">Author</p>
         </div>
-        <div class="image"></div>
+        <div class="image" id="setImage5"></div>
         <a href="#" class="fill-div"></a>
       </div>
       <div class="grid-item">
         <div class="catalog">
-          <p class="set-title">Set Title</p>
-          <p class="set-link">X links</p>
-          <p class="set-author">Author</p>
+          <p class="set-title" id="setTitle6">Set Title</p>
+          <p class="set-link" id="setLink6">X links</p>
+          <p class="set-author" id="setAuthor6">Author</p>
         </div>
-        <div class="image"></div>
+        <div class="image" id="setImage6"></div>
         <a href="#" class="fill-div"></a>
       </div>
     </div>
@@ -95,56 +116,56 @@
     <div class="grid-container">
       <div class="grid-item">
         <div class="catalog">
-          <p class="set-title">Set Title</p>
-          <p class="set-link">X links</p>
-          <p class="set-author">Author</p>
+          <p class="set-title" id="setTitle7">Set Title</p>
+          <p class="set-link" id="setLink7">X links</p>
+          <p class="set-author" id="setAuthor7">Author</p>
         </div>
-        <div class="image"></div>
+        <div class="image" id="setImage7"></div>
         <a href="#" class="fill-div"></a>
       </div>
       <div class="grid-item">
         <div class="catalog">
-          <p class="set-title">Set Title</p>
-          <p class="set-link">X links</p>
-          <p class="set-author">Author</p>
+          <p class="set-title" id="setTitle8">Set Title</p>
+          <p class="set-link" id="setLink8">X links</p>
+          <p class="set-author" id="setAuthor8">Author</p>
         </div>
-        <div class="image"></div>
+        <div class="image" id="setImage8"></div>
         <a href="#" class="fill-div"></a>
       </div>
       <div class="grid-item">
         <div class="catalog">
-          <p class="set-title">Set Title</p>
-          <p class="set-link">X links</p>
-          <p class="set-author">Author</p>
+          <p class="set-title" id="setTitle9">Set Title</p>
+          <p class="set-link" id="setLink9">X links</p>
+          <p class="set-author" id="setAuthor9">Author</p>
         </div>
-        <div class="image"></div>
+        <div class="image" id="setImage9"></div>
         <a href="#" class="fill-div"></a>
       </div>
       <div class="grid-item">
         <div class="catalog">
-          <p class="set-title">Set Title</p>
-          <p class="set-link">X links</p>
-          <p class="set-author">Author</p>
+          <p class="set-title" id="setTitle10">Set Title</p>
+          <p class="set-link" id="setLink10">X links</p>
+          <p class="set-author" id="setAuthor10">Author</p>
         </div>
-        <div class="image"></div>
+        <div class="image" id="setImage10"></div>
         <a href="#" class="fill-div"></a>
       </div>
       <div class="grid-item">
         <div class="catalog">
-          <p class="set-title">Set Title</p>
-          <p class="set-link">X links</p>
-          <p class="set-author">Author</p>
+          <p class="set-title" id="setTitle11">Set Title</p>
+          <p class="set-link" id="setLink11">X links</p>
+          <p class="set-author" id="setAuthor11">Author</p>
         </div>
-        <div class="image"></div>
+        <div class="image" id="setImage11"></div>
         <a href="#" class="fill-div"></a>
       </div>
       <div class="grid-item">
         <div class="catalog">
-          <p class="set-title">Set Title</p>
-          <p class="set-link">X links</p>
-          <p class="set-author">Author</p>
+          <p class="set-title" id="setTitle12">Set Title</p>
+          <p class="set-link" id="setLink12">X links</p>
+          <p class="set-author" id="setAuthor12">Author</p>
         </div>
-        <div class="image"></div>
+        <div class="image" id="setImage12"></div>
         <a href="#" class="fill-div"></a>
       </div>
     </div>
