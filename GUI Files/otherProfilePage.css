@@ -7,9 +7,13 @@ p {
 }
 
 h1 {
-  font-size: 35px;
-  font-weight: bold;
-  color: #212121;
+    font-size: 35px;
+    color: #212121;
+    text-align: center;
+    vertical-align: top;
+    /* Moves account name right under profile picture  */
+    margin-top: -15px;
+  
 }
 
 h2{
@@ -23,31 +27,30 @@ h3{
     color: #212121;
 }
 
-.profile-nav, .profile-info{
-    margin-top:30px;   
+.profile-nav{
+    margin-top:10px;
 }
 
 /* For round user profile picture*/
 .profile-nav .user-heading {
-    background: #f0f0f5;
-    color: #f0f0f5;
-    border-radius: 4px 4px 0 0;
-    -webkit-border-radius: 4px 4px 0 0;
-    text-align: center;
+    /* Centers profile picture*/
+    text-align: center; 
 }
 
-.profile-nav .user-heading.round a  {
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
+/* .profile-nav .user-heading.round a  {
     display: inline-block;
-}
+    border-radius: 50%;
+   
+    /* background: #f0f0f5;  
+} */
 
 .profile-nav .user-heading a img {
-    width: 175px;
-    height: 175px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    -webkit-border-radius: 50%;
+    
 }
+/* END round user pofile picture code */
 
 /* Grid for Users catalogs*/
 .grid-container {
@@ -122,23 +125,18 @@ a.fill-div {
 
 /* For color block behind user profile picture */
 .bio-graph-heading {
-    background: #a57575;
-    /* color: #fff; */
+    background: #add8e6;
     text-align: top;
     font-style: italic;
-    padding: 40px 110px;
-    border-radius: 4px 4px 0 0;
-    -webkit-border-radius: 4px 4px 0 0;
-    font-size: 16px;
-    font-weight: 300;
+    /* Height of color block behind profile picture */
+    padding: 75px ;
+    /* This moves the div class "panel" up and behind the profile picture*/
+    margin-top: -346px;
 }
 
-.bio-graph-info {
-    color: #89817e;
-}
 
-.linebreak {
-    padding-bottom:250px;
+.main{
+   margin-top: 175px;
 }
 
 /* External Citation: Wanted to align the followTable to the middle of the screen*/
@@ -150,7 +148,8 @@ a.fill-div {
     border-collapse: collapse;
     margin-left: auto;
     margin-right: auto;
-   
+    margin-top: -15px;
+    padding-bottom: 0px;   
 }
 
 #buttonTable{
@@ -160,24 +159,22 @@ a.fill-div {
     border-spacing: 5px;
     margin-left: auto;
     margin-right: 50px;
-    /* background-color: #212121; */
+    /* Moves two buttons up above the account name*/ 
+    margin-top: -25px;
 }
 
 td{
-    padding: 5px;
-    font-size: 25px;    
+    font-size: 25px; 
+    padding: 5px;   
 }
 
-
-#followButton, #messageButton{
+#followButton, #messageButton {
 	background-color: #ffe680;
 	border-style: none;
 	border-radius: 30px;
 	font-size: 17px;
-	margin-top: 14px;
 	width: 80px;
 	height: 30px;
     color: #0033cc;
     font-family: 'Raleway', sans-serif;
-    
 }
