@@ -28,27 +28,30 @@ h3{
 }
 
 .profile-nav{
+    top: 0;
     margin-top:10px;
 }
 
-/* For round user profile picture*/
-.profile-nav .user-heading {
+/* Round user profile picture */
+.profile-nav .user-heading.round {
     /* Centers profile picture*/
     text-align: center; 
+    vertical-align: middle;
+    /* Width of div class takes up 20% of total screen width*/
+    width: 20%;
+    /* Margins set to auto to help center profile picture to middle of the scren  */
+    margin-right: auto;
+    margin-left: auto;
+    /* background-color: black; */
 }
-
-/* .profile-nav .user-heading.round a  {
-    display: inline-block;
-    border-radius: 50%;
-   
-    /* background: #f0f0f5;  
-} */
 
 .profile-nav .user-heading a img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
 }
 /* END round user pofile picture code */
 
@@ -125,23 +128,21 @@ a.fill-div {
 
 /* For color block behind user profile picture */
 .bio-graph-heading {
+    /* Light blue colored background*/
     background: #add8e6;
-    text-align: top;
-    font-style: italic;
     /* Height of color block behind profile picture */
     padding: 75px ;
     /* This moves the div class "panel" up and behind the profile picture*/
-    margin-top: -346px;
+    margin-top: -342px;
 }
-
 
 .main{
    margin-top: 175px;
 }
 
-/* External Citation: Wanted to align the followTable to the middle of the screen*/
+/* External Citation: Wanted to align the followInfo Table to the middle of the screen*/
 /* Link: https://wpdatatables.com/center-a-table/ */
-#followTable {
+#followInfo {
     text-align: center;
     width: 25%; 
     border-spacing: 5px;
