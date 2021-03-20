@@ -1,58 +1,125 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="searchBarTemplate.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
-
-<body>
-
-    <div class="topnav">
-        <a class="active" href="#">LINKSPACE</a>
-        <button type="button" id="create">Create</button>
-        <button type="button" id="profile"><i class="material-icons" id="account">account_circle</i></button>
-        <div class="searchbar">
-            <i class="material-icons" id="searchmag">search</i>
-            <input type="text" id="search" name="search" placeholder="Search"></input>
-        </div>
-    </div> 
-
-    <div class="sidenav">
-        <a href="#home" id="home"><i class="material-icons">home</i> Home</a>
-        <a href="#mycatalogs" id="mycatalogs"><i class="material-icons">collections_bookmark</i> My Catalogs</a>
-        <a href="#following" id="following"><i class="material-icons">person</i> Following</a>
-        <a href="#trending" id="trending"><i class="material-icons" id="trendingicon">trending_up</i> Trending</a>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="accountDetailsPage.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+    
+                $("#account").click(function () {
+                    $("#dropdown-menu").toggle();
+                });
+                $("#dropdown-menu").click(function () {
+                    $("#dropdown-menu").hide();
+                });
+                $("#dropdown-menu").mouseleave(function () {
+                    $("#dropdown-menu").hide();
+                });
+            });
+    
+        </script>
+    </head>
+    
+    <body>
+    
+        <div class="topnav">
+            <a class="active" href="#">LINKSPACE</a>
+            <button type="button" id="create">Create</button>
+            <i class="material-icons dropbtn" id="account">account_circle</i>
+            <div class="searchbar">
+              <i class="material-icons" id="searchmag">search</i>
+              <input type="text" id="search" name="search" placeholder="Search"></input>
+            </div>
+          </div>
         
-    </div>
+          <div id="dropdown-menu" class="dropdown-content">
+            <p><strong>Username</strong></p>
+            <p>Profile</p>
+            <p>Settings</p>
+            <p>Logout</p><br>
+          </div>
+        
+          <div class="sidenav">
+            <button type="button" id="home"><i class="material-icons">home</i> Home</button>
+            <button type="button" id="mycatalogs"><i class="material-icons">collections_bookmark</i> My Catalogs</button>
+            <button type="button" id="following"><i class="material-icons">person</i> Following</button>
+            <button type="button" id="trending"><i class="material-icons" id="trendingicon">trending_up</i> Trending</button>
+          </div>
+    <!--
     <div class = "main">
-        <h1> Settings <br>
-        <table>
-            <tr>
-                <td>Username: <br>
-                    Place Holder</td>
-                <td><input type="button" value="Edit"></input></td>
-            </tr>
-            <tr>	<td>Password: <br>
-                Cheesecake</td>
-                <td><input type="button" value="Edit"></input></td>
-            </tr>
-            <tr>	<td>Account Email: <br>
-                placeholder@gmail.com</td>
-                <td><input type="button" value="Edit"></input></td>
-            </tr>
-            <tr>
-                <input type="radio" id="Dark Mode" name="Visual theme" value="Light">
-                <label for="Dark Mode">Dark Mode</label><br>
-            </tr>
-            <tr>
-                <td><input type="button" value="Save"></input></td>
-            </tr>
-        </table>
-        </h1>
+        <div class = "settings"> 
+            <h1> Settings </h1><br>
+                <div>
+                    <div class = "firstColumnFirstRow"> 
+                        <strong> Username: <br> </strong>
+                        Place Holder
+                    </div>
+                    <div class = "secondColumnFirstRow"> <input type="button" id = "editUser" value="Edit"></input> </div>
+                </div>
+                <div>
+                    <div class = "firstColumnSecondRow"> 
+                        <strong> Password: <br> </strong>
+                        Cheesecake
+                    </div>
+                    <div class = "secondColumnSecondRow"> <input type="button"  id = "editPass" value="Edit"></input> </div>
+                </div>
+                <div> 
+                    <div class = "firstColumnThirdRow"> 
+                        <strong> Email: <br> </strong> 
+                        placeholder@gmail.com 
+                    </div>
+                    <div class = "secondColumnThirdRow"> <input type="button"  id = "editEmail" value="Edit"></input> </div>
+                </div>
+                <div>
+                    <div class = "firstColumnFourthRow">
+                        <label for="Dark Mode">Dark Mode</label>
+                    </div>
+                    <div class = "secondColumnFourthRow">
+                        <input type="checkbox"  id="Dark Mode" name="Visual theme" value="Light">
+                    </div>
+                </div>
+                <div class = "middleColumn">
+                    <input type="button" value="Save"></input>
+                </div> 
+        </div>
     </div>
-
+    -->
+    <div class="main">
+        <div class="settings">
+            <h1> Settings </h1><br>
+            <div class="firstColumn">
+                <strong> Username: <br> </strong>
+                Place Holder <br> <br>
+                <strong> Password: <br> </strong>
+                Cheesecake <br> <br>
+                <strong> Email: <br> </strong>
+                placeholder@gmail.com <br> <br>
+                <label for="Dark Mode">Dark Mode</label>
+            </div>
+            <div class="secondColumn">
+                <div class = "buttonContainer">
+                    <div>
+                        <input type="button" id="editUser" value="Edit"></input>
+                    </div>
+                    <div>  
+                        <input type="button" id="editPass" value="Edit"></input>
+                    </div>
+                    <div>
+                        <input type="button" id="editEmail" value="Edit"></input>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="Dark Mode" name="Visual theme" value="Light">
+                    </div>
+                </div>
+            </div>
+            <div class = "middleColumn">
+                <input type="button" value="Save"></input>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
