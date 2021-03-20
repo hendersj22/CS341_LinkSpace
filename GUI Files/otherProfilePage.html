@@ -1,111 +1,146 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Other User Profile Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="searchBarTemplate.css">
     <link rel="stylesheet" href="otherProfilePage.css"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <title>Other User Profile Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+
+          $("#account").click(function () {
+              $("#dropdown-menu").toggle();
+          });
+          $("#dropdown-menu").click(function () {
+              $("#dropdown-menu").hide();
+          });
+          $("#dropdown-menu").mouseleave(function () {
+              $("#dropdown-menu").hide();
+          });
+      });
+
+    </script>
 </head>
 <body>
 
 <!-- Search bar and side bar HTML code-->
 <!-- Updated Search Bar code with template provided by Design Team -->
 
-    <!-- Navigation Bar -->
-    <div class="topnav">
-        <a class="active" href="#">LINKSPACE</a>
-        <button type="button" id="create">Create</button>
-        <button type="button" id="profile"><i class="material-icons" id="account">account_circle</i></button>
-        <div class="searchbar">
-            <i class="material-icons" id="searchmag">search</i>
-            <input type="text" id="search" name="search" placeholder="Search"></input>
-        </div>
-    </div> 
-
-    <!-- Side bar -->
-    <div class="sidenav">
-        <a href="#home" id="home"><i class="material-icons">home</i> Home</a>
-        <a href="#mycatalogs" id="mycatalogs"><i class="material-icons">collections_bookmark</i> My Catalogs</a>
-        <a href="#following" id="following"><i class="material-icons">person</i> Following</a>
-        <a href="#trending" id="trending"><i class="material-icons" id="trendingicon">trending_up</i> Trending</a>
+<!-- Navigation Bar -->
+<div class="topnav">
+  <a class="active" href="#">LINKSPACE</a>
+    <button type="button" id="create">Create</button>
+    <button type="button" id="profile"><i class="material-icons" id="account">account_circle</i></button>
+    <div class="searchbar">
+      <i class="material-icons" id="searchmag">search</i>
+      <input type="text" id="search" name="search" placeholder="Search"></input>
     </div>
+</div> 
+
+<!-- User Icon Dropdown Menu-->
+<div id="dropdown-menu" class="dropdown-content">
+  <p><strong>Username</strong></p>
+  <p>Profile</p>
+  <p>Settings</p>
+  <p>Logout</p><br>
+</div>
+
+<!-- Side bar -->
+<div class="sidenav">
+  <a href="#home" id="home"><i class="material-icons">home</i> Home</a>
+  <a href="#mycatalogs" id="mycatalogs"><i class="material-icons">collections_bookmark</i> My Catalogs</a>
+  <a href="#following" id="following"><i class="material-icons">person</i> Following</a>
+  <a href="#trending" id="trending"><i class="material-icons" id="trendingicon">trending_up</i> Trending</a>
+</div>
+
 <!-- END Search bar HTML Code -->
 </body>
 
-  <div class="profile-nav col-md-3">
-    <div class="row">  
-          <div class="user-heading round">
-              <a href="">
-                  <!-- Default user profile picture-->
-                  <!-- <img src="https://www.materialui.co/materialIcons/action/account_circle_grey_192x192.png" alt=""> -->
-                  <img src="https://www.turing.ac.uk/sites/default/files/inline-images/placeholder_1.jpg">
-              </a>
-          </div>
-          <!-- Follow and Message Button-->
-          <table id="buttonTable">
-            <tr id="buttonRow">
-                <td><button type="button" class="button" id="followButton">Follow</button></td>
-                <td><button type="button" class="button" id="messageButton">Message</button></td>
-            </tr>
-          </table> 
-          <h1>account_name</h1> 
-
-          <table id="followTable">
-            <!-- Follower and Following counts-->
-            <tr>
-                <td id="followerCount">999</td>
-                <td id="followingCount">321</td>
-            </tr>
-            <!-- Followers and Following labels-->
-            <tr>
-                <td>Followers</td>
-                <td>Following</td>
-            </tr>
-        </table> 
+<!-- Round user profile picture -->
+<div class="profile-nav col-md-3">
+  <div class="position-fixed">
+    <div class="user-heading round">
+      <a href="">
+        <!-- Default user profile picture-->
+        <!-- <img src="https://www.materialui.co/materialIcons/action/account_circle_grey_192x192.png" alt=""> -->
+        <img src="https://www.turing.ac.uk/sites/default/files/inline-images/placeholder_1.jpg">
+      </a>
     </div>
+  </div>  
+</div> <!-- END profile picture-->
 
-    <div class="panel">
-      <div class="bio-graph-heading">
-           
-      </div>
-    </div>
-  </div>
+<!-- Row that contains the information amount the user  -->
+<div class="row">
+  <!-- Follow and Message Button-->
+  <table id="buttonTable">
+    <tr id="buttonRow">
+        <td><button type="button" class="button" id="followButton">Follow</button></td>
+        <td><button type="button" class="button" id="messageButton">Message</button></td>
+    </tr>
+  </table> 
+  <!-- END Follow and Message Button -->
 
+  <!-- Account name label -->
+  <h1 id="accountName">account_name</h1> 
+
+  <!-- Table that has follower and following information -->
+  <table id="followInfo">
+    <!-- Follower and Following counts-->
+    <tr>
+        <td id="followerCount">999</td>
+        <td id="followingCount">321</td>
+    </tr>
+    <!-- Followers and Following labels-->
+    <tr>
+        <td>Followers</td>
+        <td>Following</td>
+    </tr>
+  </table> <!-- END follow info-->
+
+  <!-- Panel for background color block -->
+  <div class="panel">
+    <div class="bio-graph-heading"></div>
+  </div> <!-- END panel-->
+  
+</div> <!-- END information row-->
+
+<!-- Profiles Catalogs -->
 <div class="main">
- 
-    <!-- Label for another users public catalgos-->
-    <h3 id="title">Catalogs</h3>
+  <!-- Label for another users public catalgos-->
+  <h3 id="title">Catalogs</h3>
     
-    <!-- Grid container for another users three catalgos -->
-    <div class="grid-container">
-      <div class="grid-item">
-        <div class="catalog">
-          <p class="set-title">Set Title</p>
-          <p class="set-link">X links</p>
-          <p class="set-author">Author</p>
-        </div>
-        <div class="image"></div>
-        <a href="#" class="fill-div"></a>
+  <!-- Grid container for another users three catalgos -->
+  <div class="grid-container">
+    <div class="grid-item">
+      <div class="catalog">
+        <p class="set-title">Set Title</p>
+        <p class="set-link">X links</p>
+        <p class="set-author">Author</p>
       </div>
-      <div class="grid-item">
-        <div class="catalog">
-          <p class="set-title">Set Title</p>
-          <p class="set-link">X links</p>
-          <p class="set-author">Author</p>
-        </div>
-        <div class="image"></div>
-        <a href="#" class="fill-div"></a>
-      </div>
-      <div class="grid-item">
-        <div class="catalog">
-          <p class="set-title">Set Title</p>
-          <p class="set-link">X links</p>
-          <p class="set-author">Author</p>
-        </div>
-        <div class="image"></div>
-        <a href="#" class="fill-div"></a>
-      </div>
+      <div class="image"></div>
+      <a href="" class="fill-div"></a>
     </div>
+    <div class="grid-item">
+      <div class="catalog">
+        <p class="set-title">Set Title</p>
+        <p class="set-link">X links</p>
+        <p class="set-author">Author</p>
+      </div>
+      <div class="image"></div>
+      <a href="" class="fill-div"></a>
+    </div>
+    <div class="grid-item">
+      <div class="catalog">
+        <p class="set-title">Set Title</p>
+        <p class="set-link">X links</p>
+        <p class="set-author">Author</p>
+      </div>
+      <div class="image"></div>
+      <a href="" class="fill-div"></a>
+    </div>
+  </div> <!-- END Grid-item-->
+</div> <!-- END div class main-->
 
 </html>
