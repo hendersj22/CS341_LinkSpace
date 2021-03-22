@@ -3,12 +3,24 @@
 body {
   margin: 0;
   font-family: 'Raleway', sans-serif;
-  background-color: #f0f0f5;
+  background-color: #F4F4F4;
+}
+
+img {
+  float: left;
+  color: #ffffff;
+  padding-left: 14px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 8px;
+  width: 140px;
+  height: 36px;
 }
 
 div.topnav {
   overflow: hidden;
-  background-color: #0033cc;
+  background-color: #00C2CB;
+  box-shadow: 3px 3px 5px grey;
 }
 
 div.topnav a {
@@ -21,13 +33,13 @@ div.topnav a {
 }
 
 div.topnav #create {
-  color: #0033cc;
+  color: black;
   border-radius: 30px;
-  background-color: #ffe680;
-  border-color: #0033cc;
+  background-color: #FFDE59;
+  border: none;
   font-family: 'Raleway', sans-serif;
   font-size: 17px;
-  margin-top: 14px;
+  margin-top: 12px;
   width: 80px;
   height: 30px;
   cursor: pointer;
@@ -36,10 +48,10 @@ div.topnav #create {
 
 .searchbar {
   color: #ffffff;
-  background-color: #99ccff;
-  border-color: #0033cc;
+  background-color: #7cdadf;
+  border-color: #00C2CB;
   float: right;
-  border-radius: 8px;
+  border-radius: 10px;
   font-family: 'Raleway', sans-serif;
   text-align: left;
   margin-top: 14px;
@@ -48,7 +60,7 @@ div.topnav #create {
 
 #search {
   color: #ffffff;
-  background-color: #99ccff;
+  background-color: #7cdadf;
   float: right;
   font-family: 'Raleway', sans-serif;
   font-size: 14px;
@@ -58,6 +70,7 @@ div.topnav #create {
   width: 140px;
   margin-top: 4px;
   margin-bottom: 4px;
+  outline: none;
 }
 
 #searchmag {
@@ -72,25 +85,15 @@ div.topnav #create {
   color: #ffffff;
 }
 
-/*
-#profile {
-  border: none;
-  background-color: #0033cc;
-  float: right;
-  text-align: center;
-  padding: 8px;
-  padding-left: 8px;
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  cursor: pointer;
+input:-webkit-autofill {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: white;
 }
-*/
 
 .sidenav {
   height: 100%;
   width: 160px;
   position: absolute;
-  z-index: 1;
   left: 0;
   background-color: rgb(255, 255, 255);
   overflow-x: hidden;
@@ -126,7 +129,7 @@ div.topnav #create {
 }
 
 .sidenav button:hover {
-  background-color: #ffe680;
+  background-color: #FFDE59;
 }
 
 .main {
@@ -149,11 +152,9 @@ div.topnav #create {
   font-size: 40px;
 }
 
-/*********/
-
 .dropbtn {
   border: none;
-  background-color: #0033cc;
+  background-color: #00C2CB;
   float: right;
   text-align: center;
   padding: 8px;
@@ -168,13 +169,11 @@ div.topnav #create {
   display: none;
   background-color: white;
   min-width: 140px;
-  /* overflow: auto; */
-  box-shadow: 0.25px 0.5px;
-  /* z-index: 1; */
+  box-shadow: 3px 3px 5px grey;
   float: right;
   margin-top: 14px;
   margin-right: 20px;
-  border-radius: 6px;
+  border-radius: 10px;
 }
 
 .dropdown-content p {
@@ -186,7 +185,5 @@ div.topnav #create {
   padding-top: 8px;
   cursor: pointer;
 }
-
-/*.dropdown-menu a:hover {background-color: rgba(255, 255, 255, 0.8);} */
 
 .show {display: block;}

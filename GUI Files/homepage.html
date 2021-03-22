@@ -17,7 +17,7 @@
       $("#dropdown-menu").click(function () {
         $("#dropdown-menu").hide();
       });
-      $("#dropdown-menu").mouseleave(function(){
+      $("#dropdown-menu").mouseleave(function () {
         $("#dropdown-menu").hide();
       });
     });
@@ -27,7 +27,7 @@
 
 <body>
   <div class="topnav">
-    <a class="active" href="#">LINKSPACE</a>
+    <img src="Logo_white.svg" alt="LINKSPACE">
     <button type="button" id="create">Create</button>
     <i class="material-icons dropbtn" id="account">account_circle</i>
     <div class="searchbar">
@@ -35,25 +35,20 @@
       <input type="text" id="search" name="search" placeholder="Search"></input>
     </div>
   </div>
-
   <div id="dropdown-menu" class="dropdown-content">
     <p><strong>Username</strong></p>
     <p>Profile</p>
     <p>Settings</p>
     <p>Logout</p><br>
   </div>
-
   <div class="sidenav">
     <button type="button" id="home"><i class="material-icons">home</i> Home</button>
     <button type="button" id="mycatalogs"><i class="material-icons">collections_bookmark</i> My Catalogs</button>
     <button type="button" id="following"><i class="material-icons">person</i> Following</button>
     <button type="button" id="trending"><i class="material-icons" id="trendingicon">trending_up</i> Trending</button>
   </div>
-
   <div class="main">
-
     <h3 id="title">Recent</h3>
-
     <div class="grid-container">
       <div class="grid-item">
         <div class="catalog">
@@ -110,9 +105,7 @@
         <a href="#" class="fill-div"></a>
       </div>
     </div>
-
     <h3 id="title">Trending</h3>
-
     <div class="grid-container">
       <div class="grid-item">
         <div class="catalog">
