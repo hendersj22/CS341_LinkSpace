@@ -1,51 +1,73 @@
-<link rel="stylesheet" href="CatalogViewPage.css"> 
-<link rel="stylesheet" href="SearchBarTemplate.css">
+<link rel="stylesheet" href="CatalogViewPage.css">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="searchBarTemplate.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function () {
+
+      $("#account").click(function () {
+        $("#dropdown-menu").toggle();
+      });
+      $("#dropdown-menu").click(function () {
+        $("#dropdown-menu").hide();
+      });
+      $("#dropdown-menu").mouseleave(function () {
+        $("#dropdown-menu").hide();
+      });
+    });
+  </script>
+</head>
 
 <title>Catalog View Page</title>
-</head>
 
 <body>
 
-
 <div class="topnav">
-  <a class="active" href="#">LINKSPACE</a>
-  <button type="button" id="create">Create</button>
-  <button type="button" id="profile"><i class="material-icons" id="account">account_circle</i></button>
-  <div class="searchbar">
-      <i class="material-icons" id="searchmag">search</i>
-      <input type="text" id="search" name="search" placeholder="Search"></input>
-  </div>
-</div> 
-
-<div class="sidenav">
-  <a href="#home" id="home"><i class="material-icons">home</i> Home</a>
-  <a href="#mycatalogs" id="mycatalogs"><i class="material-icons">collections_bookmark</i> My Catalogs</a>
-  <a href="#following" id="following"><i class="material-icons">person</i> Following</a>
-  <a href="#trending" id="trending"><i class="material-icons" id="trendingicon">trending_up</i> Trending</a>
+    <img src="Logo_white.svg" alt="LINKSPACE">
+    <button type="button" id="create">Create</button>
+    <i class="material-icons dropbtn" id="account">account_circle</i>
+    <div class="searchbar">
+        <i class="material-icons" id="searchmag">search</i>
+        <input type="text" id="search" name="search" placeholder="Search"></input>
+    </div>
 </div>
-
+<div id="dropdown-menu" class="dropdown-content">
+    <p id="username"><strong>Username</strong></p>
+    <p id="profile">Profile</p>
+    <p id="settings">Settings</p>
+    <p id="logout">Logout</p><br>
+</div>
+<div class="sidenav">
+    <button type="button" id="home"><i class="material-icons">home</i> Home</button>
+    <button type="button" id="mycatalogs"><i class="material-icons">collections_bookmark</i> My Catalogs</button>
+    <button type="button" id="following"><i class="material-icons">person</i> Following</button>
+    <button type="button" id="trending"><i class="material-icons" id="trendingicon">trending_up</i> Trending</button>
+</div>
+</div>
 
 <div class="main">
 
-  <div class="grid-container">
-    <div class="grid-item">
-      <div class="catalog">
-        <p class="catalog_title">Space for Title</p>
-        <p class="catalog_author">by Author</p>
-        <p class="catalog_link">Link</p>
-        <p class="catalog_description">Description for link</p>
-        <p class="catalog_link">Link</p>
-        <p class="catalog_description">Description for link</p>
-        <p class="catalog_link">Link</p>
-        <p class="catalog_description">Description for link</p>
-        <p class="catalog_link">Link</p>
-        <p class="catalog_description">Description for link</p>
-      </div>
-      <div class="catalog_image"></div>
+    <div class="grid-container">
+        <div class="grid-item">
+            <div class="catalog">
+                <p class="catalog_title">Space for Title</p>
+                <p class="catalog_author">by Author</p>
+                <p class="catalog_link">Link</p>
+                <p class="catalog_description">Description for link</p>
+                <p class="catalog_link">Link</p>
+                <p class="catalog_description">Description for link</p>
+                <p class="catalog_link">Link</p>
+                <p class="catalog_description">Description for link</p>
+                <p class="catalog_link">Link</p>
+                <p class="catalog_description">Description for link</p>
+            </div>
+            <div class="catalog_image"></div>
+        </div>
     </div>
-  </div>
 </div>
 
 </body>
