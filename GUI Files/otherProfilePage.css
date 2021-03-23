@@ -10,9 +10,9 @@ h1 {
     font-size: 35px;
     color: #212121;
     text-align: center;
-    vertical-align: top;
+    vertical-align: middle;
     /* Moves account name right under profile picture  */
-    margin-top: -15px;
+    margin-top: 70px;
   
 }
 
@@ -30,6 +30,12 @@ h3{
 .profile-nav{
     top: 0;
     margin-top:10px;
+    text-align: center;
+   
+}
+.child{
+    margin: 0 auto;
+    text-align: center;
 }
 
 /* Round user profile picture */
@@ -42,16 +48,16 @@ h3{
     /* Margins set to auto to help center profile picture to middle of the scren  */
     margin-right: auto;
     margin-left: auto;
-    /* background-color: black; */
+    
+    /* background-color: black;  */
 }
 
 .profile-nav .user-heading a img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    vertical-align: middle;
+    margin-top: 14px;
+    /* background-color: black; */
 }
 /* END round user pofile picture code */
 
@@ -129,15 +135,15 @@ a.fill-div {
 /* For color block behind user profile picture */
 .bio-graph-heading {
     /* Light blue colored background*/
-    background: #add8e6;
+    background: #8fdddf;
     /* Height of color block behind profile picture */
     padding: 75px ;
     /* This moves the div class "panel" up and behind the profile picture*/
-    margin-top: -342px;
+    margin-top: -397px;
 }
 
 .main{
-   margin-top: 175px;
+   margin-top: 250px;
 }
 
 /* External Citation: Wanted to align the followInfo Table to the middle of the screen*/
@@ -149,8 +155,10 @@ a.fill-div {
     border-collapse: collapse;
     margin-left: auto;
     margin-right: auto;
-    margin-top: -15px;
-    padding-bottom: 0px;   
+    margin-top: 0px;
+    padding-bottom: 0px;  
+    /* background-color: black;  */
+    margin-top: -10px;
 }
 
 #buttonTable{
@@ -161,7 +169,8 @@ a.fill-div {
     margin-left: auto;
     margin-right: 50px;
     /* Moves two buttons up above the account name*/ 
-    margin-top: -25px;
+    margin-top: 150px;
+    /* background-color: black; */
 }
 
 td{
@@ -176,6 +185,6 @@ td{
 	font-size: 17px;
 	width: 80px;
 	height: 30px;
-    color: #0033cc;
+    color: black;
     font-family: 'Raleway', sans-serif;
 }
