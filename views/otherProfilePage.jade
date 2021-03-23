@@ -1,0 +1,91 @@
+extends layout
+
+block head
+  title Other User Profile Page
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  link(rel='stylesheet' href='/stylesheets/otherProfilePage.css')
+
+block content
+  // Side bar
+  .sidenav
+    a#home
+      i.material-icons home
+      |  Home
+    a#mycatalogs
+      i.material-icons collections_bookmark
+      |  My Catalogs
+    a#following
+      i.material-icons person
+      |  Following
+    a#trending
+      i#trendingicon.material-icons trending_up
+      |  Trending
+  // END Search bar HTML Code
+  // Round user profile picture
+  .profile-nav.col-md-3
+    .position-fixed
+      .user-heading.round
+        a(href='')
+          // Default user profile picture
+          // <img src="https://www.materialui.co/materialIcons/action/account_circle_grey_192x192.png" alt="">
+          img(src='https://www.turing.ac.uk/sites/default/files/inline-images/placeholder_1.jpg')
+  // END profile picture
+  // Row that contains the information amount the user
+  .row
+    // Follow and Message Button
+    table#buttonTable
+      tbody
+        tr#buttonRow
+          td
+            button#followButton.button(type='button') Follow
+          td
+            button#messageButton.button(type='button') Message
+    // END Follow and Message Button
+    // Account name label
+    h1#accountName account_name
+    // Table that has follower and following information
+    table#followInfo
+      // Follower and Following counts
+      tbody
+        tr
+          td#followerCount 999
+          td#followingCount 321
+        // Followers and Following labels
+        tr
+          td Followers
+          td Following
+    // END follow info
+    // Panel for background color block
+    .panel
+      .bio-graph-heading
+    // END panel
+    // END information row
+    // Profiles Catalogs
+    .main
+      // Label for another users public catalgos
+      h3#title Catalogs
+      // Grid container for another users three catalgos
+      .grid-container
+        .grid-item
+          .catalog
+            p.set-title Set Title
+            p.set-link X links
+            p.set-author Author
+          .image
+          a.fill-div(href='')
+        .grid-item
+          .catalog
+            p.set-title Set Title
+            p.set-link X links
+            p.set-author Author
+          .image
+          a.fill-div(href='')
+        .grid-item
+          .catalog
+            p.set-title Set Title
+            p.set-link X links
+            p.set-author Author
+          .image
+          a.fill-div(href='')
+      // END Grid-item
+      // END div class main

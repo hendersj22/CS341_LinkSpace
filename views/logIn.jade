@@ -1,0 +1,30 @@
+extends layout
+
+block head
+	title Login
+	meta(name='viewport' content='width=device-width, initial-scale=1')
+	link(rel='stylesheet' href='/stylesheets/logInSignUp.css')
+
+block content
+	//Side bar
+	.sidenav
+		button#home(type='button')
+			i.material-icons home
+			|  Home
+		button#trending(type='button')
+			i#trendingicon.material-icons trending_up
+			|  Trending
+	.main
+		.loginForm
+			h3 Log in to LinkSpace
+			form
+				| Username
+				input.login(type='email')
+				br
+				| 				Password
+				input.login(type='password')
+				br
+				button.button Log in
+				br
+				a
+					button(style='margin-top: 20px') Don't have an account? Sign up here

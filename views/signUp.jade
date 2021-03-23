@@ -1,0 +1,35 @@
+extends layout
+
+block head
+	title Signup
+	meta(name='viewport' content='width=device-width, initial-scale=1')
+	link(rel='stylesheet' href='/stylesheets/logInSignUp.css')
+
+block content
+	.sidenav
+		button#home(type='button')
+			i.material-icons home
+			|  Home
+		button#trending(type='button')
+			i#trendingicon.material-icons trending_up
+			|  Trending
+	.main
+		.loginForm
+			h3 Sign Up
+			form
+				| Username
+				input.login(type='text')
+				br
+				| 				Email
+				input.login(type='email')
+				br
+				| 				Password
+				input.login(type='password')
+				br
+				input.login(type='checkbox' checked='')
+				| Sign up for email alerts
+				br
+				button.button Sign Up
+				br
+				a
+					button(style='margin-top: 20px') Already have an account? Log in here

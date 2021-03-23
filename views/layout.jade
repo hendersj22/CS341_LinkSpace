@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
+    link(rel='stylesheet' href='/stylesheets/layout.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+    script(src='/javascripts/searchBar.js')
+    block head
+  body
+    .topnav
+      img(src='/Logo_white.svg' alt='LINKSPACE')
+      button#create(type='button') Create
+      i#account.material-icons.dropbtn account_circle
+      .searchbar
+        i#searchmag.material-icons search
+        input#search(type='text' name='search' placeholder='Search')
+    #dropdown-menu.dropdown-content
+      p
+        strong Username
+      p Profile
+      p Settings
+      p Logout
+      br
+    block content

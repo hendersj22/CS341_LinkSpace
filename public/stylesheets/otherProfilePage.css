@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+p {
+    font-size: 20px;
+    color: #212121;
+    margin: 2px;
+}
+
+h1 {
+    font-size: 35px;
+    color: #212121;
+    text-align: center;
+    vertical-align: top;
+    /* Moves account name right under profile picture  */
+    margin-top: -15px;
+  
+}
+
+h2{
+    font-size: 20px;
+    color: #212121;
+    text-align: center;
+}
+
+h3{
+    font-size: 25px;
+    color: #212121;
+}
+
+.profile-nav{
+    top: 0;
+    margin-top:10px;
+}
+
+/* Round user profile picture */
+.profile-nav .user-heading.round {
+    /* Centers profile picture*/
+    text-align: center; 
+    vertical-align: middle;
+    /* Width of div class takes up 20% of total screen width*/
+    width: 20%;
+    /* Margins set to auto to help center profile picture to middle of the scren  */
+    margin-right: auto;
+    margin-left: auto;
+    /* background-color: black; */
+}
+
+.profile-nav .user-heading a img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+}
+/* END round user pofile picture code */
+
+/* Grid for Users catalogs*/
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-column-gap: 18px;
+    grid-row-gap: 16px;
+    padding-left: 40px;
+    padding-right: 160px;
+}
+
+.grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0.25px 0.5px;
+    height: 120px;
+    width: auto;
+}
+
+.catalog {
+    float: left;
+}
+
+#title {
+    padding-left: 40px;
+    padding-top: 12px;
+    font-weight: lighter;
+}
+
+.set-title {
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 16px;
+    padding-top: 14px;
+    padding-bottom: 6px;
+}
+
+.set-link {
+    padding-left: 16px;
+    font-weight: lighter;
+    font-size: 14px;
+}
+
+.set-author {
+    padding-left: 16px;
+    font-weight: lighter;
+    font-size: 14px;
+}
+
+.image {
+    height: 90px;
+    width: 80px;
+    background-color: rgb(187, 184, 184); 
+    border-radius: 8px;
+    margin-top: 18px;
+    margin-bottom: 6px;
+    margin-right: 16px;
+    float: right;
+}
+
+#catalogtitle {
+    text-align: left;
+    font-size: 18px;
+}
+
+a.fill-div {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+/* END grid code */
+
+/* For color block behind user profile picture */
+.bio-graph-heading {
+    /* Light blue colored background*/
+    background: #add8e6;
+    /* Height of color block behind profile picture */
+    padding: 75px ;
+    /* This moves the div class "panel" up and behind the profile picture*/
+    margin-top: -342px;
+}
+
+.main{
+   margin-top: 175px;
+}
+
+/* External Citation: Wanted to align the followInfo Table to the middle of the screen*/
+/* Link: https://wpdatatables.com/center-a-table/ */
+#followInfo {
+    text-align: center;
+    width: 25%; 
+    border-spacing: 5px;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -15px;
+    padding-bottom: 0px;   
+}
+
+#buttonTable{
+    text-align: center;
+    border-collapse: collapse;
+    width: 10%;
+    border-spacing: 5px;
+    margin-left: auto;
+    margin-right: 50px;
+    /* Moves two buttons up above the account name*/ 
+    margin-top: -25px;
+}
+
+td{
+    font-size: 25px; 
+    padding: 5px;   
+}
+
+#followButton, #messageButton {
+	background-color: #ffe680;
+	border-style: none;
+	border-radius: 30px;
+	font-size: 17px;
+	width: 80px;
+	height: 30px;
+    color: #0033cc;
+    font-family: 'Raleway', sans-serif;
+}

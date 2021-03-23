@@ -1,0 +1,116 @@
+extends layout
+
+block head
+	link(rel='stylesheet' href='/stylesheets/followingPage.css')
+	// material design resources
+	link(href='https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css' rel='stylesheet')
+	script(src='https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js')
+	title Following
+
+block content
+	// Side bar
+	.sidenav
+		a#home
+			i.material-icons home
+			|  Home
+		a#mycatalogs
+			i.material-icons collections_bookmark
+			|  My Catalogs
+		a#following(style='background-color: #FFDE59;')
+			i.material-icons person
+			|  Following
+		a#trending
+			i#trendingicon.material-icons trending_up
+			|  Trending
+	// page content
+	.page-content
+		// left column
+		#left-col.column
+			// following
+			#following-container.container
+				h3#following-header 55 Following
+				// dropdown for sort by
+				#following-dropdown.follow-dropdown
+					button.follow-dropbtn Sort By: Name
+					.follow-dropdown-content
+						a(href='#') Name
+						a(href='#') Recent
+				#following-searchbar.searchbar
+					i#searchmag.material-icons search
+					input#following-search(type='text' name='following-search' placeholder='Search')
+				// list of users (circle icon, name, button)
+				table(style='width:100%')
+					tbody
+						tr
+							td
+								i#account.material-icons account_circle
+							td @account_name
+							td
+								button#message.button(type='button') Message
+						tr
+							td
+								i#account.material-icons account_circle
+							td @account_name
+							td
+								button#message.button(type='button') Message
+						tr
+							td
+								i#account.material-icons account_circle
+							td @account_name
+							td
+								button#message.button(type='button') Message
+						tr
+							td
+								i#account.material-icons account_circle
+							td @account_name
+							td
+								button#message.button(type='button') Message
+		// right column
+		#right-col.column
+			// suggested catalogs
+			#suggested-catalogs-container.container
+				h3 Suggested Catalogs
+				// material design cards used for catalogs
+				.mdc-card
+					table
+						tbody
+							tr.card-row
+								td
+									h2
+										b card1
+								td(rowspan='3')
+									.image
+							tr.card-row
+								td author
+							tr.card-row
+								td description
+				.mdc-card
+					table
+						tbody
+							tr.card-row
+								td
+									h2
+										b card2
+								td(rowspan='3')
+									.image
+							tr.card-row
+								td author
+							tr.card-row
+								td description
+			// suggested users
+			#suggested-users-container.container
+				h3 Suggested Users
+				table
+					tbody
+						tr
+							td
+								i#account.material-icons account_circle
+							td @account_name
+							td
+								button#message.button(type='button') Message
+						tr
+							td
+								i#account.material-icons account_circle
+							td @account_name
+							td
+								button#message.button(type='button') Message
