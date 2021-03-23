@@ -21,30 +21,18 @@
     </script>
 <title>Search Template</title>
 <style>
+
 .content {
   margin-left: 160px;
   margin-top: -40px;
 }
 
-table {
-  border: 1px solid #dddddd;
-  font-family: arial, sans-serif;
-  border-collapse: separate;
-  border-spacing: 30px 30px;
-  border-radius: 10px;
-  margin-left:50px;
-  margin-top: 30px;
-  width: 80%;
-  height: 80%;
-  background-color: rgb(255, 255, 255);
-}
-
-
 img {
   border-radius: 10px;
   border: 1px solid #dddddd;
+  margin-left: 70px;
+  margin-top: 40px;
 }
-
 
 h3 {
   margin-left: 210px;
@@ -52,28 +40,29 @@ h3 {
   font-size: 40px;
 }
 
-.row {
-  display: flex;
-  margin-left:-5px;
-  margin-right:-5px;
-}
-
-.column {
-  flex: 50%;
-  padding: 50px;
-}
-
-td .title {
-  font-size: 15px;
-}
-
-
-td, th {
-  text-align: left;
-  overflow: hidden;
+.catTitle {
+  margin-left:30px;
+  margin-top:30px;
   white-space: nowrap;
-  padding: 8px;
-  left: 40 px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 18px;
+    grid-row-gap: 30px;
+    padding-left: 40px;
+    margin-right: 160px;
+}
+
+.grid-item {
+    display:flex;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px grey;
+    height: 200px;
+    width: 500px;
+    overflow: hidden;
 }
 
 
@@ -111,44 +100,23 @@ td, th {
 
 <br>
 <div class = "content">
-  <div class = "row">
-    <div class = "col">
-      <table>
-        <tr>
-          <td><b><span style="font-size:30px">Set Title</span></b><br> Link1 <br> Link2 <br> Link 3</td>
-          <td><img src="https://i.pinimg.com/originals/bf/56/5b/bf565b8639d145cda3b68d89955df46c.jpg" alt="recipes" style="width:100px;height:100px;"></td>
-        </tr>
-
-      </table>
-    </div>
-    <div class = "col"></div>
-    <div class = "col">
-      <table>
-        <tr>
-          <td><b><span style="font-size:30px">Set Title</span></b> <br> Link1 <br> Link2 <br> Link 3</td>
-          <td><img src="https://www.eatwell101.com/wp-content/uploads/2012/11/VINTAGE-RECIPE-HOLDER.jpg" alt="recBook" style="width:100px;height:100px;"></td>
-        </tr>
-      </table>
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col">
-      <table>
-        <tr>
-          <td><b><span style="font-size:30px">Set Title</span></b> <br> Link1 <br> Link2 <br> Link 3</td>
-          <td><img src="https://www.thirtyhandmadedays.com/wp-content/uploads/2014/07/recipe-book-kids.jpg" alt="famRec" style="width:100px;height:100px;"></td>
-        </tr>
-      </table>
-    </div>
-    <div class = "col"></div>
-    <div class = "col">
-      <table>
-        <tr>
-          <td><b><span style="font-size:30px">Set Title</span></b><br> Link1 <br> Link2 <br> Link 3</td>
-          <td><img src="https://previews.123rf.com/images/pixelbliss/pixelbliss1110/pixelbliss111000074/11026838-recipe-book-and-ingredients.jpg" alt="favRec" style="width:100px;height:100px;"></td>
-        </tr>
-      </table>
-    </div>
+  <div class="grid-container">
+      <div class = "grid-item">
+          <p class="catTitle"><b><span style="font-size:30px">Set Title</span></b><span style="font-size:21px"> by Author</span><br><span style="font-size:20px">X Links</span><br> Link1 <br> Link2 <br> Link3</p>
+        <img src="https://i.pinimg.com/originals/bf/56/5b/bf565b8639d145cda3b68d89955df46c.jpg" alt="recipes" style="width:100px;height:100px;">
+      </div>
+      <div class = "grid-item">
+          <p class="catTitle"><b><span style="font-size:30px">Set Title</span></b><span style="font-size:21px"> by Author</span><br><span style="font-size:20px">X Links</span><br> Link1 <br> Link2 <br> Link3</p>
+        <img class = "displayImg" src="https://www.eatwell101.com/wp-content/uploads/2012/11/VINTAGE-RECIPE-HOLDER.jpg" alt="recBook" style="width:100px;height:100px;">
+      </div>
+      <div class = "grid-item">
+          <p class="catTitle"><b><span style="font-size:30px">Set Title</span></b><span style="font-size:21px"> by Author</span><br><span style="font-size:20px">X Links</span><br> Link1 <br> Link2 <br> Link3</p>
+        <img class = "displayImg" src="https://www.thirtyhandmadedays.com/wp-content/uploads/2014/07/recipe-book-kids.jpg" alt="famRec" style="width:100px;height:100px;">
+      </div>
+      <div class = "grid-item">
+          <p class="catTitle"><b><span style="font-size:30px">Set Title</span></b><span style="font-size:21px"> by Author</span><br><span style="font-size:20px">X Links</span><br> Link1 <br> Link2 <br> Link3</p>
+        <img class = "displayImg" src="https://i.pinimg.com/originals/bf/56/5b/bf565b8639d145cda3b68d89955df46c.jpg" alt="recipes" style="width:100px;height:100px;">
+      </div>
   </div>
 </div>
 
