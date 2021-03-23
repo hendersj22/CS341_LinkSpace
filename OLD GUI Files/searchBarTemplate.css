@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  background-color: #F4F4F4;
+}
+
+img {
+  float: left;
+  color: #ffffff;
+  padding-left: 14px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 8px;
+  width: 140px;
+  height: 36px;
+}
+
+div.topnav {
+  overflow: hidden;
+  background-color: #00C2CB;
+  box-shadow: 3px 3px 5px grey;
+}
+
+div.topnav a {
+  float: left;
+  color: #ffffff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 25px;
+}
+
+div.topnav #create {
+  color: black;
+  border-radius: 30px;
+  background-color: #FFDE59;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+  font-size: 17px;
+  margin-top: 12px;
+  width: 80px;
+  height: 30px;
+  cursor: pointer;
+  outline: none;
+}
+
+.searchbar {
+  color: #ffffff;
+  background-color: #7cdadf;
+  border-color: #00C2CB;
+  float: right;
+  border-radius: 10px;
+  font-family: 'Raleway', sans-serif;
+  text-align: left;
+  margin-top: 14px;
+  width: 170px;
+}
+
+#search {
+  color: #ffffff;
+  background-color: #7cdadf;
+  float: right;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  border: none;
+  text-align: inherit;
+  border-radius: 10px;
+  width: 140px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  outline: none;
+}
+
+#searchmag {
+  font-size: 14px;
+  vertical-align: middle;
+  padding-left: 8px;
+  padding-right: 0px;
+  padding-top: 5px;
+}
+
+::placeholder {
+  color: #ffffff;
+}
+
+input:-webkit-autofill {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: white;
+}
+
+.sidenav {
+  height: 100%;
+  width: 160px;
+  position: absolute;
+  left: 0;
+  background-color: rgb(255, 255, 255);
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav button {
+  padding: 12px 10px 10px 16px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #000000;
+  display: block;
+  border: none;
+  background-color: white;
+  width: 160px;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sidenav a {
+  padding: 12px 10px 10px 16px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #000000;
+  display: block;
+  border: none;
+  background-color: white;
+  width: 160px;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sidenav button:hover {
+  background-color: #FFDE59;
+}
+
+.main {
+  margin-left: 160px;
+  padding: 0px 10px;
+}
+
+.material-icons {
+  font-size: 20px;
+  padding-right: 10px;
+  vertical-align: middle;
+  float: left;
+}
+
+#trendingicon {
+  font-weight: bold;
+}
+
+#account {
+  font-size: 40px;
+}
+
+.dropbtn {
+  border: none;
+  background-color: #00C2CB;
+  float: right;
+  text-align: center;
+  padding: 8px;
+  padding-left: 8px;
+  padding-right: 16px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  background-color: white;
+  min-width: 140px;
+  box-shadow: 3px 3px 5px grey;
+  float: right;
+  margin-top: 14px;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+
+.dropdown-content p {
+  color: black;
+  text-decoration: none;
+  display: block;
+  text-align: right;
+  padding-right: 10px;
+  padding-top: 8px;
+  cursor: pointer;
+}
+
+.show {display: block;}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="searchBarTemplate.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+        $(document).ready(function () {
+
+            $("#account").click(function () {
+                $("#dropdown-menu").toggle();
+            });
+            $("#dropdown-menu").click(function () {
+                $("#dropdown-menu").hide();
+            });
+            $("#dropdown-menu").mouseleave(function () {
+                $("#dropdown-menu").hide();
+            });
+        });
+
+    </script>
+<title>Search Template</title>
+<style>
+
+.content {
+  margin-left: 160px;
+  margin-top: -40px;
+}
+
+img {
+  border-radius: 10px;
+  border: 1px solid #dddddd;
+  margin-left: 70px;
+  margin-top: 40px;
+}
+
+h3 {
+  margin-left: 210px;
+  margin-top: 30px;
+  font-size: 40px;
+}
+
+.catTitle {
+  margin-left:30px;
+  margin-top:30px;
+  white-space: nowrap;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 18px;
+    grid-row-gap: 30px;
+    padding-left: 40px;
+    margin-right: 160px;
+}
+
+.grid-item {
+    display:flex;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px grey;
+    height: 200px;
+    width: 500px;
+    overflow: hidden;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="active" href="#">LINKSPACE</a>
+  <button type="button" id="create">Create</button>
+  <i class="material-icons dropbtn" id="account">account_circle</i>
+  <div class="searchbar">
+    <i class="material-icons" id="searchmag">search</i>
+    <input type="text" id="search" name="search" placeholder="Search"></input>
+  </div>
+</div>
+
+<div id="dropdown-menu" class="dropdown-content">
+  <p><strong>Username</strong></p>
+  <p>Profile</p>
+  <p>Settings</p>
+  <p>Logout</p><br>
+</div>
+
+<div class="sidenav">
+  <button type="button" id="home"><i class="material-icons">home</i> Home</button>
+  <button type="button" id="mycatalogs"><i class="material-icons">collections_bookmark</i> My Catalogs</button>
+  <button type="button" id="following"><i class="material-icons">person</i> Following</button>
+  <button type="button" id="trending"><i class="material-icons" id="trendingicon">trending_up</i> Trending</button>
+</div>
+
+<br>
+
+<h3>Search Results</h3>
+
+<br>
+<div class = "content">
+  <div class="grid-container">
+      <div class = "grid-item">
+          <p class="catTitle"><b><span style="font-size:30px">Set Title</span></b><span style="font-size:21px"> by Author</span><br><span style="font-size:20px">X Links</span><br> Link1 <br> Link2 <br> Link3</p>
+        <img src="https://i.pinimg.com/originals/bf/56/5b/bf565b8639d145cda3b68d89955df46c.jpg" alt="recipes" style="width:100px;height:100px;">
+      </div>
+      <div class = "grid-item">
+          <p class="catTitle"><b><span style="font-size:30px">Set Title</span></b><span style="font-size:21px"> by Author</span><br><span style="font-size:20px">X Links</span><br> Link1 <br> Link2 <br> Link3</p>
+        <img class = "displayImg" src="https://www.eatwell101.com/wp-content/uploads/2012/11/VINTAGE-RECIPE-HOLDER.jpg" alt="recBook" style="width:100px;height:100px;">
+      </div>
+      <div class = "grid-item">
+          <p class="catTitle"><b><span style="font-size:30px">Set Title</span></b><span style="font-size:21px"> by Author</span><br><span style="font-size:20px">X Links</span><br> Link1 <br> Link2 <br> Link3</p>
+        <img class = "displayImg" src="https://www.thirtyhandmadedays.com/wp-content/uploads/2014/07/recipe-book-kids.jpg" alt="famRec" style="width:100px;height:100px;">
+      </div>
+      <div class = "grid-item">
+          <p class="catTitle"><b><span style="font-size:30px">Set Title</span></b><span style="font-size:21px"> by Author</span><br><span style="font-size:20px">X Links</span><br> Link1 <br> Link2 <br> Link3</p>
+        <img class = "displayImg" src="https://i.pinimg.com/originals/bf/56/5b/bf565b8639d145cda3b68d89955df46c.jpg" alt="recipes" style="width:100px;height:100px;">
+      </div>
+  </div>
+</div>
+
+<p>1, 2, 3...</p>
+
+</body>
+</html>

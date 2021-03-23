@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="searchBarTemplate.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+
+      $("#account").click(function () {
+        $("#dropdown-menu").toggle();
+      });
+      $("#dropdown-menu").click(function () {
+        $("#dropdown-menu").hide();
+      });
+      $("#dropdown-menu").mouseleave(function () {
+        $("#dropdown-menu").hide();
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div class="topnav">
+    <img src="Logo_white.svg" alt="LINKSPACE">
+    <button type="button" id="create">Create</button>
+    <i class="material-icons dropbtn" id="account">account_circle</i>
+    <div class="searchbar">
+      <i class="material-icons" id="searchmag">search</i>
+      <input type="text" id="search" name="search" placeholder="Search"></input>
+    </div>
+  </div>
+  <div id="dropdown-menu" class="dropdown-content">
+    <p id="username"><strong>Username</strong></p>
+    <p id="profile">Profile</p>
+    <p id="settings">Settings</p>
+    <p id="logout">Logout</p><br>
+  </div>
+  <div class="sidenav">
+    <button type="button" id="home"><i class="material-icons">home</i> Home</button>
+    <button type="button" id="mycatalogs"><i class="material-icons">collections_bookmark</i> My Catalogs</button>
+    <button type="button" id="following"><i class="material-icons">person</i> Following</button>
+    <button type="button" id="trending"><i class="material-icons" id="trendingicon">trending_up</i> Trending</button>
+  </div>
+  </div>
+</body>
+
+</html>
