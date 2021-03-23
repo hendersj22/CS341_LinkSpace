@@ -15,14 +15,53 @@ router.get("/", function(req, res, next) {
     res.render("CatalogViewPage");
 });
 
+// visiting localhost:3000/create on google chrome. This shows the create catalog GUI
 router.get("/create", function(req, res, next) {
     res.render("catalogCreation");
 });
 
+// The client code calls: $.post("localhost:3000/create", bodyArgs, callback)
+// with bodyArgs = {"title": "Catalog Title",
+//                  "links":
+//                      {
+//                          "Link Description 1": "link1.com",
+//                          "Link Description 2": "link2.com"
+//                      }
+//                  }
 router.post("/create", async function(req, res, next) {
-    //get name, links, etc. from client
-    //call database
-    //send response back
+    //Generate a new catalog id
+    const catalogId = await getNewId("Catalog_ID", "Catalog");
+
+    //Get the catalog title
+    const title = req.body.title;
+
+    //Get the links
+    const links = req.body.links;
+
+    //Date format in unix format
+    const dateAdded = new Date().getMilliseconds();
+
+    //Insert the catalog entry into the database
+    await dbms.dbquery(`INSERT INTO Catalog (Catalog_ID, Name)
+                                VALUES (${catalogId}, '${title}');`);
+
+    //Add all the links into the database, so we need to iterate through all the links in body args
+    //Remember, links = {"Link Description 1" : "link1.com", "Link Description 2": "link2.com"}
+    for (const description of Object.keys(links)) {
+        //Get the url
+        const url = links[description];
+
+        //Generate a new link id
+        const linkId = await getNewId("Entry_ID", "List_Entry");
+
+        //Insert the list entry into the database
+        await dbms.dbquery(`INSERT INTO List_Entry (Entry_ID, URL, Description, Date_Added, Catalog_ID)
+                                    VALUES (${linkId}, '${url}', '${description}', ${dateAdded}, ${catalogId});`);
+
+    }
+
+    //Send the new catalog id back to the client code.
+    res.send(catalogId.toString());
 });
 
 router.get("/*/edit", function(req, res, next) {
