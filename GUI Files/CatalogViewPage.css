@@ -116,3 +116,18 @@ p{
   margin-right: 16px;
   float: right;
 }
+
+#copy {
+    margin-top: 200px;
+    margin-left: 20px;
+    color: black;
+    border-radius: 30px;
+    background-color: #FFDE59;
+    border: none;
+    font-family: 'Raleway', sans-serif;
+    font-size: 17px;
+    width: 140px;
+    height: 30px;
+    cursor: pointer;
+    outline: none;
+}
