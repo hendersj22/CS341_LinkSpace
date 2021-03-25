@@ -53,7 +53,7 @@ async function updatePassword(id, newPassword) {
     if (!isValidID) {
         throw Error("Invalid user id");
     }
-    const authorization = require("./authorization");
+
     const hash = await authorization.hashPassword(newPassword);
 
     await dbms.dbquery(`UPDATE User
