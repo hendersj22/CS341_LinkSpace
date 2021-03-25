@@ -12,14 +12,15 @@ async function getNewUserID() {
 }
 
 async function createAccount(username, password, status) {
-    const usernameExists = await usernameExists(username);
+    const isValidUsername = await usernameExists(username);
 
-    if (usernameExists) {
+    if (isValidUsername) {
         throw Error("Username is taken already");
     }
 
-    const id = getNewUserID();
+    const id = await getNewUserID();
     const hash = await authorization.hashPassword(password);
+    if (!status) status = 0;
     await dbms.dbquery(`INSERT INTO User (User_ID, Name, Password, Status)
                                 VALUES (${id}, '${username}', '${hash}', ${status});`);
 
@@ -52,7 +53,7 @@ async function updatePassword(id, newPassword) {
     if (!isValidID) {
         throw Error("Invalid user id");
     }
-
+    const authorization = require("./authorization");
     const hash = await authorization.hashPassword(newPassword);
 
     await dbms.dbquery(`UPDATE User
@@ -70,7 +71,7 @@ async function getID(username) {
 
     const result = await dbms.dbquery(`SELECT User_ID
                                      FROM User
-                                     WHERE Name = ${username};`);
+                                     WHERE Name = '${username}';`);
 
     // Example output:
     // result[0]["User_ID"] = 4;

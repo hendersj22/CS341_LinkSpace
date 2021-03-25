@@ -2,9 +2,13 @@ const bcrypt = require("bcrypt");
 
 async function areValidCredentials(username, password) {
     const userManager = require("./userManager");
-    const id = await userManager.getID(username);
-    const hash = await userManager.getHashedPassword(id);
-    return bcrypt.compare(password, hash);
+    try {
+        const id = await userManager.getID(username);
+        const hash = await userManager.getHashedPassword(id);
+        return bcrypt.compare(password, hash);
+    } catch {
+        return false;
+    }
 }
 
 async function hashPassword(password) {
