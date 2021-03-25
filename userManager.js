@@ -69,7 +69,7 @@ async function getID(username) {
 
     const result = await dbms.dbquery(`SELECT User_ID
                                      FROM User
-                                     WHERE Name = ${name};`);
+                                     WHERE Name = ${username};`);
 
     // Example output:
     // result[0]["User_ID"] = 4;
