@@ -56,7 +56,7 @@ exports.dbquery = function(query_str) {
         function (rows, fields, callback) {
             //console.log("\n** dumping data:");
             results = rows;
-            console.log("" + rows);
+            //console.log("" + rows);
             callback(null);
         }
 
