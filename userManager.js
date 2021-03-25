@@ -36,9 +36,9 @@ async function updateUsername(id, newUsername) {
         throw Error("Invalid user id");
     }
 
-    const usernameExists = await usernameExists(newUsername);
+    const isValidUsername = await usernameExists(newUsername);
 
-    if (usernameExists) {
+    if (isValidUsername) {
         throw Error("Username is taken already");
     }
 
