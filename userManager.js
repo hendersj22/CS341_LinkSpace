@@ -19,8 +19,9 @@ async function createAccount(username, password, status) {
     }
 
     const id = getNewUserID();
+    const hash = await authorization.hashPassword(password);
     await dbms.dbquery(`INSERT INTO User (User_ID, Name, Password, Status)
-                                VALUES (${id}, '${username}', '${password}', ${status});`);
+                                VALUES (${id}, '${username}', '${hash}', ${status});`);
 
     // Example output:
     // id = 5;
