@@ -1,12 +1,20 @@
 const dbms = require("./dbms_promise");
 
-async function createCatalog(name, links) {
+async function createCatalog(name, links, userID) {
+    const userManager = require("./userManager");
+
+    const isValidUserID = await userManager.idExists(userID);
+
+    if (!isValidUserID) {
+        throw Error("Invalid user id");
+    }
+
     //Generate a new catalog id
     const catalogID = await getNewCatalogID();
 
     //Insert the catalog entry into the database
-    await dbms.dbquery(`INSERT INTO Catalog (Catalog_ID, Name)
-                                VALUES (${catalogID}, '${name}');`);
+    await dbms.dbquery(`INSERT INTO Catalog (Catalog_ID, Name, User_ID)
+                                VALUES (${catalogID}, '${name}', ${userID});`);
 
     await createLinks(catalogID, links);
 
@@ -108,13 +116,41 @@ async function getCatalog(id) {
                                  FROM Catalog
                                  WHERE Catalog_ID = ${id};`);
 
-    // Example output:
-    // result[0] = {"Catalog_ID": 0, "Name": "My Catalog 1", "User_ID": 2};
+
+    for (let row = 0; row < result.length; row++) {
+        const catalogID = result[row]["Catalog_ID"];
+        result[row]["Links"] = await getListEntries(catalogID);
+    }
+
+    /* Example output:
+       result[0] =
+        {
+          “Catalog_ID”: 1,
+          “Name”: “My Catalog 1”,
+          “Links”:
+            [
+              {
+                “Entry_ID”: 1,
+                “URL”: “www.google.com”,
+                “Description”: “Favorite search engine”,
+                “Date_Added”: 1616541032321	// Unix time in milliseconds
+              },
+              {
+                “Entry_ID”: 2,
+                “URL”: “learning.up.edu”,
+                “Description”: “School Work”,
+                “Date_Added”: 1616541092945	// Unix time in milliseconds
+              }
+            ],
+          “User_ID”: 0
+        }
+
+     */
     return result[0];
 }
 
 async function getCatalogsByUser(userID, order) {
-    const userManager = require("userManager");
+    const userManager = require("./userManager");
 
     const isValidUserID = await userManager.idExists(userID);
 
@@ -133,11 +169,36 @@ async function getCatalogsByUser(userID, order) {
                                  WHERE User_ID = ${userID}
                                  ORDER BY Name ${order};`);
 
-    // Example output:
-    // result = [
-    //      {"Catalog_ID": 5, "Name": "My Catalog 5", "User_ID": 4},
-    //      {"Catalog_ID": 6, "Name": "My Catalog 6", "User_ID": 4}
-    // ];
+    for (let row = 0; row < result.length; row++) {
+        const catalogID = result[row]["Catalog_ID"];
+        result[row]["Links"] = await getListEntries(catalogID);
+    }
+
+    /* Example output:
+       result =
+        [
+          {
+            “Catalog_ID”: 1,
+            “Name”: “My Catalog 1”,
+            “Links”:
+              [
+                {
+                  “Entry_ID”: 1,
+                  “URL”: “www.google.com”,
+                  “Description”: “Favorite search engine”,
+                  “Date_Added”: 1616541032321	// Unix time in milliseconds
+                },
+                {
+                  “Entry_ID”: 2,
+                  “URL”: “learning.up.edu”,
+                  “Description”: “School Work”,
+                  “Date_Added”: 1616541092945	// Unix time in milliseconds
+                }
+              ],
+            “User_ID”: 0
+          }
+        ]
+     */
     return result;
 }
 

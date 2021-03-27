@@ -13,28 +13,32 @@ var userManager = require("../userManager");
     }
 
     Example Response Body: //NOTE: user 0 only has 1 catalog in this case
-    [
-      {
-        “Catalog_ID”: 1,
-        “Name”: “My Catalog 1”,
-        “Links”:
-          [
-            {
-              “Entry_ID”: 1,
-              “URL”: “www.google.com”,
-              “Description”: “Favorite search engine”,
-              “Date_Added”: 1616541032321	// Unix time in milliseconds
-            },
-            {
-              “Entry_ID”: 2,
-              “URL”: “learning.up.edu”,
-              “Description”: “School Work”,
-              “Date_Added”: 1616541092945	// Unix time in milliseconds
-            }
-          ],
-        “User_ID”: 0
-      }
-    ]
+    {
+      "Name": "benl",
+      "Catalogs":
+        [
+          {
+            “Catalog_ID”: 1,
+            “Name”: “My Catalog 1”,
+            “Links”:
+              [
+                {
+                  “Entry_ID”: 1,
+                  “URL”: “www.google.com”,
+                  “Description”: “Favorite search engine”,
+                  “Date_Added”: 1616541032321	// Unix time in milliseconds
+                },
+                {
+                  “Entry_ID”: 2,
+                  “URL”: “learning.up.edu”,
+                  “Description”: “School Work”,
+                  “Date_Added”: 1616541092945	// Unix time in milliseconds
+                }
+              ],
+            “User_ID”: 0
+          }
+        ]
+    }
  */
 router.post('/*/list', async function(req, res, next) {
     //req.path = /{id}/list

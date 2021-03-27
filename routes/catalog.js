@@ -5,8 +5,6 @@ const userManager = require("../userManager");
 const authorization = require("../authorization");
 const catalogManager = require("../catalogManager");
 
-
-
 /*
     GET /catalog
     Renders the my catalogs page.
@@ -46,7 +44,7 @@ router.get("/", async function(req, res, next) {
             }
           ],
         “User_ID”: 0
-      },
+      }
     ]
  */
 router.post("/list", async function(req, res, next) {
