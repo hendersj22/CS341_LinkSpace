@@ -21,9 +21,9 @@ router.get("/", async function(req, res, next) {
     List the my catalogs of the logged in user in JSON format ordered in “ascending” or “descending” by name. The order argument is optional and defaults to ascending.
 
     Example request body:
-    [
+    {
       "Order": "descending"
-    ]
+    }
 
     Example Response Body:
     [

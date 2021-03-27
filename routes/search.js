@@ -18,10 +18,10 @@ router.get('/', async function(req, res, next) {
     The order argument is optional and defaults to ascending.
 
     Example request body:
-    [
+    {
       “Query”: “My ”,
       "Order": "ascending"
-    ]
+    }
 
     Example response body:
     [

@@ -8,9 +8,9 @@ var userManager = require("../userManager");
     List the username, catalogs created in JSON format ordered in “ascending” or “descending” by Name. The order argument is optional and defaults to ascending.
 
     Example request body:
-    [
+    {
       "Order": "ascending"
-    ]
+    }
 
     Example Response Body: //NOTE: user 0 only has 1 catalog in this case
     [

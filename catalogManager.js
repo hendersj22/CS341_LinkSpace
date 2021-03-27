@@ -37,7 +37,7 @@ async function createLink(catalogID, url, description) {
     const linkID = await getNewListEntryID();
 
     //Date format in unix format
-    const dateAdded = new Date().getMilliseconds();
+    const dateAdded = Date.now();
 
     //Insert the list entry into the database
     await dbms.dbquery(`INSERT INTO List_Entry (Entry_ID, URL, Description, Date_Added, Catalog_ID)

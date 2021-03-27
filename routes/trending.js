@@ -14,9 +14,9 @@ router.get('/', async function(req, res, next) {
     Gets a list of information of all trending catalogs in JSON format ordered in “ascending” or “descending” by Name. The order argument is optional and defaults to ascending.
 
     Example request body:
-    [
+    {
       "Order": “ascending"
-    ]
+    }
 
     Example response body:
     [

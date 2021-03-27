@@ -17,10 +17,10 @@ router.get('/', async function(req, res, next) {
     The SortBy and Order arguments are optional and default to Name and ascending respectively.
 
     Example request body:
-    [
-      “SortBy”: “Date_Followed”
+    {
+      “SortBy”: “Date_Followed”,
       "Order": "ascending"
-    ]
+    }
 
     Example response:
     [
