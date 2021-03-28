@@ -266,9 +266,38 @@ async function updateName(id, newName) {
                                  WHERE Catalog_ID = ${id}`);
 }
 
+// Helper method for updateLinks
+async function updateLink(id, newURL, newDesc){
+    const isValidLinkID = await linkIDExists(id);
+
+    if (!isValidLinkID) {
+        throw Error("Invalid link id");
+    }
+
+    // Update individual link in "Links" array
+    await dbms.dbquery(`UPDATE List_Entry
+                        SET URL = '${newURL}', Description = '${newDesc}'
+                        WHERE Entry_ID = ${id}`);
+
+
+}
+
+async function updateLinks(newLinks){
+    //TO DO: call updateLink (function above)
+    //TO DO: Set links and new desc (using a For Each Loop)
+    // for of loop <---- 
+}
+
+
 async function catalogIDExists(id) {
     if (id === null || id === undefined || isNaN(id)) return false;
     const result = await dbms.dbquery(`SELECT * FROM Catalog WHERE Catalog_ID = ${id}`);
+    return result.length > 0;
+}
+
+async function linkIDExists(id) {
+    if (id === null || id === undefined || isNaN(id)) return false;
+    const result = await dbms.dbquery(`SELECT * FROM Link_Entry WHERE Entry_ID = ${id}`);
     return result.length > 0;
 }
 
@@ -304,7 +333,9 @@ module.exports = {
     getOwner: getOwner,
     getListEntries: getListEntries,
     updateName: updateName,
+    updateLinks: updateLinks,
     catalogIDExists: catalogIDExists,
+    linkIDExists: linkIDExists,
     search: search
 
 }

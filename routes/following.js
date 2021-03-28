@@ -37,7 +37,17 @@ router.get('/', async function(req, res, next) {
     ]
  */
 router.post('/users', async function(req, res, next) {
-    //TODO
+    //get user id
+    const id = authorization.getLoggedInUser(req);
+
+    //get sortby
+    const sortBy = req.body["SortBy"];
+
+    //get order
+    const order = req.body["Order"];
+
+    //query db to get all users followed by current user
+
 });
 
 module.exports = router;

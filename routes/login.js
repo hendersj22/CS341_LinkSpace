@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var authorization = require('./authorization');
 
 /*
     Ryan, Alex M
@@ -28,7 +29,16 @@ router.get('/', async function(req, res, next) {
       - Server error: Status code 500
  */
 router.post('/check', async function(req, res, next) {
-    //TODO
+    var username = req.body["Name"];
+    var password = req.body["Password"];
+
+    if (authorization.areValidCredentials(username, password)) {
+        req.session.id = username;
+        res.sendStatus(200);
+    }
+    else {
+        res.sendStatus(403);
+    }
 });
 
 module.exports = router;

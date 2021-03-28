@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var userManager = require("../userManager");
 
 /*
     GET /settings
@@ -24,6 +25,8 @@ router.get('/', async function(req, res, next) {
  */
 router.get('/list', async function(req, res, next) {
     //TODO
+    res
+
 });
 
 /*
@@ -39,7 +42,38 @@ router.get('/list', async function(req, res, next) {
     }
  */
 router.post('/edit', async function(req, res, next) {
-    //TODO
+    const id = authorization.getLoggedInUser(req);
+
+    //get new username from req
+    const newUsername = req.body["Name"];
+    
+    //get new password from req
+    const newPassword = req.body["Password"];
+
+    //get night mode setting from req
+    const nightMode = req.body["Night_Mode"];
+
+    try {
+        //use id to update name
+        const user = await userManager.updateUsername(id, newUsername);
+
+        //update password if not null or undefined
+        if(newPassword != NULL || newPassword != undefined){
+            const password = await userManager.updatePassword(id, newPassword);
+        }
+
+        //update nightmode if not null or undefined
+        if(nightMode != NULL || nightMode != undefined){
+            const nightMode = await userManger.updateNight_Mode(id, nightMode);
+         }
+         
+    } catch(err) {
+        //ran into some error while updating
+        return res.sendStatus(400);
+    }
+    
+    //successfully updated user settings
+    return res.sendStatus(200);
 });
 
 

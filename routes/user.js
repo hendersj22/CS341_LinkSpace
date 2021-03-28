@@ -47,7 +47,10 @@ router.post('/*/list', async function(req, res, next) {
     const validID = await userManager.idExists(id);
     if (!validID) return next();
 
-    //TODO
+    //get username
+
+    //get order
+    
 });
 
 /*

@@ -3,6 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var authorization = require('./authorization');
+var session = require("express-session");
+var MemoryStore = require("memorystore")(session);
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
@@ -17,6 +20,19 @@ var searchRouter = require('./routes/search');
 
 var app = express();
 
+app.use(session({
+    name: "loginSession",
+    secret: "cs341",
+    store: new MemoryStore({
+       checkPeriod: 1 * 60 * 60 * 1000
+    }),
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: true, sameSite: "strict", maxAge: 1 * 60 * 60 * 1000}
+}));
+
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -28,11 +44,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/signup', signupRouter);
+// All routers above this line do not require login
+app.use(authorization.doAuthorization);
+app.use('/', indexRouter);
 app.use('/catalog', catalogRouter);
 app.use('/trending', trendingRouter);
 app.use('/following', followingRouter);

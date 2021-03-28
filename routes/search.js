@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var catalogManager = require("../catalogManager");
 
 /*
     GET /search?query={search query}
@@ -69,6 +70,10 @@ router.get('/', async function(req, res, next) {
  */
 router.post('/list', async function(req, res, next) {
     //TODO
+
+    const results = await catalogManager.search(req.body["Query"], req.body["Order"]);
+    return res.json(results);
+    
 });
 
 module.exports = router;

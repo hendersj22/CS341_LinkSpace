@@ -44,7 +44,7 @@ async function updateUsername(id, newUsername) {
 
     await dbms.dbquery(`UPDATE User
                                  SET Name = '${newUsername}'
-                                 WHERE User_ID = ${id}`);
+                                 WHERE User_ID = ${id};`);
 }
 
 async function updatePassword(id, newPassword) {
@@ -58,8 +58,20 @@ async function updatePassword(id, newPassword) {
 
     await dbms.dbquery(`UPDATE User
                                  SET Password = '${hash}'
-                                 WHERE User_ID = ${id}`);
+                                 WHERE User_ID = ${id};`);
 
+}
+
+async function updateNight_Mode(id, newNight_Mode) {
+    const isValidID = await idExists(id);
+
+    if (!isValidID) {
+        throw error ("Invalid user id");
+    }
+
+    await dbms.dbquery(`UPDATE User
+                                 SET Name = '${newNight_Mode}'
+                                 WHERE User_ID = ${id};`);
 }
 
 async function getID(username) {
@@ -126,6 +138,47 @@ async function getStatus(id) {
     return result[0]["Status"];
 }
 
+
+async function getSettings(id) {
+    const isValidID = await idExists(id);
+
+    if (!isValidID) {
+        throw Error("Invalid user id");
+    }
+
+    const results = await dbms.dbquery(`SELECT *
+                                        FROM Preferences
+                                        WHERE User_ID = ${id}`);
+
+    return results;
+}
+
+
+async function getNight_Mode(id) {
+    const isValidID = await idExists(id);
+
+    if (!isValidID) {
+        throw Error("Invalid user id");
+    }
+
+    const results = await dbms.dbquery(`SELECT Night_Mode
+                                    FROM Preferences
+                                    WHERE User_ID = ${id};`);
+}
+
+async function getFollowers(id) {
+    const isValidID = await idExists(id);
+
+    if (!isValidID) {
+        throw Error("Invalid user id");
+    }
+
+    const results = await dbms.dbquery(`SELECT *
+                                        FROM Followers
+                                        WHERE User_ID = ${id};`);
+    return results;
+}
+
 async function idExists(id) {
     if (id === null || id === undefined || isNaN(id)) return false;
     const result = await dbms.dbquery(`SELECT * FROM User WHERE User_ID = ${id}`);
@@ -143,10 +196,13 @@ module.exports = {
     createAccount: createAccount,
     updateUsername: updateUsername,
     updatePassword: updatePassword,
+    updateNight_Mode: updateNight_Mode,
     getID: getID,
     getUsername: getUsername,
     getHashedPassword: getHashedPassword,
     getStatus: getStatus,
+    getNight_Mode: getNight_Mode,
+    getFollowers: getFollowers,
     idExists: idExists,
     usernameExists: usernameExists
 }

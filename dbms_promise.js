@@ -13,10 +13,10 @@ exports.version = '0.0.1';
 var mysql = require('mysql'),
     async = require('async');
 
-var host = "34.83.208.205";    //from GCloud instance (change to match your db)
+var host = "35.197.25.100";    //from GCloud instance (change to match your db)
 var database = "linkspacedb";  //database name
 var user = "root";         //username (change to match your db)
-var password = "1234";  //password (change to match your db, yes this is very poor practice)
+var password = "cs341";  //password (change to match your db, yes this is very poor practice)
 
 /**
  * dbquery
@@ -27,55 +27,55 @@ var password = "1234";  //password (change to match your db, yes this is very po
  * @param query     the SQL query to perform (e.g., "SELECT * FROM ...")
  */
 exports.dbquery = function(query_str) {
-  return new Promise((resolve, reject) => {
-    var dbclient;
-    var results = null;
+    return new Promise((resolve, reject) => {
+        var dbclient;
+        var results = null;
 
-    async.waterfall([
+        async.waterfall([
 
-        //Step 1: Connect to the database
-        function (callback) {
-            //console.log("\n** creating connection.");
-            dbclient = mysql.createConnection({
-                host: host,
-                user: user,
-                password: password,
-                database: database,
+                //Step 1: Connect to the database
+                function (callback) {
+                    //console.log("\n** creating connection.");
+                    dbclient = mysql.createConnection({
+                        host: host,
+                        user: user,
+                        password: password,
+                        database: database,
+                    });
+
+                    dbclient.connect(callback);
+                },
+
+                //Step 2: Issue query
+                function (results, callback) {
+                    //console.log("\n** retrieving data");
+                    dbclient.query(query_str, callback);
+                },
+
+                //Step 3: Collect results
+                function (rows, fields, callback) {
+                    //console.log("\n** dumping data:");
+                    results = rows;
+                    console.log("" + rows);
+                    callback(null);
+                }
+
+            ],
+            // waterfall cleanup function
+            function (err, res) {
+                if (err) {
+                    console.log("Database query failed.  sad");
+                    console.log(err);
+                    reject(new Error(err, null));
+                } else {
+                    console.log("Database query completed.");
+                    resolve(results);
+                }
+
+                //close connection to database
+                dbclient.end();
+
             });
 
-            dbclient.connect(callback);
-        },
-
-        //Step 2: Issue query
-        function (results, callback) {
-            //console.log("\n** retrieving data");
-            dbclient.query(query_str, callback);
-        },
-
-        //Step 3: Collect results
-        function (rows, fields, callback) {
-            //console.log("\n** dumping data:");
-            results = rows;
-            //console.log("" + rows);
-            callback(null);
-        }
-
-    ],
-    // waterfall cleanup function
-    function (err, res) {
-        if (err) {
-            console.log("Database query failed.  sad");
-            console.log(err);
-            reject(new Error(err, null));
-        } else {
-            console.log("Database query completed.");
-            resolve(results);
-        }
-
-        //close connection to database
-        dbclient.end();
-
     });
-
-  });
 }//function dbquery

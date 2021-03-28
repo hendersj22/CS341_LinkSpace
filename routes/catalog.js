@@ -10,7 +10,7 @@ const catalogManager = require("../catalogManager");
     Renders the my catalogs page.
  */
 router.get("/", async function(req, res, next) {
-    res.render("MyCatalogs");
+    res.render("MyCatalogs"); 
 });
 
 /*
@@ -48,6 +48,11 @@ router.get("/", async function(req, res, next) {
     ]
  */
 router.post("/list", async function(req, res, next) {
+    const id = authorization.getLoggedInUser(req);
+    const Order = req.body["Order"];
+    const MyCatalogs = await catalogManager.getCatalogsByUser(id,Order); // use getCatalogsByUser
+
+    res.json(MyCatalogs);
     //TODO
 });
 
@@ -113,12 +118,20 @@ router.get("/*/edit", async function(req, res, next) {
 
     Example request body:
     {
-      “Name”: “My Catalog 1”,
+      “Name”: “My Catalog 1”, //update name
       “Links”:
-        {
-          “Favorite search engine”: “www.google.com”,
-          “School Work”: “learning.up.edu”
-        }
+        [
+            {
+                "Entry_ID": 0,
+                "Description": “Favorite search engine”
+                "URL": “www.google.com”,
+            },
+            {
+                "Entry_ID": 1,
+                "Description": “Quizlet”
+                "URL": “www.quizet.com”,
+            }
+        ]
     }
  */
 router.post("/*/edit", async function(req, res, next) {
@@ -127,8 +140,30 @@ router.post("/*/edit", async function(req, res, next) {
     //Check that catalog is valid
     const validCatalogID = await catalogManager.catalogIDExists(catalogID);
     if (!validCatalogID) return next();
+    //TODO: Implement edit catalog functionality
+    // @author Kyle S.
 
-    //TODO
+    // constants for request body name and links
+    const newName = req.body["Name"];
+    const newLinks = req.body["Links"];
+    
+    try{
+        //update name
+        if (newName) {
+            await catalogManager.updateName(catalogID,newName);
+        }
+        
+        //update links
+        await catalogManager.updateLinks(newLinks);
+
+        // No error
+        return res.sendStatus(200);
+
+    } catch(e) {
+        console.error(e);
+        return res.sendStatus(500); // Database error
+    }
+   
 });
 
 /*
@@ -190,6 +225,31 @@ router.post("/*/copy", async function(req, res, next) {
        ],
      “User_ID”: 0
     }
+
+
+        ### getCatalog() output example ###
+    /* Example output:
+       result[0] =
+        {
+          “Catalog_ID”: 1,
+          “Name”: “My Catalog 1”,
+          “Links”:
+            [
+              {
+                “Entry_ID”: 1,
+                “URL”: “www.google.com”,
+                “Description”: “Favorite search engine”,
+                “Date_Added”: 1616541032321	// Unix time in milliseconds
+              },
+              {
+                “Entry_ID”: 2,
+                “URL”: “learning.up.edu”,
+                “Description”: “School Work”,
+                “Date_Added”: 1616541092945	// Unix time in milliseconds
+              }
+            ],
+          “User_ID”: 0
+        }
  */
 router.get("/*/info", async function(req, res, next) {
     //req.path = /{id}/info
@@ -198,7 +258,22 @@ router.get("/*/info", async function(req, res, next) {
     const validCatalogID = await catalogManager.catalogIDExists(catalogID);
     if (!validCatalogID) return next();
 
-    //TODO
+
+    //returns JSON Object of requested Catalog ID
+    try{
+        const catalogInfo = await catalogManager.getCatalog(catalogID);
+        res.json(catalogInfo);
+
+    }catch {
+        res.sendStatus(500);
+
+    }
+
+    
+    
+    
+    
+    
 })
 
 /*

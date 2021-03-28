@@ -7,7 +7,7 @@ var router = express.Router();
     Clears the session cookie and then redirects to /login.
  */
 router.get('/', async function(req, res, next) {
-    //TODO
+    res.clearCookie("loginSession");
 });
 
 module.exports = router;

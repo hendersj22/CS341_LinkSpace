@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const createError = require("http-errors");
 
 async function areValidCredentials(username, password) {
     const userManager = require("./userManager");
@@ -15,7 +16,22 @@ async function hashPassword(password) {
     return bcrypt.hash(password, 10);
 }
 
+function getLoggedInUser(req) {
+    if (req.session && req.session.id) {
+        return req.session.id;
+    }
+}
+
+async function doAuthorization(req, res, next) {
+    if (req.session && req.session.id) {
+        return next();
+    }
+    return res.redirect("/login");
+}
+
 module.exports = {
     areValidCredentials: areValidCredentials,
-    hashPassword: hashPassword
+    hashPassword: hashPassword,
+    getLoggedInUser: getLoggedInUser,
+    doAuthorization: doAuthorization
 }
