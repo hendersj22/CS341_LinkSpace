@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var authorization = require('./authorization');
+var authorization = require('../authorization');
 
 /*
     Ryan, Alex M
