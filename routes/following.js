@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var authorization = require('../authorization');
+var userManager = require('../userManager');
 
 /*
     GET /following
@@ -49,5 +51,56 @@ router.post('/users', async function(req, res, next) {
     //query db to get all users followed by current user
 
 });
+
+
+/*
+    POST /following/new
+    The logged in user uses this to follow the specified account.
+
+    Example request body:
+    {
+      “Follower_ID”: 3  // Follow account with User_ID 3
+    }
+*/
+router.post('/new', async function(req, res, next) {
+    //get user id
+    const id = authorization.getLoggedInUser(req);
+
+    const followerID = req.body["Follower_ID"];
+
+    try {
+        await userManager.followUser(id, followerID);
+        res.sendStatus(200);
+    } catch {
+        // Bad request, perhaps follower not found
+        res.sendStatus(400);
+    }
+});
+
+/*
+    POST /following/remove
+    The logged in user uses this to unfollow the specified account.
+
+    Example request body:
+    {
+      “Follower_ID”: 3    // Unfollow account with User_ID 3
+    }
+
+ */
+router.post('/remove', async function(req, res, next) {
+    //get user id
+    const id = authorization.getLoggedInUser(req);
+
+    const followerID = req.body["Follower_ID"];
+
+    try {
+        await userManager.unfollowUser(id, followerID);
+        res.sendStatus(200);
+    } catch {
+        // Bad request, perhaps follower not found
+        res.sendStatus(400);
+    }
+});
+
 
 module.exports = router;

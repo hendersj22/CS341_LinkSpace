@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var userManager = require('../userManager');
 
 /*
     GET /signup
@@ -13,6 +14,7 @@ router.get('/', async function(req, res, next) {
 /*
     POST /signup/new-user
     Creates a new account with the specified credentials
+    On success, the client code will redirect to the index page: /
 
     Example request body:
     {
@@ -23,10 +25,19 @@ router.get('/', async function(req, res, next) {
     Response:
       - Success: Status code 200
       - Username taken: Status code 409
-      - Server error: Status code 500
  */
 router.post('/new-user', async function(req, res, next) {
-    //TODO
+    const username = req.body["Name"];
+    const password = req.body["Password"];
+
+    try {
+        const id = await userManager.createAccount(username, password);
+        req.session["User_ID"] = id;
+        res.sendStatus(200);
+    } catch {
+        res.sendStatus(409);
+    }
+
 });
 
 module.exports = router;

@@ -20,18 +20,6 @@ var searchRouter = require('./routes/search');
 
 var app = express();
 
-app.use(session({
-    name: "loginSession",
-    secret: "cs341",
-    store: new MemoryStore({
-       checkPeriod: 1 * 60 * 60 * 1000
-    }),
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: true, sameSite: "strict", maxAge: 1 * 60 * 60 * 1000}
-}));
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,6 +30,20 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(session({
+    name: "loginSession",
+    secret: "cs341",
+    store: new MemoryStore({
+        checkPeriod: 1 * 60 * 60 * 1000
+    }),
+    resave: false,
+    saveUninitialized: false,
+    //secure is false because we are not using https
+    cookie: { secure: false, sameSite: "strict", maxAge: 1 * 60 * 60 * 1000}
+}));
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/login', loginRouter);

@@ -6,12 +6,12 @@ async function getNewUserID() {
     const field = "User_ID";
     const table = "User";
     const results = await dbms.dbquery(`SELECT MAX(${field}) FROM ${table};`);
-    if (results.length === 0) return 0;
     const maxId = results[0][`MAX(${field})`];
+    if (maxId == null) return 0;
     return maxId + 1;
 }
 
-async function createAccount(username, password, status) {
+async function createAccount(username, password, status, nightMode, displaySize) {
     const isValidUsername = await usernameExists(username);
 
     if (isValidUsername) {
@@ -21,8 +21,13 @@ async function createAccount(username, password, status) {
     const id = await getNewUserID();
     const hash = await authorization.hashPassword(password);
     if (!status) status = 0;
+    nightMode = (nightMode === true || nightMode === "true" || nightMode === 1) ? 1 : 0;
+    if (displaySize === null || displaySize === undefined) displaySize = "";
+
     await dbms.dbquery(`INSERT INTO User (User_ID, Name, Password, Status)
                                 VALUES (${id}, '${username}', '${hash}', ${status});`);
+    await dbms.dbquery(`INSERT INTO Preferences (User_ID, Night_Mode, Display_Size)
+                                VALUES (${id}, ${nightMode}, '${displaySize}');`);
 
     // Example output:
     // id = 5;
@@ -66,11 +71,13 @@ async function updateNight_Mode(id, newNight_Mode) {
     const isValidID = await idExists(id);
 
     if (!isValidID) {
-        throw error ("Invalid user id");
+        throw Error("Invalid user id");
     }
 
-    await dbms.dbquery(`UPDATE User
-                                 SET Name = '${newNight_Mode}'
+    newNight_Mode = (newNight_Mode === true || newNight_Mode === "true" || newNight_Mode === 1) ? 1 : 0;
+
+    await dbms.dbquery(`UPDATE Preferences
+                                 SET Night_Mode = ${newNight_Mode}
                                  WHERE User_ID = ${id};`);
 }
 
@@ -179,6 +186,47 @@ async function getFollowers(id) {
     return results;
 }
 
+async function isFollowingUser(currentID, followerID) {
+    const isValidID = await idExists(currentID) && await idExists(followerID);
+
+    if (!isValidID) {
+        throw Error("Invalid user or follower id");
+    }
+
+    const results = await dbms.dbquery(`SELECT FROM Followers
+                                        WHERE User_ID = ${currentID} AND Follower_ID = ${followerID};`);
+    return results > 0;
+}
+
+async function followUser(currentID, followerID) {
+    const isValidID = await idExists(currentID) && await idExists(followerID);
+
+    if (!isValidID) {
+        throw Error("Invalid user or follower id");
+    }
+
+    //Date format in unix format
+    const dateFollowed = Date.now();
+
+    const alreadyFollowed = await isFollowingUser(currentID, followerID);
+    if (!alreadyFollowed) {
+        await dbms.dbquery(`INSERT INTO Followers (User_ID, Follower_ID, Date_Followed)
+                                (${currentID}, ${followerID}, ${dateFollowed})`);
+    }
+}
+
+async function unfollowUser(currentID, followerID) {
+    const isValidID = await idExists(currentID) && await idExists(followerID);
+
+    if (!isValidID) {
+        throw Error("Invalid user or follower id");
+    }
+
+    await dbms.dbquery(`DELETE FROM Followers
+                                WHERE User_ID = ${currentID} AND Follower_ID = ${followerID}`);
+
+}
+
 async function idExists(id) {
     if (id === null || id === undefined || isNaN(id)) return false;
     const result = await dbms.dbquery(`SELECT * FROM User WHERE User_ID = ${id}`);
@@ -203,6 +251,9 @@ module.exports = {
     getStatus: getStatus,
     getNight_Mode: getNight_Mode,
     getFollowers: getFollowers,
+    isFollowingUser: isFollowingUser,
+    followUser: followUser,
+    unfollowUser: unfollowUser,
     idExists: idExists,
     usernameExists: usernameExists
 }

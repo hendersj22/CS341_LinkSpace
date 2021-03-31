@@ -10,7 +10,7 @@ const catalogManager = require("../catalogManager");
     Renders the my catalogs page.
  */
 router.get("/", async function(req, res, next) {
-    res.render("MyCatalogs"); 
+    res.render("MyCatalogs");
 });
 
 /*
@@ -73,10 +73,16 @@ router.get("/create", async function(req, res, next) {
     Example request body:
     {
         “Name”: “My Catalog 1”,
-        “Links”: {
-            “Favorite search engine”: “www.google.com”,
-            “School Work”: “learning.up.edu”
-        }
+        “Links”: [
+            {
+              “URL”: “www.google.com”,
+              “Description”: “Favorite search engine”,
+            },
+            {
+              “URL”: “learning.up.edu”,
+              “Description”: “School Work”,
+            }
+        ]
     }
 
     Example response body:
@@ -88,10 +94,12 @@ router.post("/create", async function(req, res, next) {
     // Get the links
     const links = req.body["Links"];
 
+    const owner = authorization.getLoggedInUser(req);
+
     // Arguments not supplied: bad request
     if (!name || !links) return res.sendStatus(400);
 
-    const id = await catalogManager.createCatalog(name, links);
+    const id = await catalogManager.createCatalog(name, links, owner);
 
     //Send the new catalog id back to the client code.
     res.send(id.toString());
@@ -146,15 +154,17 @@ router.post("/*/edit", async function(req, res, next) {
     // constants for request body name and links
     const newName = req.body["Name"];
     const newLinks = req.body["Links"];
-    
+
     try{
         //update name
         if (newName) {
             await catalogManager.updateName(catalogID,newName);
         }
-        
+
         //update links
-        await catalogManager.updateLinks(newLinks);
+        if (newLinks) {
+            await catalogManager.updateLinks(catalogID, newLinks);
+        }
 
         // No error
         return res.sendStatus(200);
@@ -163,7 +173,7 @@ router.post("/*/edit", async function(req, res, next) {
         console.error(e);
         return res.sendStatus(500); // Database error
     }
-   
+
 });
 
 /*
@@ -189,7 +199,7 @@ router.post("/*/copy", async function(req, res, next) {
 
         // send our new catalog's id to client
         return res.send(newCatalogID.toString());
-        
+
     } catch(e) {
         console.error(e);
         return res.sendStatus(500); // Database error
@@ -268,12 +278,6 @@ router.get("/*/info", async function(req, res, next) {
         res.sendStatus(500);
 
     }
-
-    
-    
-    
-    
-    
 })
 
 /*

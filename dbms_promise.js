@@ -56,7 +56,7 @@ exports.dbquery = function(query_str) {
                 function (rows, fields, callback) {
                     //console.log("\n** dumping data:");
                     results = rows;
-                    console.log("" + rows);
+                    //console.log("" + rows);
                     callback(null);
                 }
 
@@ -68,7 +68,7 @@ exports.dbquery = function(query_str) {
                     console.log(err);
                     reject(new Error(err, null));
                 } else {
-                    console.log("Database query completed.");
+                    //console.log("Database query completed.");
                     resolve(results);
                 }
 

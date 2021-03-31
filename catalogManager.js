@@ -24,12 +24,10 @@ async function createCatalog(name, links, userID) {
 }
 
 async function createLinks(catalogID, links) {
-    //Add all the links into the database, so we need to iterate through all the links in body args
-    //Example: links = {"Link Description 1" : "link1.com", "Link Description 2": "link2.com"}
-
-    for (const description of Object.keys(links)) {
-        //Get the url
-        const url = links[description];
+    for (const link of links) {
+        //Get the description and url
+        const description = link["Description"];
+        const url = link["URL"];
         await createLink(catalogID, url, description);
     }
 }
@@ -59,8 +57,8 @@ async function createLink(catalogID, url, description) {
 async function copyCatalog(catalogID) {
     //Copy the Catalog entry
     const newCatalogID = await getNewCatalogID();
-    await dbms.dbquery(`INSERT INTO Catalog (Catalog_ID, Name)
-                            SELECT '${newCatalogID}', Name
+    await dbms.dbquery(`INSERT INTO Catalog (Catalog_ID, Name, User_ID)
+                            SELECT '${newCatalogID}', Name, User_ID
                             FROM Catalog
                             WHERE Catalog_ID = '${catalogID}';`);
 
@@ -90,8 +88,8 @@ async function getNewCatalogID() {
     const field = "Catalog_ID";
     const table = "Catalog";
     const results = await dbms.dbquery(`SELECT MAX(${field}) FROM ${table};`);
-    if (results.length === 0) return 0;
     const maxId = results[0][`MAX(${field})`];
+    if (maxId == null) return 0;
     return maxId + 1;
 }
 
@@ -100,8 +98,8 @@ async function getNewListEntryID() {
     const field = "Entry_ID";
     const table = "List_Entry";
     const results = await dbms.dbquery(`SELECT MAX(${field}) FROM ${table};`);
-    if (results.length === 0) return 0;
     const maxId = results[0][`MAX(${field})`];
+    if (maxId == null) return 0;
     return maxId + 1;
 }
 
@@ -267,7 +265,8 @@ async function updateName(id, newName) {
 }
 
 // Helper method for updateLinks
-async function updateLink(id, newURL, newDesc){
+// Updates a single List entry with a new URl and new description
+async function updateLink(id, newDesc, newURL){
     const isValidLinkID = await linkIDExists(id);
 
     if (!isValidLinkID) {
@@ -275,19 +274,40 @@ async function updateLink(id, newURL, newDesc){
     }
 
     // Update individual link in "Links" array
-    await dbms.dbquery(`UPDATE List_Entry
-                        SET URL = '${newURL}', Description = '${newDesc}'
+
+    if (newDesc) {
+        await dbms.dbquery(`UPDATE List_Entry
+                        SET Description = '${newDesc}'
                         WHERE Entry_ID = ${id}`);
+    }
 
+    if (newURL) {
+        await dbms.dbquery(`UPDATE List_Entry
+                        SET URL = '${newURL}'
+                        WHERE Entry_ID = ${id}`);
+    }
 
 }
 
-async function updateLinks(newLinks){
-    //TO DO: call updateLink (function above)
-    //TO DO: Set links and new desc (using a For Each Loop)
-    // for of loop <---- 
-}
+// Function that takes an array newLinks and updates its description and url
+async function updateLinks(catalogID, newLinks){
+    // Iterate through every link in "newLinks" array
+    for (const link of newLinks){
+        // Get description, url, and id from each link
+        const description = link["Description"];
+        const url = link["URL"];
+        const id = link["Entry_ID"];
 
+        // If "Entry_ID is null" (link is a new entry)
+        if (id === undefined || id === null) {
+            // Create a newLink with the description and url
+            await createLink(catalogID,description,url);
+        }else{
+            // Call updatelink method with new description and url
+            await updateLink(id,description,url);
+        }
+    }
+}
 
 async function catalogIDExists(id) {
     if (id === null || id === undefined || isNaN(id)) return false;
@@ -297,7 +317,7 @@ async function catalogIDExists(id) {
 
 async function linkIDExists(id) {
     if (id === null || id === undefined || isNaN(id)) return false;
-    const result = await dbms.dbquery(`SELECT * FROM Link_Entry WHERE Entry_ID = ${id}`);
+    const result = await dbms.dbquery(`SELECT * FROM List_Entry WHERE Entry_ID = ${id}`);
     return result.length > 0;
 }
 

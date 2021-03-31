@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var authorization = require('../authorization');
+var userManager = require('../userManager');
 
 /*
     Ryan, Alex M
@@ -32,8 +33,9 @@ router.post('/check', async function(req, res, next) {
     var username = req.body["Name"];
     var password = req.body["Password"];
 
-    if (authorization.areValidCredentials(username, password)) {
-        req.session.id = username;
+    if (await authorization.areValidCredentials(username, password)) {
+        const id = await userManager.getID(username);
+        req.session["User_ID"] = id;
         res.sendStatus(200);
     }
     else {
