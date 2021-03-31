@@ -29,16 +29,12 @@ async function createCatalog(name, links, userID) {
     Example links argument:
     links = [
         {
-            "Entry_ID": 1,
             "URL": "www.google.com",
             "Description": "Favorite search engine",
-            "Date_Added": 1616541032321	// Unix time in milliseconds
         },
         {
-            "Entry_ID": 2,
             "URL": "learning.up.edu",
             "Description": "School Work",
-            "Date_Added": 1616541092945	// Unix time in milliseconds
         }
     ]
 */
