@@ -17,13 +17,13 @@ async function hashPassword(password) {
 }
 
 function getLoggedInUser(req) {
-    if (req.session && req.session["User_ID"]) {
+    if (req.session && req.session["User_ID"] !== undefined) {
         return req.session["User_ID"];
     }
 }
 
 async function doAuthorization(req, res, next) {
-    if (req.session && req.session.id) {
+    if (req.session && req.session["User_ID"] !== undefined) {
         return next();
     }
     return res.redirect("/login");

@@ -9,7 +9,13 @@ var userManager = require('../userManager');
     Render the login page
  */
 router.get('/', async function(req, res, next) {
-    res.render("logIn");
+    const id = authorization.getLoggedInUser(req);
+    if (id === undefined) {
+        res.render("logIn");
+    } else {
+        res.redirect("/");
+    }
+
 });
 
 /*
