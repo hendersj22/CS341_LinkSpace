@@ -328,10 +328,13 @@ async function search(query, order) {
         order = "ASC"
     }
 
-    const result = await dbms.dbquery(`SELECT *
-                                 FROM Catalog
-                                 WHERE Name LIKE '%${query}%'
-                                 ORDER BY Name ${order};`);
+    const result = await dbms.dbquery(`SELECT Catalog.*
+                                        FROM Catalog INNER JOIN User INNER JOIN List_Entry
+                                        ON Catalog.User_ID = User.User_ID AND Catalog.Catalog_ID = List_Entry.Catalog_ID
+                                        WHERE User.Name LIKE '%${query}%'
+                                            OR List_Entry.URL LIKE '%${query}%'
+                                            OR List_Entry.Description LIKE '%${query}%'
+                                        ORDER BY Name ${order};`);
     // Example output:
     // result = [
     //      {"Catalog_ID": 0, "Name": "My Catalog 1", "User_ID": 2},
