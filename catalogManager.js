@@ -334,6 +334,7 @@ async function search(query, order) {
                                         WHERE User.Name LIKE '%${query}%'
                                             OR List_Entry.URL LIKE '%${query}%'
                                             OR List_Entry.Description LIKE '%${query}%'
+                                        GROUP BY Catalog_ID, Name
                                         ORDER BY Name ${order};`);
     // Example output:
     // result = [
