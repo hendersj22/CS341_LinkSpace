@@ -13,10 +13,10 @@ exports.version = '0.0.1';
 var mysql = require('mysql'),
     async = require('async');
 
-var host = "35.197.25.100";    //from GCloud instance (change to match your db)
-var database = "linkspacedb";  //database name
+var host = "35.199.165.43";    //from GCloud instance (change to match your db)
+var database = "LINKSPACE";  //database name
 var user = "root";         //username (change to match your db)
-var password = "cs341";  //password (change to match your db, yes this is very poor practice)
+var password = "softegr13";  //password (change to match your db, yes this is very poor practice)
 
 /**
  * dbquery
