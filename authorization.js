@@ -20,7 +20,6 @@ function getLoggedInUser(req) {
     if (req.session && req.session["User_ID"]) {
         return req.session["User_ID"];
     }
-    return 0;
 }
 
 async function doAuthorization(req, res, next) {
