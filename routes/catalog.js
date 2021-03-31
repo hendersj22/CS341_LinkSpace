@@ -48,12 +48,14 @@ router.get("/", async function(req, res, next) {
     ]
  */
 router.post("/list", async function(req, res, next) {
+    // Gets the ID of the logged in user
     const id = authorization.getLoggedInUser(req);
+    // List catalogs in ascending or descending order by name
     const Order = req.body["Order"];
-    const MyCatalogs = await catalogManager.getCatalogsByUser(id,Order); // use getCatalogsByUser
+    // Gets a user's catalogs
+    const MyCatalogs = await catalogManager.getCatalogsByUser(id, Order);
 
     res.json(MyCatalogs);
-    //TODO
 });
 
 /*
@@ -96,13 +98,14 @@ router.post("/create", async function(req, res, next) {
 
     const owner = authorization.getLoggedInUser(req);
 
-    // Arguments not supplied: bad request
-    if (!name || !links) return res.sendStatus(400);
+    try {
+        const id = await catalogManager.createCatalog(name, links, owner);
+        //Send the new catalog id back to the client code.
+        res.send(id.toString());
+    } catch {
+        res.sendStatus(400); //400: Bad Request, maybe name or links is not specified
+    }
 
-    const id = await catalogManager.createCatalog(name, links, owner);
-
-    //Send the new catalog id back to the client code.
-    res.send(id.toString());
 });
 
 /*
@@ -148,7 +151,6 @@ router.post("/*/edit", async function(req, res, next) {
     //Check that catalog is valid
     const validCatalogID = await catalogManager.catalogIDExists(catalogID);
     if (!validCatalogID) return next();
-    //TODO: Implement edit catalog functionality
     // @author Kyle S.
 
     // constants for request body name and links
@@ -156,22 +158,22 @@ router.post("/*/edit", async function(req, res, next) {
     const newLinks = req.body["Links"];
 
     try{
-        //update name
+        //update name if newName is not null or undefined
         if (newName) {
             await catalogManager.updateName(catalogID,newName);
         }
 
-        //update links
+        //update links if newLinks is not null or undefined
         if (newLinks) {
             await catalogManager.updateLinks(catalogID, newLinks);
         }
 
-        // No error
+        // No error, 200: OKAY
         return res.sendStatus(200);
 
     } catch(e) {
         console.error(e);
-        return res.sendStatus(500); // Database error
+        return res.sendStatus(500); // 500: Internal Server Error
     }
 
 });
@@ -202,7 +204,7 @@ router.post("/*/copy", async function(req, res, next) {
 
     } catch(e) {
         console.error(e);
-        return res.sendStatus(500); // Database error
+        return res.sendStatus(500); // 500: Internal Server Error
     }
 
 });
@@ -268,15 +270,12 @@ router.get("/*/info", async function(req, res, next) {
     const validCatalogID = await catalogManager.catalogIDExists(catalogID);
     if (!validCatalogID) return next();
 
-
-    //returns JSON Object of requested Catalog ID
-    try{
+    try {
         const catalogInfo = await catalogManager.getCatalog(catalogID);
+        // Return information about a catalog as a JSON object.
         res.json(catalogInfo);
-
-    }catch {
-        res.sendStatus(500);
-
+    } catch {
+        res.sendStatus(500); // 500: Internal Server Error
     }
 })
 

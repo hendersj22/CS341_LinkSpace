@@ -3,6 +3,7 @@ const dbms = require("./dbms_promise");
 async function createCatalog(name, links, userID) {
     const userManager = require("./userManager");
 
+    //Check that ID is valid
     const isValidUserID = await userManager.idExists(userID);
 
     if (!isValidUserID) {
@@ -16,6 +17,7 @@ async function createCatalog(name, links, userID) {
     await dbms.dbquery(`INSERT INTO Catalog (Catalog_ID, Name, User_ID)
                                 VALUES (${catalogID}, '${name}', ${userID});`);
 
+    // Insert our links into the database
     await createLinks(catalogID, links);
 
     // Example output:
@@ -23,6 +25,23 @@ async function createCatalog(name, links, userID) {
     return catalogID;
 }
 
+/*
+    Example links argument:
+    links = [
+        {
+            "Entry_ID": 1,
+            "URL": "www.google.com",
+            "Description": "Favorite search engine",
+            "Date_Added": 1616541032321	// Unix time in milliseconds
+        },
+        {
+            "Entry_ID": 2,
+            "URL": "learning.up.edu",
+            "Description": "School Work",
+            "Date_Added": 1616541092945	// Unix time in milliseconds
+        }
+    ]
+*/
 async function createLinks(catalogID, links) {
     for (const link of links) {
         //Get the description and url
@@ -47,7 +66,7 @@ async function createLink(catalogID, url, description) {
 
     //Insert the list entry into the database
     await dbms.dbquery(`INSERT INTO List_Entry (Entry_ID, URL, Description, Date_Added, Catalog_ID)
-                                 VALUES (${linkID}, '${url}', '${description}', ${dateAdded}, ${catalogID});`);
+                        VALUES (${linkID}, '${url}', '${description}', ${dateAdded}, ${catalogID});`);
 
     // Example output:
     // linkID = 4;
@@ -58,28 +77,31 @@ async function copyCatalog(catalogID) {
     //Copy the Catalog entry
     const newCatalogID = await getNewCatalogID();
     await dbms.dbquery(`INSERT INTO Catalog (Catalog_ID, Name, User_ID)
-                            SELECT '${newCatalogID}', Name, User_ID
-                            FROM Catalog
-                            WHERE Catalog_ID = '${catalogID}';`);
+                        SELECT '${newCatalogID}', Name, User_ID
+                        FROM Catalog
+                        WHERE Catalog_ID = '${catalogID}';`);
 
+    // Copy the links in List_Entry table
     await copyListEntries(catalogID, newCatalogID);
 
     return newCatalogID;
 }
 
 async function copyListEntries(catalogID, newCatalogID) {
-    //Copy all the list entries for each list
+    // Gets all list entries to copy
     const listEntries = await dbms.dbquery(`SELECT *
-                                                    FROM List_Entry
-                                                    WHERE Catalog_ID = '${catalogID}';`);
+                                            FROM List_Entry
+                                            WHERE Catalog_ID = '${catalogID}';`);
+
+    // Copy each list entry
     for (let listEntry of listEntries) {
         const currentListEntryID = listEntry["Entry_ID"];
         const newEntryListID = await getNewListEntryID();
 
         await dbms.dbquery(`INSERT INTO List_Entry (Entry_ID, URL, Description, Date_Added, Catalog_ID)
-                                    SELECT '${newEntryListID}', URL, Description, Date_Added, '${newCatalogID}'
-                                    FROM List_Entry
-                                    WHERE Entry_ID = '${currentListEntryID}';`);
+                            SELECT '${newEntryListID}', URL, Description, Date_Added, '${newCatalogID}'
+                            FROM List_Entry
+                            WHERE Entry_ID = '${currentListEntryID}';`);
     }
 }
 
@@ -89,6 +111,7 @@ async function getNewCatalogID() {
     const table = "Catalog";
     const results = await dbms.dbquery(`SELECT MAX(${field}) FROM ${table};`);
     const maxId = results[0][`MAX(${field})`];
+    // If no entries in Catalog table, our ID is 0.
     if (maxId == null) return 0;
     return maxId + 1;
 }
@@ -99,6 +122,7 @@ async function getNewListEntryID() {
     const table = "List_Entry";
     const results = await dbms.dbquery(`SELECT MAX(${field}) FROM ${table};`);
     const maxId = results[0][`MAX(${field})`];
+    // If no entries in List_Entry table, our ID is 0.
     if (maxId == null) return 0;
     return maxId + 1;
 }
@@ -110,11 +134,12 @@ async function getCatalog(id) {
         throw Error("Invalid catalog id");
     }
 
+    // Get information for the specified catalog
     const result = await dbms.dbquery(`SELECT *
                                  FROM Catalog
                                  WHERE Catalog_ID = ${id};`);
 
-
+    // Get link information for that catalog
     for (let row = 0; row < result.length; row++) {
         const catalogID = result[row]["Catalog_ID"];
         result[row]["Links"] = await getListEntries(catalogID);
@@ -156,17 +181,20 @@ async function getCatalogsByUser(userID, order) {
         throw Error("Invalid user id");
     }
 
+    // Order the catalogs by name descending or ascending
     if (order === "descending") {
         order = "DESC"
     } else {
         order = "ASC"
     }
 
+    // Gets all catalogs created by the specified user
     const result = await dbms.dbquery(`SELECT *
                                  FROM Catalog
                                  WHERE User_ID = ${userID}
                                  ORDER BY Name ${order};`);
 
+    // Gets the links for each of those catalogs
     for (let row = 0; row < result.length; row++) {
         const catalogID = result[row]["Catalog_ID"];
         result[row]["Links"] = await getListEntries(catalogID);
@@ -207,6 +235,7 @@ async function getName(id) {
         throw Error("Invalid catalog id");
     }
 
+    // Get the catalog's name
     const result = await dbms.dbquery(`SELECT Name
                                  FROM Catalog
                                  WHERE Catalog_ID = ${id};`);
@@ -223,6 +252,7 @@ async function getOwner(id) {
         throw Error("Invalid catalog id");
     }
 
+    // Gets the catalog owner's id
     const result = await dbms.dbquery(`SELECT User_ID
                                  FROM Catalog
                                  WHERE Catalog_ID = ${id};`);
@@ -239,10 +269,11 @@ async function getListEntries(id) {
         throw Error("Invalid catalog id");
     }
 
+    // Retrieves link information from the specified catalog
     const result = await dbms.dbquery(`SELECT *
-                                 FROM List_Entry
-                                 WHERE Catalog_ID = ${id}
-                                 ORDER BY Date_Added;`);
+                                        FROM List_Entry
+                                        WHERE Catalog_ID = ${id}
+                                        ORDER BY Date_Added;`);
 
     // Example output:
     // result = [
@@ -252,6 +283,7 @@ async function getListEntries(id) {
     return result;
 }
 
+// Updates a catalog name
 async function updateName(id, newName) {
     const isValidCatalogID = await catalogIDExists(id);
 
@@ -260,8 +292,8 @@ async function updateName(id, newName) {
     }
 
     await dbms.dbquery(`UPDATE Catalog
-                                 SET Name = '${newName}'
-                                 WHERE Catalog_ID = ${id}`);
+                        SET Name = '${newName}'
+                        WHERE Catalog_ID = ${id}`);
 }
 
 // Helper method for updateLinks
@@ -273,14 +305,14 @@ async function updateLink(id, newDesc, newURL){
         throw Error("Invalid link id");
     }
 
-    // Update individual link in "Links" array
-
+    // Update description if newDesc isn't null or undefined
     if (newDesc) {
         await dbms.dbquery(`UPDATE List_Entry
                         SET Description = '${newDesc}'
                         WHERE Entry_ID = ${id}`);
     }
 
+    // Update URL if newURL isn't null or undefined
     if (newURL) {
         await dbms.dbquery(`UPDATE List_Entry
                         SET URL = '${newURL}'
@@ -310,12 +342,14 @@ async function updateLinks(catalogID, newLinks){
 }
 
 async function catalogIDExists(id) {
+    // Checks that the specified catalog id is in the database
     if (id === null || id === undefined || isNaN(id)) return false;
     const result = await dbms.dbquery(`SELECT * FROM Catalog WHERE Catalog_ID = ${id}`);
     return result.length > 0;
 }
 
 async function linkIDExists(id) {
+    // Checks that the specified link id is in the database
     if (id === null || id === undefined || isNaN(id)) return false;
     const result = await dbms.dbquery(`SELECT * FROM List_Entry WHERE Entry_ID = ${id}`);
     return result.length > 0;
@@ -328,6 +362,10 @@ async function search(query, order) {
         order = "ASC"
     }
 
+    /* Search catalogs that match a catalog name,
+       URLs and descriptions of links in a catalog,
+       and owner name
+     */
     const result = await dbms.dbquery(`SELECT Catalog.*
                                         FROM Catalog INNER JOIN User INNER JOIN List_Entry
                                         ON Catalog.User_ID = User.User_ID AND Catalog.Catalog_ID = List_Entry.Catalog_ID
