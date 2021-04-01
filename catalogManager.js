@@ -138,6 +138,7 @@ async function getCatalog(id) {
     // Get link information for that catalog
     for (let row = 0; row < result.length; row++) {
         const catalogID = result[row]["Catalog_ID"];
+        result[row]["Author"] = await getAuthor(catalogID);
         result[row]["Links"] = await getListEntries(catalogID);
     }
 
@@ -146,6 +147,7 @@ async function getCatalog(id) {
         {
           “Catalog_ID”: 1,
           “Name”: “My Catalog 1”,
+          "Author": "benl",
           “Links”:
             [
               {
@@ -193,6 +195,7 @@ async function getCatalogsByUser(userID, order) {
     // Gets the links for each of those catalogs
     for (let row = 0; row < result.length; row++) {
         const catalogID = result[row]["Catalog_ID"];
+        result[row]["Author"] = await getAuthor(catalogID);
         result[row]["Links"] = await getListEntries(catalogID);
     }
 
@@ -264,7 +267,9 @@ async function getName(id) {
     return result[0]["Name"];
 }
 
-async function getOwner(id) {
+async function getAuthor(id) {
+    const userManager = require("./userManager");
+
     const isValidCatalogID = await catalogIDExists(id);
 
     if (!isValidCatalogID) {
@@ -276,9 +281,11 @@ async function getOwner(id) {
                                  FROM Catalog
                                  WHERE Catalog_ID = ${id};`);
 
+    const userID = result[0]["User_ID"];
+    const username = await userManager.getUsername(userID);
     // Example output:
-    // result[0]["User_ID"] = 0;
-    return result[0]["User_ID"];
+    // username = "benl";
+    return username;
 }
 
 async function getListEntries(id) {
@@ -393,10 +400,17 @@ async function search(query, order) {
                                             OR List_Entry.Description LIKE '%${query}%'
                                         GROUP BY Catalog_ID, Name
                                         ORDER BY Name ${order};`);
+
+    // Get author information for that catalog
+    for (let row = 0; row < result.length; row++) {
+        const catalogID = result[row]["Catalog_ID"];
+        result[row]["Author"] = await getAuthor(catalogID);
+    }
+
     // Example output:
     // result = [
-    //      {"Catalog_ID": 0, "Name": "My Catalog 1", "User_ID": 2},
-    //      {"Catalog_ID": 1, "Name": "My Catalog 2", "User_ID": 3}
+    //      {"Catalog_ID": 0, "Name": "My Catalog 1", "User_ID": 2, "Author": "benl"},
+    //      {"Catalog_ID": 1, "Name": "My Catalog 2", "User_ID": 3, "Author": "benl"}
     // ];
     return result;
 }
@@ -412,7 +426,7 @@ module.exports = {
     getCatalogsByUser: getCatalogsByUser,
     getTrendingCatalogs: getTrendingCatalogs,
     getName: getName,
-    getOwner: getOwner,
+    getAuthor: getAuthor,
     getListEntries: getListEntries,
     updateName: updateName,
     updateLinks: updateLinks,

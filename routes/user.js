@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var userManager = require("../userManager");
+const catalogManager = require("../catalogManager");
 
 /*
     Gabby
@@ -63,7 +64,7 @@ router.post('/*/list', async function(req, res, next) {
     };
 
     //return order
-    res.json(JSON.stringify(results));
+    res.json(results);
 });
 
 router.get("/*/username", async function(req, res, next) {
