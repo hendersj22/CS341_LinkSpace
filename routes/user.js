@@ -53,6 +53,17 @@ router.post('/*/list', async function(req, res, next) {
     
 });
 
+router.get("/*/username", async function(req, res, next) {
+    //req.path = /{id}/list
+    const id = req.path.split("/")[1];
+    //Check that id is valid
+    const validID = await userManager.idExists(id);
+    if (!validID) return next();
+
+    const username = await userManager.getUsername(id);
+
+    res.send(username.toString());
+})
 /*
     GET /user/{id}
     Renders the profile page, including their created catalogs, of the specified user
