@@ -58,7 +58,7 @@ router.get("/*/username", async function(req, res, next) {
     const id = req.path.split("/")[1];
     //Check that id is valid
     const validID = await userManager.idExists(id);
-    if (!validID) return next();
+    if (!validID) return res.sendStatus(404);
 
     const username = await userManager.getUsername(id);
 
