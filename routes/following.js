@@ -49,6 +49,7 @@ router.post('/users', async function(req, res, next) {
     const order = req.body["Order"];
 
     //query db to get all users followed by current user
+    //TODO once database is updated with proper tables
 
 });
 

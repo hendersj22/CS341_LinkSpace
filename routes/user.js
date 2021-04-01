@@ -48,9 +48,22 @@ router.post('/*/list', async function(req, res, next) {
     if (!validID) return next();
 
     //get username
+    const username = await userManager.getUsername(id);
 
     //get order
-    
+    const order = req.body["Order"];
+
+    //get catalogs by user
+    const catalogs = await catalogManager.getCatalogsByUser(id, order);
+
+    //build return json
+    const results = {
+        "Name": username,
+        "Catalogs": catalogs,
+    };
+
+    //return order
+    res.json(JSON.stringify(results));
 });
 
 router.get("/*/username", async function(req, res, next) {
