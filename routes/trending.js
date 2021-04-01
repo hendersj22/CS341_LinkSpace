@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var catalogManager = require("../catalogManager");
 /*
     GET /trending
     Renders the trending page
@@ -11,7 +11,8 @@ router.get('/', async function(req, res, next) {
 
 /*
     POST /trending/list
-    Gets a list of information of all trending catalogs in JSON format ordered in “ascending” or “descending” by Name. The order argument is optional and defaults to ascending.
+    Gets a list of information of all trending catalogs in JSON format ordered in “ascending” or “descending” by Name.
+    The order argument is optional and defaults to ascending.
 
     Example request body:
     {
@@ -63,7 +64,16 @@ router.get('/', async function(req, res, next) {
     ]
  */
 router.post('/list', async function(req, res, next) {
-    //TODO
+    let order = req.body["order"];
+    if (!order) order = "descending";
+
+    try {
+        const catalogs = await catalogManager.getTrendingCatalogs(order);
+        res.json(catalogs);
+    } catch {
+        res.sendStatus(500);
+    }
+
 });
 
 module.exports = router;

@@ -224,6 +224,29 @@ async function getCatalogsByUser(userID, order) {
     return result;
 }
 
+async function getTrendingCatalogs(order) {
+    // Order the catalogs by name descending or ascending
+    if (order === "descending") {
+        order = "DESC"
+    } else {
+        order = "ASC"
+    }
+
+    // Get most recent catalogs
+    const result = await dbms.dbquery(`SELECT *
+                                 FROM Catalog
+                                 ORDER BY Catalog_ID DESC, Name ${order}
+                                 LIMIT 15;`);
+
+    // Gets the links for each of those catalogs
+    for (let row = 0; row < result.length; row++) {
+        const catalogID = result[row]["Catalog_ID"];
+        result[row]["Links"] = await getListEntries(catalogID);
+    }
+
+    return result;
+}
+
 async function getName(id) {
     const isValidCatalogID = await catalogIDExists(id);
 
@@ -387,6 +410,7 @@ module.exports = {
     getNewListEntryID: getNewListEntryID,
     getCatalog: getCatalog,
     getCatalogsByUser: getCatalogsByUser,
+    getTrendingCatalogs: getTrendingCatalogs,
     getName: getName,
     getOwner: getOwner,
     getListEntries: getListEntries,
