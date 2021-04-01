@@ -29,6 +29,7 @@ router.get('/', async function(req, res, next) {
       {
         “Catalog_ID”: 1,
         “Name”: “My Catalog 1”,
+        "Author": "benl",
         “Links”:
           [
             {
@@ -49,6 +50,7 @@ router.get('/', async function(req, res, next) {
       {
         “Catalog_ID”: 5,
         “Name”: “My flashcards”,
+        "Author": "benl",
         “Links”:
           [
             {

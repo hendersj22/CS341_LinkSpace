@@ -205,6 +205,7 @@ async function getCatalogsByUser(userID, order) {
           {
             “Catalog_ID”: 1,
             “Name”: “My Catalog 1”,
+            "Author": "benl",
             “Links”:
               [
                 {

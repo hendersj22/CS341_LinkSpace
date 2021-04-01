@@ -21,6 +21,7 @@ const catalogManager = require("../catalogManager");
           {
             “Catalog_ID”: 1,
             “Name”: “My Catalog 1”,
+            "Author": "benl",
             “Links”:
               [
                 {
