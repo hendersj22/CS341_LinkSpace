@@ -27,4 +27,14 @@ $(document).ready(function () {
         window.location = "/following";
     });
 
+
+    $.get("/settings/list", function(data) {
+        $("#currentUsername").text(data["Name"]);
+
+    });
+
+    $("#logout").click(function() {
+        window.location = "/logout";
+    })
+
 });

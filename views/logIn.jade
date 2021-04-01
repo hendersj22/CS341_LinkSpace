@@ -4,6 +4,7 @@ block head
 	title Login
 	meta(name='viewport' content='width=device-width, initial-scale=1')
 	link(rel='stylesheet' href='/stylesheets/logInSignUp.css')
+	script(src='/javascripts/login.js')
 
 block content
 	//Side bar
@@ -17,14 +18,14 @@ block content
 	.main
 		.loginForm
 			h3 Log in to LinkSpace
-			form
-				| Username
-				input.login(type='email')
-				br
-				| 				Password
-				input.login(type='password')
-				br
-				button.button Log in
-				br
-				a
-					button(style='margin-top: 20px') Don't have an account? Sign up here
+
+			| Username
+			input.login#username(type='text')
+			br
+			| 				Password
+			input.login#password(type='password')
+			br
+			button.button#submit Log in
+			br
+			a
+				button#signup(style='margin-top: 20px') Don't have an account? Sign up here

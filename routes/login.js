@@ -39,6 +39,7 @@ router.post('/check', async function(req, res, next) {
     var username = req.body["Name"];
     var password = req.body["Password"];
 
+    console.log(1);
     if (await authorization.areValidCredentials(username, password)) {
         const id = await userManager.getID(username);
         req.session["User_ID"] = id;

@@ -50,7 +50,7 @@ app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/signup', signupRouter);
 // All routers above this line do not require login
-//app.use(authorization.doAuthorization);
+app.use(authorization.doAuthorization);
 app.use('/', indexRouter);
 app.use('/catalog', catalogRouter);
 app.use('/trending', trendingRouter);

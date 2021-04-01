@@ -20,13 +20,21 @@ router.get('/', async function(req, res, next) {
     {
       "User_ID": 0,
       “Name”: “benl”,
-      “Password”: null,   // Password is not sent for security
       “Night_Mode”: false
     }
  */
 router.get('/list', async function(req, res, next) {
-    //TODO
-    res
+    const id = authorization.getLoggedInUser(req);
+
+    const username = await userManager.getUsername(id);
+    const nightMode = await userManager.getNight_Mode(id);
+    res.json({
+        "User_ID": id,
+        "Name": username,
+        "Night_Mode": nightMode
+    })
+
+
 
 });
 

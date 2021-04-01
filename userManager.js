@@ -171,6 +171,7 @@ async function getNight_Mode(id) {
     const results = await dbms.dbquery(`SELECT Night_Mode
                                     FROM Preferences
                                     WHERE User_ID = ${id};`);
+    return results[0]["Night_Mode"] === 1;
 }
 
 async function getFollowers(id) {
