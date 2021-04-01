@@ -3,6 +3,7 @@ extends layout
 block head
         meta(name='viewport' content='width=device-width, initial-scale=1')
         link(rel='stylesheet' href='/stylesheets/catalogCreation.css')
+        script(src='/javascripts/catalogCreation.js')
         title Edit Catalog
 
 block content
@@ -23,12 +24,13 @@ block content
     .main
         .grid-container
             .grid-item
-                .catalog
-                    p.catalog_title Add Title
-                    p.catalog_link Link
-                    p.catalog_description Add Description
-                    p.catalog_add
+                .catalog(id="catalog")
+                    input.catalog_title(type='text' placeholder='Add Title')
+                    input.catalog_link(type='text' placeholder='Add Link')
+                    input.catalog_description(type='text' placeholder='Add Description')
+                    button.catalog_add(type='button' id='save')
                         img(src='https://image.flaticon.com/icons/png/512/32/32360.png' style='width:30px;height:30px;')
-                    p.catalog_s  Add New
+                    button.add_links(type='button' id='addLinks')
+                    p.catalog_s  
                     p
                 .catalog_image
