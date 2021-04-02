@@ -17,18 +17,24 @@ $(document).ready(function() {
         var reqBody = {
             "Name": title,
             "Links": []
-        }
-        
+        };
+
         for(let i = 0; i < urls.length; i++){
             let url = urls[i].value;
-            //let description = descriptions[i].value;
+            let description = descriptions[i].value;
             console.log(url);  
 
             let link = {
                 "URL": url,
-                //"Description": description
+                "Description": description
             }
             reqBody["Links"].push(link);
+
+            console.log(link);
+            console.log(reqBody["Name"]);
+            console.log(reqBody["Links"][0]["URL"]);
+            console.log(reqBody["Links"]);
+            console.log(reqBody);
         }
 
         $.post("/catalog/create", reqBody, function(catalogID) {

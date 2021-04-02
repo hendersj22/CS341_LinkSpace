@@ -97,6 +97,9 @@ router.post("/create", async function(req, res, next) {
     // Get the links
     const links = req.body["Links"];
 
+    console.log(name);
+    console.log(req.body["Links"][0]["URL"]);
+
     const owner = authorization.getLoggedInUser(req);
 
     try {
