@@ -20,19 +20,21 @@ async function createAccount(username, password, status, nightMode, displaySize)
     }
 
     const id = await getNewUserID();
-    const hash = await authorization.hashPassword(password);
+    let hash = await authorization.hashPassword(password);
     if (!status) status = 0;
     nightMode = (nightMode === true || nightMode === "true" || nightMode === 1) ? 1 : 0;
     if (displaySize === null || displaySize === undefined) displaySize = "";
 
     //Prevent SQL Injection
+    username = mysql.escape(username);
+    hash = mysql.escape(hash);
     status = mysql.escape(status);
     displaySize = mysql.escape(displaySize);
 
     await dbms.dbquery(`INSERT INTO User (User_ID, Name, Password, Status)
-                                VALUES (${id}, '${username}', '${hash}', ${status});`);
+                                VALUES (${id}, ${username}, ${hash}, ${status});`);
     await dbms.dbquery(`INSERT INTO Preferences (User_ID, Night_Mode, Display_Size)
-                                VALUES (${id}, ${nightMode}, '${displaySize}');`);
+                                VALUES (${id}, ${nightMode}, ${displaySize});`);
 
     // Example output:
     // id = 5;
@@ -68,13 +70,14 @@ async function updatePassword(id, newPassword) {
         throw Error("Invalid user id");
     }
 
-    const hash = await authorization.hashPassword(newPassword);
+    let hash = await authorization.hashPassword(newPassword);
 
     //Prevent SQL Injection
     id = mysql.escape(id);
+    hash = mysql.escape(hash);
 
     await dbms.dbquery(`UPDATE User
-                                 SET Password = '${hash}'
+                                 SET Password = ${hash}
                                  WHERE User_ID = ${id};`);
 
 }
