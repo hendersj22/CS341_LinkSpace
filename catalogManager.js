@@ -1,4 +1,5 @@
 const dbms = require("./dbms_promise");
+const mysql = require("mysql");
 
 async function createCatalog(name, links, userID) {
     const userManager = require("./userManager");
@@ -13,9 +14,13 @@ async function createCatalog(name, links, userID) {
     //Generate a new catalog id
     const catalogID = await getNewCatalogID();
 
+    //Prevent SQL Injection
+    name = mysql.escape(name);
+    userID = mysql.escape(userID);
+
     //Insert the catalog entry into the database
     await dbms.dbquery(`INSERT INTO Catalog (Catalog_ID, Name, User_ID)
-                                VALUES (${catalogID}, '${name}', ${userID});`);
+                                VALUES (${catalogID}, ${name}, ${userID});`);
 
     // Insert our links into the database
     await createLinks(catalogID, links);
@@ -60,9 +65,14 @@ async function createLink(catalogID, url, description) {
     //Date format in unix format
     const dateAdded = Date.now();
 
+    //Prevent SQL Injection
+    catalogID = mysql.escape(catalogID);
+    url = mysql.escape(url);
+    description = mysql.escape(description);
+
     //Insert the list entry into the database
     await dbms.dbquery(`INSERT INTO List_Entry (Entry_ID, URL, Description, Date_Added, Catalog_ID)
-                        VALUES (${linkID}, '${url}', '${description}', ${dateAdded}, ${catalogID});`);
+                        VALUES (${linkID}, ${url}, ${description}, ${dateAdded}, ${catalogID});`);
 
     // Example output:
     // linkID = 4;
@@ -72,10 +82,14 @@ async function createLink(catalogID, url, description) {
 async function copyCatalog(catalogID) {
     //Copy the Catalog entry
     const newCatalogID = await getNewCatalogID();
+
+    //Prevent SQL Injection
+    catalogID = mysql.escape(catalogID);
+
     await dbms.dbquery(`INSERT INTO Catalog (Catalog_ID, Name, User_ID)
-                        SELECT '${newCatalogID}', Name, User_ID
+                        SELECT ${newCatalogID}, Name, User_ID
                         FROM Catalog
-                        WHERE Catalog_ID = '${catalogID}';`);
+                        WHERE Catalog_ID = ${catalogID};`);
 
     // Copy the links in List_Entry table
     await copyListEntries(catalogID, newCatalogID);
@@ -87,7 +101,7 @@ async function copyListEntries(catalogID, newCatalogID) {
     // Gets all list entries to copy
     const listEntries = await dbms.dbquery(`SELECT *
                                             FROM List_Entry
-                                            WHERE Catalog_ID = '${catalogID}';`);
+                                            WHERE Catalog_ID = ${catalogID};`);
 
     // Copy each list entry
     for (let listEntry of listEntries) {
@@ -95,9 +109,9 @@ async function copyListEntries(catalogID, newCatalogID) {
         const newEntryListID = await getNewListEntryID();
 
         await dbms.dbquery(`INSERT INTO List_Entry (Entry_ID, URL, Description, Date_Added, Catalog_ID)
-                            SELECT '${newEntryListID}', URL, Description, Date_Added, '${newCatalogID}'
+                            SELECT ${newEntryListID}, URL, Description, Date_Added, ${newCatalogID}
                             FROM List_Entry
-                            WHERE Entry_ID = '${currentListEntryID}';`);
+                            WHERE Entry_ID = ${currentListEntryID};`);
     }
 }
 
@@ -129,6 +143,9 @@ async function getCatalog(id) {
     if (!isValidCatalogID) {
         throw Error("Invalid catalog id");
     }
+
+    //Prevent SQL Injection
+    id = mysql.escape(id);
 
     // Get information for the specified catalog
     const result = await dbms.dbquery(`SELECT *
@@ -185,6 +202,9 @@ async function getCatalogsByUser(userID, order) {
     } else {
         order = "ASC"
     }
+
+    //Prevent SQL Injection
+    userID = mysql.escape(userID);
 
     // Gets all catalogs created by the specified user
     const result = await dbms.dbquery(`SELECT *
@@ -258,6 +278,9 @@ async function getName(id) {
         throw Error("Invalid catalog id");
     }
 
+    //Prevent SQL Injection
+    id = mysql.escape(id);
+
     // Get the catalog's name
     const result = await dbms.dbquery(`SELECT Name
                                  FROM Catalog
@@ -277,6 +300,9 @@ async function getAuthor(id) {
         throw Error("Invalid catalog id");
     }
 
+    //Prevent SQL Injection
+    id = mysql.escape(id);
+
     // Gets the catalog owner's id
     const result = await dbms.dbquery(`SELECT User_ID
                                  FROM Catalog
@@ -295,6 +321,9 @@ async function getListEntries(id) {
     if (!isValidCatalogID) {
         throw Error("Invalid catalog id");
     }
+
+    //Prevent SQL Injection
+    id = mysql.escape(id);
 
     // Retrieves link information from the specified catalog
     const result = await dbms.dbquery(`SELECT *
@@ -318,8 +347,12 @@ async function updateName(id, newName) {
         throw Error("Invalid catalog id");
     }
 
+    //Prevent SQL Injection
+    id = mysql.escape(id);
+    newName = mysql.escape(newName);
+
     await dbms.dbquery(`UPDATE Catalog
-                        SET Name = '${newName}'
+                        SET Name = ${newName}
                         WHERE Catalog_ID = ${id}`);
 }
 
@@ -332,17 +365,26 @@ async function updateLink(id, newDesc, newURL){
         throw Error("Invalid link id");
     }
 
+    //Prevent SQL Injection
+    id = mysql.escape(id);
+
     // Update description if newDesc isn't null or undefined
     if (newDesc) {
+        //Prevent SQL Injection
+        newDesc = mysql.escape(newDesc);
+
         await dbms.dbquery(`UPDATE List_Entry
-                        SET Description = '${newDesc}'
+                        SET Description = ${newDesc}
                         WHERE Entry_ID = ${id}`);
     }
 
     // Update URL if newURL isn't null or undefined
     if (newURL) {
+        //Prevent SQL Injection
+        newURL = mysql.escape(newURL);
+
         await dbms.dbquery(`UPDATE List_Entry
-                        SET URL = '${newURL}'
+                        SET URL = ${newURL}
                         WHERE Entry_ID = ${id}`);
     }
 
@@ -371,6 +413,8 @@ async function updateLinks(catalogID, newLinks){
 async function catalogIDExists(id) {
     // Checks that the specified catalog id is in the database
     if (id === null || id === undefined || isNaN(id)) return false;
+    //Prevent SQL Injection
+    id = mysql.escape(id);
     const result = await dbms.dbquery(`SELECT * FROM Catalog WHERE Catalog_ID = ${id}`);
     return result.length > 0;
 }
@@ -378,6 +422,8 @@ async function catalogIDExists(id) {
 async function linkIDExists(id) {
     // Checks that the specified link id is in the database
     if (id === null || id === undefined || isNaN(id)) return false;
+    //Prevent SQL Injection
+    id = mysql.escape(id);
     const result = await dbms.dbquery(`SELECT * FROM List_Entry WHERE Entry_ID = ${id}`);
     return result.length > 0;
 }
@@ -388,6 +434,9 @@ async function search(query, order) {
     } else {
         order = "ASC"
     }
+
+    //Prevent SQL Injection
+    query = mysql.escape(query);
 
     /* Search catalogs that match a catalog name,
        URLs and descriptions of links in a catalog,

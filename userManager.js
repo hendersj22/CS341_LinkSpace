@@ -1,5 +1,6 @@
 const dbms = require("./dbms_promise");
 const authorization = require("./authorization");
+const mysql = require("mysql");
 
 // Finds the greatest id in the database, and adds 1 to get a new id
 async function getNewUserID() {
@@ -24,6 +25,10 @@ async function createAccount(username, password, status, nightMode, displaySize)
     nightMode = (nightMode === true || nightMode === "true" || nightMode === 1) ? 1 : 0;
     if (displaySize === null || displaySize === undefined) displaySize = "";
 
+    //Prevent SQL Injection
+    status = mysql.escape(status);
+    displaySize = mysql.escape(displaySize);
+
     await dbms.dbquery(`INSERT INTO User (User_ID, Name, Password, Status)
                                 VALUES (${id}, '${username}', '${hash}', ${status});`);
     await dbms.dbquery(`INSERT INTO Preferences (User_ID, Night_Mode, Display_Size)
@@ -47,8 +52,12 @@ async function updateUsername(id, newUsername) {
         throw Error("Username is taken already");
     }
 
+    //Prevent SQL Injection
+    id = mysql.escape(id);
+    newUsername = mysql.escape(newUsername);
+
     await dbms.dbquery(`UPDATE User
-                                 SET Name = '${newUsername}'
+                                 SET Name = ${newUsername}
                                  WHERE User_ID = ${id};`);
 }
 
@@ -60,6 +69,9 @@ async function updatePassword(id, newPassword) {
     }
 
     const hash = await authorization.hashPassword(newPassword);
+
+    //Prevent SQL Injection
+    id = mysql.escape(id);
 
     await dbms.dbquery(`UPDATE User
                                  SET Password = '${hash}'
@@ -76,6 +88,9 @@ async function updateNight_Mode(id, newNight_Mode) {
 
     newNight_Mode = (newNight_Mode === true || newNight_Mode === "true" || newNight_Mode === 1) ? 1 : 0;
 
+    //Prevent SQL Injection
+    id = mysql.escape(id);
+
     await dbms.dbquery(`UPDATE Preferences
                                  SET Night_Mode = ${newNight_Mode}
                                  WHERE User_ID = ${id};`);
@@ -88,9 +103,12 @@ async function getID(username) {
         throw Error("Invalid username");
     }
 
+    //Prevent SQL Injection
+    username = mysql.escape(username);
+
     const result = await dbms.dbquery(`SELECT User_ID
                                      FROM User
-                                     WHERE Name = '${username}';`);
+                                     WHERE Name = ${username};`);
 
     // Example output:
     // result[0]["User_ID"] = 4;
@@ -98,11 +116,15 @@ async function getID(username) {
 }
 
 async function getUsername(id) {
+
     const isValidID = await idExists(id);
 
     if (!isValidID) {
         throw Error("Invalid user id");
     }
+
+    //Prevent SQL Injection
+    id = mysql.escape(id);
 
     const result = await dbms.dbquery(`SELECT Name
                                      FROM User
@@ -120,6 +142,9 @@ async function getHashedPassword(id) {
         throw Error("Invalid user id");
     }
 
+    //Prevent SQL Injection
+    id = mysql.escape(id);
+
     const result = await dbms.dbquery(`SELECT Password
                                  FROM User
                                  WHERE User_ID = ${id};`);
@@ -135,6 +160,9 @@ async function getStatus(id) {
     if (!isValidID) {
         throw Error("Invalid user id");
     }
+
+    //Prevent SQL Injection
+    id = mysql.escape(id);
 
     const result = await dbms.dbquery(`SELECT Status
                                  FROM User
@@ -153,6 +181,9 @@ async function getSettings(id) {
         throw Error("Invalid user id");
     }
 
+    //Prevent SQL Injection
+    id = mysql.escape(id);
+
     const results = await dbms.dbquery(`SELECT *
                                         FROM Preferences
                                         WHERE User_ID = ${id}`);
@@ -168,6 +199,9 @@ async function getNight_Mode(id) {
         throw Error("Invalid user id");
     }
 
+    //Prevent SQL Injection
+    id = mysql.escape(id);
+
     const results = await dbms.dbquery(`SELECT Night_Mode
                                     FROM Preferences
                                     WHERE User_ID = ${id};`);
@@ -181,6 +215,9 @@ async function getFollowers(id) {
         throw Error("Invalid user id");
     }
 
+    //Prevent SQL Injection
+    id = mysql.escape(id);
+
     const results = await dbms.dbquery(`SELECT *
                                         FROM Followers
                                         WHERE User_ID = ${id};`);
@@ -193,6 +230,10 @@ async function isFollowingUser(currentID, followerID) {
     if (!isValidID) {
         throw Error("Invalid user or follower id");
     }
+
+    //Prevent SQL Injection
+    currentID = mysql.escape(currentID);
+    followerID = mysql.escape(followerID);
 
     const results = await dbms.dbquery(`SELECT FROM Followers
                                         WHERE User_ID = ${currentID} AND Follower_ID = ${followerID};`);
@@ -211,6 +252,10 @@ async function followUser(currentID, followerID) {
 
     const alreadyFollowed = await isFollowingUser(currentID, followerID);
     if (!alreadyFollowed) {
+        //Prevent SQL Injection
+        currentID = mysql.escape(currentID);
+        followerID = mysql.escape(followerID);
+
         await dbms.dbquery(`INSERT INTO Followers (User_ID, Follower_ID, Date_Followed)
                                 (${currentID}, ${followerID}, ${dateFollowed})`);
     }
@@ -223,6 +268,10 @@ async function unfollowUser(currentID, followerID) {
         throw Error("Invalid user or follower id");
     }
 
+    //Prevent SQL Injection
+    currentID = mysql.escape(currentID);
+    followerID = mysql.escape(followerID);
+
     await dbms.dbquery(`DELETE FROM Followers
                                 WHERE User_ID = ${currentID} AND Follower_ID = ${followerID}`);
 
@@ -230,13 +279,17 @@ async function unfollowUser(currentID, followerID) {
 
 async function idExists(id) {
     if (id === null || id === undefined || isNaN(id)) return false;
+    //Prevent SQL Injection
+    id = mysql.escape(id);
     const result = await dbms.dbquery(`SELECT * FROM User WHERE User_ID = ${id}`);
     return result.length > 0;
 }
 
 async function usernameExists(username) {
     if (username === null || username === undefined) return false;
-    const result = await dbms.dbquery(`SELECT * FROM User WHERE Name = '${username}'`);
+    //Prevent SQL Injection
+    username = mysql.escape(username);
+    const result = await dbms.dbquery(`SELECT * FROM User WHERE Name = ${username}`);
     return result.length > 0;
 }
 

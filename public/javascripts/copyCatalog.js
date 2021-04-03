@@ -11,7 +11,7 @@ $(document).ready(function() {
         // post request to linkspace.com/catalogs/{id}/copy
         $.post(location.pathname + "/copy", function(newCatalogId) {
             // redirect to the new copied catalog: linkspace.com/catalogs/{newCatalogId}
-            window.location = "/catalogs/" + newCatalogId;
+            window.location = "/catalog/" + newCatalogId;
         })
         .fail(function() {
             alert("Server error");
