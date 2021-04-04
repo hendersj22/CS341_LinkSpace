@@ -7,6 +7,8 @@ $(document).ready(function() {
         catalogEntry.click(function(event) {
             //this event target will differentiate the catalogs from each other, and show which specific element was clicked
 
+            console.log(event.target.id);
+
             //this is assuming the (event.target.id == the catalog id) through another script
             $.get("/catalogs/" + event.target.id + "/info", function(catalogInfo) {
                 window.location = "/catalogs/" + catalogInfo["Catalog_ID"];

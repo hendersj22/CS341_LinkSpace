@@ -3,10 +3,14 @@ $(document).ready(function() {
     // Create more link boxes to add more than one link
     // MAKE IT MORE PRETTY
     $("#addLinks").click(function() {
-        var input = document.createElement("input");
-        input.setAttribute("type", "text"); 
-        input.setAttribute("class", "catalog_link");
-        document.getElementById('catalog').appendChild(input);
+        var link = document.createElement("input");
+        link.setAttribute("type", "text"); 
+        link.setAttribute("class", "catalog_link");
+        var description = document.createElement("input");
+        description.setAttribute("type", "text"); 
+        description.setAttribute("class", "catalog_description");
+        document.getElementById('catalog').appendChild(link);
+        document.getElementById('catalog').appendChild(description);
     })
 
     $("#save").click(function() {
@@ -29,12 +33,6 @@ $(document).ready(function() {
                 "Description": description
             }
             reqBody["Links"].push(link);
-
-            console.log(link);
-            console.log(reqBody["Name"]);
-            console.log(reqBody["Links"][0]["URL"]);
-            console.log(reqBody["Links"]);
-            console.log(reqBody);
         }
 
         $.post("/catalog/create", reqBody, function(catalogID) {
