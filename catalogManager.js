@@ -438,6 +438,7 @@ async function search(query, order) {
     //Prevent SQL Injection
     query = mysql.escape(`%${query}%`);
 
+
     /* Search catalogs that match a catalog name,
        URLs and descriptions of links in a catalog,
        and owner name
@@ -445,7 +446,8 @@ async function search(query, order) {
     const result = await dbms.dbquery(`SELECT Catalog.*
                                         FROM Catalog INNER JOIN User INNER JOIN List_Entry
                                         ON Catalog.User_ID = User.User_ID AND Catalog.Catalog_ID = List_Entry.Catalog_ID
-                                        WHERE User.Name LIKE ${query}
+                                        WHERE Catalog.Name LIKE ${query}
+                                            OR User.Name LIKE ${query}
                                             OR List_Entry.URL LIKE ${query}
                                             OR List_Entry.Description LIKE ${query}
                                         GROUP BY Catalog_ID, Name

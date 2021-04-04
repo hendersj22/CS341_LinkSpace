@@ -55,7 +55,7 @@ router.post('/edit', async function(req, res, next) {
 
     //get new username from req
     const newUsername = req.body["Name"];
-    
+
     //get new password from req
     const newPassword = req.body["Password"];
 
@@ -64,27 +64,26 @@ router.post('/edit', async function(req, res, next) {
 
     try {
         //use id to update name
-
-        if(newUsername !== ""){
+        if(newUsername !== "" && newUsername !== null && newUsername !== undefined){
             await userManager.updateUsername(id, newUsername);
         }
 
         //update password if not null or undefined
-        if(newPassword !== ""){
+        if(newPassword !== "" && newPassword !== null && newPassword !== undefined){
             await userManager.updatePassword(id, newPassword);
         }
 
         //update nightmode if not null or undefined
-        if(nightMode !== ""){
+        if(nightMode !== "" && nightMode !== null && nightMode !== undefined){
             await userManager.updateNight_Mode(id, nightMode);
-         }
-         
+        }
+
     } catch(err) {
         console.log(err);
         //ran into some error while updating
         return res.sendStatus(400);
     }
-    
+
     //successfully updated user settings
     return res.sendStatus(200);
 });
