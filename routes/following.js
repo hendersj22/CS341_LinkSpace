@@ -48,8 +48,11 @@ router.post('/users', async function(req, res, next) {
     //get order
     const order = req.body["Order"];
 
-    //query db to get all users followed by current user
-    //TODO once database is updated with proper tables
+    //get followers
+    const followers = userManager.getFollowers(id, order, sortBy);
+    console.log("followers: " + followers);
+
+    res.json(followers);
 
 });
 
