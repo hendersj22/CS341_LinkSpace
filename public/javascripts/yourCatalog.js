@@ -2,11 +2,10 @@
 // Updated: 3/31/2021
 // Functionality of page for your order catalogs
 
+
+
 //Function for Your Catalog Page
 $(document).ready(function(){
-
-    console.log("inside the function");
-    
     //post call for updating page of your catalog
     $.post("/catalog/list", {"Order": "ascending"}, function(data, status){//change the /yourcatalog to ref other file
 
@@ -25,9 +24,15 @@ $(document).ready(function(){
                  <p class="set-link">${Num_Links} links</p>
                  <p class="set-author">${Author}</p>
                </div>
-               <div class="image"></div><a class="fill-div" href="#"></a>
+               <!--<div class="image"></div><a class="fill-div" href="#"></a>-->
              </div>`);
+
       }
+      catalogClickHandler();
+      $("#trend").text("My Catalogs");
+
+
+
 
     // for(var i=0; i<3; i++){
     //     var ID = "Catalog_ID" + i;

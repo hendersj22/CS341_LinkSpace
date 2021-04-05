@@ -3,6 +3,7 @@ extends layout
 block head
     meta(name='viewport' content='width=device-width, initial-scale=1')
     link(rel='stylesheet' href='/stylesheets/trendingStyle.css')
+    script(src='/javascripts/catalogClickHandler.js')
     script(src='/javascripts/yourCatalog.js')
 
 block content
@@ -22,6 +23,6 @@ block content
           |  Trending
     // Credit goes to Kai Vickers for creating code for tiles
     #trenddiv.main
-        h3#trend My Catalogs
+        h3#trend Loading...
         .grid-container#catContainer
             

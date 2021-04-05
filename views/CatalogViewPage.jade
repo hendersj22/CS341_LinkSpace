@@ -3,7 +3,9 @@ extends layout
 block head
     script(src='/javascripts/copyCatalog.js')
     link(rel='stylesheet' href='/stylesheets/CatalogViewPage.css')
+    script(src='/javascripts/viewCatalog.js')
     title Catalog View Page
+
 
 block content
     // Side bar
@@ -24,15 +26,7 @@ block content
         .grid-container
             .grid-item
                 .catalog
-                    p.catalog_title Space for Title
-                    p.catalog_author by Author
-                    p.catalog_link Link
-                    p.catalog_description Description for link
-                    p.catalog_link Link
-                    p.catalog_description Description for link
-                    p.catalog_link Link
-                    p.catalog_description Description for link
-                    p.catalog_link Link
-                    p.catalog_description Description for link
+                    p.catalog_title Loading...
+                    p.catalog_author
                 .catalog_image
                     button#copy(type='button') Copy Catalog
