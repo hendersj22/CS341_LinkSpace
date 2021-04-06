@@ -18,12 +18,12 @@ $(document).ready(function(){
                  <p class="set-title">${Catalog_Title}</p>
                  <p class="set-link">${Num_Links} links</p>
                </div>
-               <div class="image"></div><a class="fill-div" href="#"></a>
              </div>`);
       }
+        catalogClickHandler();
+        $("#trend").text("Trending");
 
       });
 
-      catalogClickHandler();
-      $("#trend").text("My Catalogs");
+
 })  

@@ -20,12 +20,13 @@ $(document).ready(function(){
                  <p class="set-link">${Num_Links} links</p>
                  <p class="set-author">${Author}</p>
                </div>
-               <div class="image"></div><a class="fill-div" href="#"></a>
              </div>`);
       }
+        catalogClickHandler();
+        $("#title2").text("My Catalogs");
     });
     
-    $.post("/catalog/list", {"Order": "descending"}, function(data, status){
+    $.post("/trending/list", {"Order": "descending"}, function(data, status){
 
         console.log(data[0]["Catalog_ID"]);
 
@@ -40,13 +41,11 @@ $(document).ready(function(){
                  <p class="set-title">${Catalog_Title}</p>
                  <p class="set-link">${Num_Links} links</p>
                </div>
-               <div class="image"></div><a class="fill-div" href="#"></a>
              </div>`);
       }
 
+        catalogClickHandler();
+        $("#title3").text("Trending");
       });
-
-      catalogClickHandler();
-      $("#trend").text("My Catalogs");
 
 })

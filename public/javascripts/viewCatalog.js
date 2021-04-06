@@ -1,6 +1,5 @@
 $(document).ready(function() {
     //this is assuming the (event.target.id == the catalog id) through another script
-
     $.get(location.pathname + "/info", function(catalogInfo) {
         $(".catalog_title").text(catalogInfo["Name"]);
         $(".catalog_author").text("Made by: " + catalogInfo["Author"]);
