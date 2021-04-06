@@ -3,6 +3,7 @@ extends layout
 block head
     script(src='/javascripts/copyCatalog.js')
     link(rel='stylesheet' href='/stylesheets/CatalogViewPage.css')
+    script(src='/javascripts/catalogClickHandler.js')
     script(src='/javascripts/viewCatalog.js')
     title Catalog View Page
 
@@ -30,3 +31,5 @@ block content
                     p.catalog_author
                 .catalog_image
                     button#copy(type='button') Copy Catalog
+                    button#edit(type='button') Edit Catalog
+                    

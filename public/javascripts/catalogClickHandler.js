@@ -10,3 +10,16 @@ function catalogClickHandler() {
         window.location = "/catalog/" + id;
     });
 }
+
+function editCatalogClickHandler() {
+    let editButton = $("#edit");
+    editButton.click(function() {
+        $.get(location.pathname + "/info", function(catalogInfo) {
+            var idEdit = catalogInfo["Catalog_ID"];
+            window.location = "/catalog/" + idEdit + "/edit/";
+        })
+        .fail(function() {
+            alert("Server error");
+        });
+    });
+}

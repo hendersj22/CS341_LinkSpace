@@ -6,9 +6,11 @@ $(document).ready(function() {
         var link = document.createElement("input");
         link.setAttribute("type", "text"); 
         link.setAttribute("class", "catalog_link");
+        link.setAttribute("Placeholder", "Add Link");
         var description = document.createElement("input");
         description.setAttribute("type", "text"); 
         description.setAttribute("class", "catalog_description");
+        description.setAttribute("Placeholder", "Add Description");
         document.getElementById('catalog').appendChild(link);
         document.getElementById('catalog').appendChild(description);
     })
