@@ -3,6 +3,7 @@ extends layout
 block head
     meta(name='viewport' content='width=device-width, initial-scale=1')
     link(rel='stylesheet' href='/stylesheets/editingCatalog.css')
+    script(src='/javascripts/catalogCreation.js')
     script(src='/javascripts/editCatalog.js')
     title Edit Catalog
 
@@ -25,9 +26,7 @@ block content
         .grid-container
             .grid-item
                 .catalog(id="catalog")
-                    input.catalog_title(type='text' placeholder='Add Title')
-                    input.catalog_link(type='text' placeholder='Add Link' class='catalog_link')
-                    input.catalog_description(type='text' placeholder='Add Description' class='catalog_description')
+
                 .catalog_image
                     button.catalog_add(type='button' id='saveEdit') Save New Edits
                     button.add_links(type='button' id='addLinksEdit') Add New Link

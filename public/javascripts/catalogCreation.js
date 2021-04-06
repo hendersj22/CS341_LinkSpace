@@ -1,8 +1,7 @@
 $(document).ready(function() {
 
     // Create more link boxes to add more than one link
-    // MAKE IT MORE PRETTY
-    $("#addLinks").click(function() {
+    $("#addLinks").click(function addNewLink() {
         var link = document.createElement("input");
         link.setAttribute("type", "text"); 
         link.setAttribute("class", "catalog_link");
