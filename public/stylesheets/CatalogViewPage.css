@@ -93,6 +93,7 @@ p{
   width:550px;
   overflow: hidden;
   padding-left: 25px;
+  word-wrap: break-word;
 }
 
 /*Styling the catalog title, links and descriptions*/
