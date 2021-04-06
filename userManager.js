@@ -211,12 +211,25 @@ async function getNight_Mode(id) {
     return results[0]["Night_Mode"] === 1;
 }
 
-async function getFollowers(id) {
+async function getFollowers(id, order, sortby) {
     const isValidID = await idExists(id);
 
     if (!isValidID) {
         throw Error("Invalid user id");
     }
+
+    if (order === "descending") {
+        order = "DESC"
+    } else {
+        order = "ASC"
+    }
+
+    //TODO:fix with actual db col titles
+    /*if (sortby === "Date_Followed"){
+        sortby = "Name";
+    }else{
+        sortby = "Name";
+    }*/
 
     //Prevent SQL Injection
     id = mysql.escape(id);
@@ -224,6 +237,7 @@ async function getFollowers(id) {
     const results = await dbms.dbquery(`SELECT *
                                         FROM Followers
                                         WHERE User_ID = ${id};`);
+                                        //ORDER BY ${sortby} ${order};`);
     return results;
 }
 

@@ -62,6 +62,12 @@ router.post('/edit', async function(req, res, next) {
     //get night mode setting from req
     const nightMode = req.body["Night_Mode"];
 
+    //checking new data
+    console.log("id: " + id);
+    console.log("new username: " + newUsername);
+    console.log("new password: " + newPassword);
+    console.log("night mode: " + nightMode);
+
     try {
         //use id to update name
         if(newUsername !== "" && newUsername !== null && newUsername !== undefined){
