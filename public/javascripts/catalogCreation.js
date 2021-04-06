@@ -1,3 +1,8 @@
+function isValidLink(link) {
+    const regex = new RegExp(/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi);
+    return link.match(regex);
+}
+
 $(document).ready(function() {
 
     // Create more link boxes to add more than one link
@@ -24,10 +29,22 @@ $(document).ready(function() {
             "Links": []
         };
 
+        let canSubmit = true;
+
         for(let i = 0; i < urls.length; i++){
             let url = urls[i].value;
             let description = descriptions[i].value;
-            console.log(url);  
+
+            if (url.trim() === "" || description.trim() === "") {
+                alert(`There are empty fields`);
+                canSubmit = false;
+                break;
+            }
+
+            if (!isValidLink(url)) {
+                alert(`${url} is not a valid URL`);
+                canSubmit = false;
+            }
 
             let link = {
                 "URL": url,
@@ -36,12 +53,15 @@ $(document).ready(function() {
             reqBody["Links"].push(link);
         }
 
-        $.post("/catalog/create", reqBody, function(catalogID) {
-            window.location = "/catalog/" + catalogID;
-        })
-        .fail(function() {
-            alert("Couldn't create catalog")
-        })
+        if (canSubmit) {
+            $.post("/catalog/create", reqBody, function(catalogID) {
+                window.location = "/catalog/" + catalogID;
+            })
+                .fail(function() {
+                    alert("Couldn't create catalog")
+                })
+        }
+
 
     })
 })
