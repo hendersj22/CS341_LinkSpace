@@ -29,7 +29,7 @@ $(document).ready(function(){
 
       }
       catalogClickHandler();
-      $("#trend").text("My Catalogs");
+      $("#title").text("My Catalogs");
 
 
 
