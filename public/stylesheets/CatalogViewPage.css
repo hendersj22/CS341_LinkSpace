@@ -90,6 +90,10 @@ p{
 
 .catalog {
   float:left;
+  width:550px;
+  overflow: hidden;
+  padding-left: 25px;
+  word-wrap: break-word;
 }
 
 /*Styling the catalog title, links and descriptions*/
@@ -97,25 +101,28 @@ p{
   font-size: 50px;
   font-weight: bold;
 
-  padding-left: 25px;
   padding-top: 14px;
   padding-bottom: 6px;
-  width: 550px;
+  width: 525px;
   word-wrap: break-word;
 }
 
 .catalog_link {
-  margin-left: 25px;
   font-weight: normal;
   font-size: 20px;
   padding-top: 15px;
+  overflow: hidden;
 }
 
 .catalog_author {
-  margin-left: 25px;
   font-weight: lighter;
   font-size: 20px;
   padding-bottom: 10px;
+}
+
+a {
+  overflow: hidden;
+  width: 300px;
 }
 
 .catalog_description{
@@ -123,6 +130,9 @@ p{
   font-weight:lighter;
   color: rgb(187, 184, 184);  
   font-size: 13px;
+  width: 550px;
+  word-wrap: break-word;
+  overflow-x: hidden;
 } 
 
 /*Default Image*/
