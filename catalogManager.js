@@ -79,15 +79,24 @@ async function createLink(catalogID, url, description) {
     return linkID;
 }
 
-async function copyCatalog(catalogID) {
+async function copyCatalog(catalogID, userID) {
+    const userManager = require("./userManager");
+
+    const isValidID = await userManager.idExists(userID);
+
+    if (!isValidID) {
+        throw Error("Invalid user id");
+    }
+
     //Copy the Catalog entry
     const newCatalogID = await getNewCatalogID();
 
     //Prevent SQL Injection
     catalogID = mysql.escape(catalogID);
+    userID = mysql.escape(userID);
 
     await dbms.dbquery(`INSERT INTO Catalog (Catalog_ID, Name, User_ID)
-                        SELECT ${newCatalogID}, Name, User_ID
+                        SELECT ${newCatalogID}, Name, ${userID}
                         FROM Catalog
                         WHERE Catalog_ID = ${catalogID};`);
 

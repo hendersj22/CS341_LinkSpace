@@ -197,8 +197,10 @@ router.post("/*/copy", async function(req, res, next) {
     const validCatalogID = await catalogManager.catalogIDExists(catalogID);
     if (!validCatalogID) return next();
 
+    const userID = authorization.getLoggedInUser(req);
+
     try {
-        const newCatalogID = await catalogManager.copyCatalog(catalogID);
+        const newCatalogID = await catalogManager.copyCatalog(catalogID, userID);
 
         // send our new catalog's id to client
         return res.send(newCatalogID.toString());
