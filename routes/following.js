@@ -49,8 +49,7 @@ router.post('/users', async function(req, res, next) {
     const order = req.body["Order"];
 
     //get followers
-    const followers = userManager.getFollowers(id, order, sortBy);
-    console.log("followers: " + followers);
+    const followers = await userManager.getFollowers(id, order, sortBy);
 
     res.json(followers);
 

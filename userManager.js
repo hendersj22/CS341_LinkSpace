@@ -252,7 +252,8 @@ async function isFollowingUser(currentID, followerID) {
     currentID = mysql.escape(currentID);
     followerID = mysql.escape(followerID);
 
-    const results = await dbms.dbquery(`SELECT FROM Followers
+    const results = await dbms.dbquery(`SELECT *
+                                        FROM Followers
                                         WHERE User_ID = ${currentID} AND Follower_ID = ${followerID};`);
     return results > 0;
 }
@@ -274,7 +275,7 @@ async function followUser(currentID, followerID) {
         followerID = mysql.escape(followerID);
 
         await dbms.dbquery(`INSERT INTO Followers (User_ID, Follower_ID, Date_Followed)
-                                (${currentID}, ${followerID}, ${dateFollowed})`);
+                                VALUES (${currentID}, ${followerID}, ${dateFollowed})`);
     }
 }
 
