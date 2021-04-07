@@ -82,6 +82,30 @@ html, body, .container
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 }
 
+input[type='text'].catalog_link{
+  width: 350px;
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 30px;
+  margin-left: 30px;
+  background-color: #00C2CB; 
+}
+input[type='text'].catalog_description{
+  width: 350px;
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 30px;
+  margin-left: 30px;
+  background-color: #00C2CB; 
+}
+input[type='text'].cat0{
+  width: 350px;
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 30px;
+  margin-left: 30px;
+  background-color: #00C2CB; 
+}
 p{
   margin: 5px;
 }
@@ -93,14 +117,9 @@ p{
 /*Styling the catalog title, links and descriptions*/
 .catalog_title {
   font-size: 50px;
-
   padding-left: 25px;
   padding-top: 20px;
   padding-bottom: 3px;
-  text-decoration: underline;
-  text-decoration-color: #00C2CB;
-  text-decoration-thickness: 8%;
-  text-underline-position: under;
   font-weight: bold;
   border-radius: 25px;
   text-align:center;
@@ -110,10 +129,6 @@ p{
   padding-left: 25px;
   font-color: black;
   font-size: 25px;
-  text-decoration: underline;
-  text-decoration-color: #00C2CB;
-  text-decoration-thickness: 12%;
-  text-underline-position: under;
   padding-bottom: 18px;
   border-radius: 25px;
   text-align:center;
@@ -134,10 +149,6 @@ input:focus::-webkit-input-placeholder {
   padding-left: 25px;
   font-weight:lighter;
   font-size: 25px;
-  text-decoration: underline;
-  text-decoration-color: #00C2CB;
-  text-decoration-thickness: 12%;
-  text-underline-position: under;
   padding-bottom: 18px;
   border-radius: 25px;
   text-align:center;
@@ -176,14 +187,6 @@ input:focus::-webkit-input-placeholder {
   color: #ffffff;
 }
 
-input[type="text"] {
-  width: 350px;
-  display: block;
-  margin-bottom: 10px;
-  margin-top: 30px;
-  margin-left: 30px;
-  background-color: #00C2CB; 
-}
 
 /* Add more link boxes*/
 #addLinks{
@@ -200,3 +203,4 @@ input[type="text"] {
   cursor: pointer;
   outline: none;
 }
+
