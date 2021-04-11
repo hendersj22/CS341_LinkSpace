@@ -16,6 +16,12 @@
     overflow: hidden;
 }
 
+.grid-item:hover{
+    cursor: pointer;
+    background-color: rgba(218, 216, 216, 0.925);
+    box-shadow: 10px 10px 10px grey;
+  }
+
 .catalog {
     float: left;
 }
