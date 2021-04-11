@@ -12,11 +12,19 @@
 
 .grid-item {
     background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
-    box-shadow: 0.25px 0.5px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px grey;
     height: 120px;
     width: auto;
+    overflow: hidden;
     /* vertical-align: middle; */
+
+}
+
+.grid-item:hover{
+  cursor: pointer;
+  background-color: rgba(218, 216, 216, 0.925);
+  box-shadow: 10px 10px 10px grey;
 }
 
 .catalog {
@@ -153,7 +161,6 @@ input:-webkit-autofill {
   text-align: right;
   padding-right: 10px;
   padding-top: 8px;
-  cursor: pointer;
 }
 
 .show {display: block;}
