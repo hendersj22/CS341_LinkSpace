@@ -191,4 +191,9 @@ input:-webkit-autofill {
   cursor: pointer;
 }
 
+.dropdown-content p:hover{  
+  background-color: #FFDE59;  
+  cursor: pointer;
+}
+
 .show {display: block;}
