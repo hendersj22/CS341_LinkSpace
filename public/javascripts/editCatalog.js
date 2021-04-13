@@ -1,3 +1,8 @@
+function isValidLink(link) {
+    const regex = new RegExp(/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi);
+    return link.match(regex);
+}
+
 //This is assuming that we've already SEE the catalog (using viewCatalog)
 //We also need to create a button for editting the text named "editButton"
 
@@ -23,14 +28,18 @@ $( document ).ready(function() {
         var linksArrayLength = catalogInfo.Links.length;
         for(let i = 0; i < linksArrayLength; i++)
         {
+            console.log(catalogInfo["Links"][i]);
+            let entryID = catalogInfo["Links"][i].Entry_ID;
             let url = catalogInfo["Links"][i].URL;
             let descriptionName = catalogInfo["Links"][i].Description;
 
             var link = document.createElement("input");
+            link.setAttribute("name", entryID);
             link.setAttribute("type", "text"); 
             link.setAttribute("class", "catalog_link");
             link.setAttribute("Placeholder", "Add Link");
             var description = document.createElement("input");
+            link.setAttribute("name", entryID);
             description.setAttribute("type", "text"); 
             description.setAttribute("class", "catalog_description");
             description.setAttribute("Placeholder", "Add Description");
@@ -68,25 +77,44 @@ $( document ).ready(function() {
             "Links": []
         };
 
-        for(let i = initialEntryCount; i < urls.length; i++){
+        let canSubmit = true;
+
+        for(let i = 0; i < urls.length; i++){
+            let entryID = urls[i].name;
             let url = urls[i].value;
             let description = descriptions[i].value;
-            console.log(url);  
+
+            if (url.trim() === "" || description.trim() === "") {
+                alert(`There are empty fields`);
+                canSubmit = false;
+                break;
+            }
+
+            if (!isValidLink(url)) {
+                alert(`${url} is not a valid URL`);
+                canSubmit = false;
+            }
+
+            if (!entryID) entryID = undefined;
 
             let link = {
-                //"Entry_ID": (we need entry_id but don't know how to get it from where we get)
+                "Entry_ID": entryID,
                 "URL": url,
                 "Description": description
             }
             reqBody["Links"].push(link);
+
         }
 
-        $.post(location.pathname, reqBody, function() {
-            window.location = endingPath;
-        })
-        .fail(function() {
-            alert("Couldn't edit catalog")
-        })
+        if (canSubmit) {
+            $.post(location.pathname, reqBody, function() {
+                window.location = endingPath;
+            })
+                .fail(function() {
+                    alert("Couldn't edit catalog")
+                })
+        }
+
 
     })
 });
