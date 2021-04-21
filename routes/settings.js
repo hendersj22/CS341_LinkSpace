@@ -8,7 +8,7 @@ var authorization = require("../authorization");
     Renders the settings page
  */
 router.get('/', async function(req, res, next) {
-    res.render("settings"); //TODO view doesnt exist yet
+    res.render("settingsPage"); //TODO view doesnt exist yet
 });
 
 /*

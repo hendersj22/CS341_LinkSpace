@@ -17,6 +17,7 @@ var followingRouter = require('./routes/following');
 var settingsRouter = require('./routes/settings');
 var userRouter = require('./routes/user');
 var searchRouter = require('./routes/search');
+var settingsRouter = require('./routes/settings');
 
 var app = express();
 
@@ -58,6 +59,7 @@ app.use('/following', followingRouter);
 app.use('/settings', settingsRouter);
 app.use('/user', userRouter);
 app.use('/search', searchRouter);
+app.use('/settings', settingsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
