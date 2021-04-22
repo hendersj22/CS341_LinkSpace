@@ -18,7 +18,7 @@ $( document ).ready(function() {
     // get Request to edit values on the edit page
     $.get(newPath, function(catalogInfo) {
         var title = document.createElement("input");
-        title.setAttribute("type", "text");
+        title.setAttribute("type", "textCatalogTitle");
         title.setAttribute("class", "catalog_title");
         title.setAttribute("Placeholder", "Add Title");
 
@@ -35,36 +35,35 @@ $( document ).ready(function() {
 
             var link = document.createElement("input");
             link.setAttribute("name", entryID);
-            link.setAttribute("type", "text"); 
+            link.setAttribute("type", "textCatalog"); 
             link.setAttribute("class", "catalog_link");
             link.setAttribute("Placeholder", "Add Link");
             var description = document.createElement("input");
             link.setAttribute("name", entryID);
-            description.setAttribute("type", "text"); 
+            description.setAttribute("type", "textCatalog"); 
             description.setAttribute("class", "catalog_description");
             description.setAttribute("Placeholder", "Add Description");
-            document.getElementById('catalog').appendChild(link);
-            document.getElementById('catalog').appendChild(description);
+            document.getElementById('catalog_entry').appendChild(link);
+            document.getElementById('catalog_entry').appendChild(description);
 
             link.setAttribute("value", url);
             description.setAttribute("value", descriptionName);
 
             initialEntryCount++;
         }
-
     });
 
     $("#addLinksEdit").click(function addNewLink() {
         var link = document.createElement("input");
-        link.setAttribute("type", "text"); 
+        link.setAttribute("type", "textCatalog"); 
         link.setAttribute("class", "catalog_link");
         link.setAttribute("Placeholder", "Add Link");
         var description = document.createElement("input");
-        description.setAttribute("type", "text"); 
+        description.setAttribute("type", "textCatalog"); 
         description.setAttribute("class", "catalog_description");
         description.setAttribute("Placeholder", "Add Description");
-        document.getElementById('catalog').appendChild(link);
-        document.getElementById('catalog').appendChild(description);
+        document.getElementById('catalog_entry').appendChild(link);
+        document.getElementById('catalog_entry').appendChild(description);
     });
 
     $("#saveEdit").click(function() {
@@ -103,7 +102,6 @@ $( document ).ready(function() {
                 "Description": description
             }
             reqBody["Links"].push(link);
-
         }
 
         if (canSubmit) {
@@ -114,7 +112,5 @@ $( document ).ready(function() {
                     alert("Couldn't edit catalog")
                 })
         }
-
-
     })
 });

@@ -10,12 +10,14 @@ $(document).ready(function(){
       for(var i=0; i<data.length; i++){
           var Catalog_ID = data[i]["Catalog_ID"];
           var Catalog_Title = data[i]["Name"];
+          var Catalog_Author = data[i]["Author"]; //need an author in the response body
           var Num_Links = data[i]["Links"].length;
 
         $('#catContainer').append(
             `<div class="grid-item" id=${Catalog_ID}>
                <div class="catalog">
                  <p class="set-title">${Catalog_Title}</p>
+                 <p class="set-author">${Catalog_Author}</p>
                  <p class="set-link">${Num_Links} links</p>
                </div>
              </div>`);

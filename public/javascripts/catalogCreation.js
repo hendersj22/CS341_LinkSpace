@@ -8,15 +8,15 @@ $(document).ready(function() {
     // Create more link boxes to add more than one link
     $("#addLinks").click(function addNewLink() {
         var link = document.createElement("input");
-        link.setAttribute("type", "text"); 
+        link.setAttribute("type", "textCatalog"); 
         link.setAttribute("class", "catalog_link");
         link.setAttribute("Placeholder", "Add Link");
         var description = document.createElement("input");
-        description.setAttribute("type", "text"); 
+        description.setAttribute("type", "textCatalog"); 
         description.setAttribute("class", "catalog_description");
         description.setAttribute("Placeholder", "Add Description");
-        document.getElementById('catalog').appendChild(link);
-        document.getElementById('catalog').appendChild(description);
+        document.getElementById('catalog_entry').appendChild(link);
+        document.getElementById('catalog_entry').appendChild(description);
     })
 
     $("#save").click(function() {
@@ -61,7 +61,5 @@ $(document).ready(function() {
                     alert("Couldn't create catalog")
                 })
         }
-
-
     })
 })

@@ -59,8 +59,8 @@ html, body, .container
   border-color: #00C2CB;
   border-style:solid;
 
-  height: 370px;
-  width: 800px;
+  height: 800px;
+  width: 1200px;
   overflow-y: auto;
 }
 
@@ -102,23 +102,29 @@ p{
   text-decoration-thickness: 8%;
   text-underline-position: under;
   font-weight: bold;
-  border-radius: 25px;
-  text-align:center;
-  
+  /* border-radius: 25px; */
+  text-align:left;
 }
+
+.catalog_entry{
+  display: block;
+  font-size: 0;
+  padding: 0%;
+}
+
 .catalog_link {
   padding-left: 25px;
   font-color: black;
   font-size: 25px;
   text-decoration: underline;
-  text-decoration-color: #00C2CB;
   text-decoration-thickness: 12%;
   text-underline-position: under;
-  padding-bottom: 18px;
-  border-radius: 25px;
-  text-align:center;
+  /* border-radius: 25px; */
+  text-align:left;
   padding-top: 15px;
+  padding-bottom: 15px;
 }
+
 input:focus::-webkit-input-placeholder {
     opacity: 0;
 }
@@ -139,12 +145,13 @@ input:focus::-webkit-input-placeholder {
   text-decoration-thickness: 12%;
   text-underline-position: under;
   padding-bottom: 18px;
-  border-radius: 25px;
-  text-align:center;
+  /* border-radius: 25px; */
+  text-align:left;
   padding-top: 15px;
 } 
+
 .catalog_add{
-  margin-top: 200px;
+  margin-top: 20px;
   margin-left: 20px;
   color: black;
   border-radius: 30px;
@@ -160,35 +167,44 @@ input:focus::-webkit-input-placeholder {
 
 /*Default Image*/
 .catalog_image {
-  height: 180px;
-  width: 180px;
-  background-color: rgb(187, 184, 184);
   display: inline-block;
   border-radius: 8px;
   margin-top: 18px;
   margin-bottom: 6px;
   margin-right: 16px;
   margin-left: 150px;
-  position: absolute;
 }
 
 ::placeholder {
-  color: #ffffff;
+  color: #929292;
 }
 
-input[type="text"] {
-  width: 350px;
+input[type="textCatalog"] {
+  width: 500px;
+  display: inline-block;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-left: 30px;
+  /* background-color: #00C2CB;  */
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid #000000;
+}
+
+input[type="textCatalogTitle"] {
+  width: 800px;
   display: block;
   margin-bottom: 10px;
   margin-top: 30px;
   margin-left: 30px;
-  background-color: #00C2CB; 
+  /* background-color: #00C2CB;  */
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid #000000;
 }
 
 /* Add more link boxes*/
 #addLinksEdit{
-  margin-top: 20px;
-  margin-left: 20px;
   color: black;
   border-radius: 30px;
   background-color: #FFDE59;
@@ -197,6 +213,7 @@ input[type="text"] {
   font-size: 17px;
   width: 140px;
   height: 30px;
+  margin-right: 400px;
   cursor: pointer;
   outline: none;
 }
