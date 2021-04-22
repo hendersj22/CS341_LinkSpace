@@ -8,7 +8,7 @@ var authorization = require("../authorization");
     Renders the settings page
  */
 router.get('/', async function(req, res, next) {
-    res.render("settings"); //TODO view doesnt exist yet
+    res.render("settingsPage"); //TODO view doesnt exist yet
 });
 
 /*
@@ -62,11 +62,19 @@ router.post('/edit', async function(req, res, next) {
     //get night mode setting from req
     const nightMode = req.body["Night_Mode"];
 
+    //get display size setting from request
+    const displaySize = req.body["Display_Size"];
+
+    // get status setting from req
+    const status = req.body["Status"];
+
     //checking new data
     console.log("id: " + id);
     console.log("new username: " + newUsername);
     console.log("new password: " + newPassword);
     console.log("night mode: " + nightMode);
+    console.log("display size: " + displaySize);
+    console.log("status: " + status);
 
     try {
         //use id to update name
@@ -82,6 +90,16 @@ router.post('/edit', async function(req, res, next) {
         //update nightmode if not null or undefined
         if(nightMode !== "" && nightMode !== null && nightMode !== undefined){
             await userManager.updateNight_Mode(id, nightMode);
+        }
+
+        //update display_size if not null or undefined
+        if(displaySize !== "" && displaySize !== null && displaySize !== undefined){
+            await userManager.updateDisplaySize(id, displaySize);
+        }
+
+        //update status if not null or undefined
+        if(status !== "" && status !== null && status !== undefined){
+            await userManager.updateStatus(id, status);
         }
 
     } catch(err) {

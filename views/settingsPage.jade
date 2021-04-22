@@ -1,0 +1,94 @@
+extends layout
+
+block head
+    link(rel='stylesheet' href='/stylesheets/accountDetailsPage.css')
+    script(src='/javascripts/settingsHandler.js')
+
+block content
+    // Side bar
+    .sidenav
+        button#home(type='button')
+            i.material-icons home
+            |  Home
+        button#mycatalogs
+            i.material-icons collections_bookmark
+            |  My Catalogs
+        button#following
+            i.material-icons person
+            |  Following
+        button#trending(style='background-color: #FFDE59;')
+            i#trendingicon.material-icons trending_up
+            |  Trending
+
+    .main
+      .settings
+        h1  Settings 
+        br
+        .firstColumn
+          strong
+            font(size='+2')
+              | User Preferences  
+              br
+          br
+          br
+          br
+          strong
+            | Night Mode: 
+            br
+          br
+          br
+          strong
+            | Display Size: 
+            br
+          br
+          br
+          br
+          strong
+            font(size='+2')
+              | Other Settings  
+              br
+          br
+          br
+          strong
+            | Change username:
+            br
+          br
+          br
+          strong
+            | Password: 
+            br
+          br
+          br
+          strong
+            | Private Status: 
+            br
+          br
+          br
+          strong
+            | Email: 
+            br
+          br
+          br
+        .secondColumn
+          .buttonContainer
+            div
+            div
+            div
+            div
+              input#night_mode(type='checkbox' name='Visual theme' value='Light')
+            div
+            div
+              input#displaySize(type='text' value='Size')
+            div
+            div
+            div
+              input#name(type='text' placeholder='New username')
+            div
+              input#password(type='password' placeholder='New password')
+            div
+            div
+              input#status(type='checkbox' placeholder='New size')
+            div
+              input#email(type='text' placeholder='New email')
+        .middleColumn
+          input#save(type='button' value='Save')
