@@ -109,6 +109,31 @@ router.post("/create", async function(req, res, next) {
 
 });
 
+/* 
+    Braeden Lane
+    POST /catalog/{id}/delete
+    Deletes a specified catalog, checking that the authorized user is deleting it
+*/
+router.post("/*/delete", async function(req, res, next) {
+    // Get the user trying to delete the catalog
+    const userID = authorization.getLoggedInUser(req);
+
+    // Get the catalog ID
+    const catalogID = req.path.split("/")[1];
+
+    //Check that catalog is valid
+    const validCatalogID = await catalogManager.catalogIDExists(catalogID);
+    if (!validCatalogID) return next();
+
+    try {
+      await catalogManager.deleteCatalog(catalogID, userID);
+      return res.sendStatus(200)
+    } catch {
+      return res.sendStatus(400); //400: Bad Request, maybe user does not match author
+    }
+
+});
+
 /*
     GET /catalog/{id}/edit
     Renders the catalog edit page

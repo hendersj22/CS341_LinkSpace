@@ -30,6 +30,26 @@ async function createCatalog(name, links, userID) {
     return catalogID;
 }
 
+async function deleteCatalog(catalogID, userID) {
+    const userManager = require("./userManager");
+
+    //Check that userID and catalogID is valid
+    const isValidUserID = await userManager.idExists(userID);
+    const isValidCatalogID = await catalogIDExists(catalogID);
+
+    if (!isValidUserID) {
+        throw Error("Invalid user id");
+    }
+    
+    if (!isValidCatalogID) {
+        throw Error("Invalid catalog id");
+    }
+
+
+    //Delete the catalog entry from the database
+    await dbms.dbquery(`DELETE FROM Catalog WHERE Catalog_ID={$catalogID} AND User_ID={$userID}`);
+}
+
 /*
     Example links argument:
     links = [
@@ -480,6 +500,7 @@ async function search(query, order) {
 module.exports = {
     copyCatalog: copyCatalog,
     createCatalog: createCatalog,
+    deleteCatalog: deleteCatalog,
     createLink: createLink,
     getNewCatalogID: getNewCatalogID,
     getNewListEntryID: getNewListEntryID,
