@@ -99,6 +99,45 @@ async function updateNight_Mode(id, newNight_Mode) {
                                  WHERE User_ID = ${id};`);
 }
 
+async function updateDisplaySize(id, displaySize){
+    const isValidID = await  idExists(id);
+
+    if (!isValidID) {
+        throw Error("Invalid user id");
+    }
+
+    // We don't know what the input is (Diplay_Size char(5))
+
+    // Throws error if an invalid display_size is inputted
+    if(!displaySize.equals("LARGE") || !displaySize.equals("SMALL")){
+        throw Error("Invalid display size");
+    }
+
+    //Prevent SQL Injection
+    id = mysql.escape(id);
+    // Prevent SQL Injection for displaySize(Might not need)
+    displaySize = mysql.escape(displaySize);
+
+    await dbms.dbquery(`UPDATE User
+                                 SET Display_Size = ${displaySize}
+                                 WHERE User_ID = ${id};`);
+}
+
+async function updateStatus(id, status) {
+    const isValidID = await idExists(id);
+
+    if (!isValidID) {
+        throw Error("Invalid user id");
+    }
+
+    //Prevent SQL Injection
+    id = mysql.escape(id);
+
+    await dbms.dbquery(`UPDATE Preferences
+                                 SET Status = ${status}
+                                 WHERE User_ID = ${id};`);
+}
+
 async function getID(username) {
     const isValidUsername = await usernameExists(username);
 
@@ -279,6 +318,22 @@ async function followUser(currentID, followerID) {
     }
 }
 
+async function getDisplaySize(id){
+    const isValidID = await idExists(id);
+
+    if (!isValidID) {
+        throw Error("Invalid user id");
+    }
+
+    //Prevent SQL Injection
+    id = mysql.escape(id);
+
+    const results = await dbms.dbquery(`SELECT Display_Size
+                                    FROM Preferences
+                                    WHERE User_ID = ${id};`);
+    return results[0]["Display_Size"] === 1;
+}
+
 async function unfollowUser(currentID, followerID) {
     const isValidID = await idExists(currentID) && await idExists(followerID);
 
@@ -317,12 +372,15 @@ module.exports = {
     updateUsername: updateUsername,
     updatePassword: updatePassword,
     updateNight_Mode: updateNight_Mode,
+    updateDisplaySize: updateDisplaySize,
+    updateStatus: updateStatus,
     getID: getID,
     getUsername: getUsername,
     getHashedPassword: getHashedPassword,
     getStatus: getStatus,
     getNight_Mode: getNight_Mode,
     getFollowers: getFollowers,
+    getDisplaySize: getDisplaySize,
     isFollowingUser: isFollowingUser,
     followUser: followUser,
     unfollowUser: unfollowUser,
