@@ -23,3 +23,22 @@ function editCatalogClickHandler() {
         });
     });
 }
+
+function deleteCatalogClickHandler() {
+    let deleteButton = $("#delete");
+   
+    deleteButton.click(function() {
+        $.get(location.pathname + "/info", function(catalogInfo) {
+            var idDelete = catalogInfo["Catalog_ID"];
+            
+        })
+        $.post(location.pathname + "/delete", function(idDelete) {
+            
+            window.location = "/index"
+        })
+        
+        .fail(function() {
+            alert("Catalog ID not found");
+        });
+    });
+}
