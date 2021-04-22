@@ -1,52 +1,25 @@
-doctype html
-html
-  head
-    meta(name='viewport' content='width=device-width, initial-scale=1')
-    link(rel='stylesheet' href='accountDetailsPage.css')
-    link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+extends layout
+
+block head
     link(rel='stylesheet' href='/stylesheets/accountDetailsPage.css')
-   
-    script.
-      $(document).ready(function () {
-      $("#account").click(function () {
-      $("#dropdown-menu").toggle();
-      });
-      $("#dropdown-menu").click(function () {
-      $("#dropdown-menu").hide();
-      });
-      $("#dropdown-menu").mouseleave(function () {
-      $("#dropdown-menu").hide();
-      });
-      });
-  body
-    .topnav
-      img(src='Logo_white.svg' alt='LINKSPACE')
-      button#create(type='button') Create
-      i#account.material-icons.dropbtn account_circle
-      .searchbar
-        i#searchmag.material-icons search
-        input#search(type='text' name='search' placeholder='Search')
-    #dropdown-menu.dropdown-content
-      p#username
-        strong Username
-      p#profile Profile
-      p#settings Settings
-      p#logout Logout
-      br
+    script(src='/javascripts/settingsHandler.js')
+
+block content
+    // Side bar
     .sidenav
-      button#home(type='button')
-        i.material-icons home
-        |  Home
-      button#mycatalogs(type='button')
-        i.material-icons collections_bookmark
-        |  My Catalogs
-      button#following(type='button')
-        i.material-icons person
-        |  Following
-      button#trending(type='button')
-        i#trendingicon.material-icons trending_up
-        |  Trending
+        button#home(type='button')
+            i.material-icons home
+            |  Home
+        button#mycatalogs
+            i.material-icons collections_bookmark
+            |  My Catalogs
+        button#following
+            i.material-icons person
+            |  Following
+        button#trending(style='background-color: #FFDE59;')
+            i#trendingicon.material-icons trending_up
+            |  Trending
+
     .main
       .settings
         h1  Settings 
@@ -77,7 +50,7 @@ html
           br
           br
           strong
-            | Name: 
+            | Change username:
             br
           br
           br
@@ -102,20 +75,20 @@ html
             div
             div
             div
-              input(type='checkbox' id='Night Mode' name='Visual theme' value='Light')
+              input#night_mode(type='checkbox' name='Visual theme' value='Light')
             div
             div
               input#displaySize(type='text' value='Size')
             div
             div
             div
-              input#name(type='text' value='Name')
+              input#name(type='text' placeholder='New username')
             div
-              input#password(type='text' value='Password')
+              input#password(type='password' placeholder='New password')
             div
             div
-              input#Status(type='checkbox' value='Size')
+              input#status(type='checkbox' placeholder='New size')
             div
-              input#email(type='text' value='Email')
+              input#email(type='text' placeholder='New email')
         .middleColumn
-          input(type='button' value='Save')
+          input#save(type='button' value='Save')

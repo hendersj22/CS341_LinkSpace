@@ -27,6 +27,9 @@ $(document).ready(function () {
         window.location = "/following";
     });
 
+    $("#settings").click(function() {
+        window.location = "/settings";
+    });
 
     $.get("/settings/list", function(data) {
         $("#currentUsername").text(data["Name"]);
