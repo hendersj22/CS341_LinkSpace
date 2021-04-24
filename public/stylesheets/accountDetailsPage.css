@@ -58,47 +58,55 @@ body {
 	background-color: #F4F4F4;
 }
 
-.settings { 
-	#background-color: #00C2CB;
-	border-radius: 10px;
-	height: 300px;
-	display: grid;
-	grid-template-columns: 200px 500px;
-	width: 500px;
-	text-align: center;
-	margin-bottom: 10px;
-	margin-top: 14px;
-	margin-left: 15px;
-	color: white;
+.settings {
+    align-self: center;
+    background-color: #00C2CB;
+    border-radius: 10px;
+    height: 680px;
+    display: block;
+    width: 500px;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 450px;
+    color: white;
 }
 .firstColumn {
-	float: right;
-	text-align: left;
-	padding-left: 10px
+    float: left;
+    text-align: left;
+    padding-left: 10px;
 }
 
-.secondColumn { 
-	float: left;
-	padding-top: 10px;
+.secondColumn {
+    float: left;
+    padding-top: 70px;
+    padding-bottom: 20px;
 }
 
 .buttonContainer {
-	display: grid;
-	grid-row-gap: 30px;
-	color: #FFDE59;
+    display: grid;
+    grid-row-gap: 30px;
+    color: #FFDE59;
 }
 
 .middleColumn {
-	padding-left: 220px;
+    padding-left: 200px;
+    width: 10%;
+    height: 4%;
 }
 
 h1 {
-	text-align: center;
-	padding-left: 180px;
+    text-align: center;
 }
 
 input {
-	background-color: #FFDE59;
-	border-radius: 5px;
+    border-radius: 5px;
+    width: 150%;
+    height: 150%;
 }
+
+    input:checked {
+        background-color: #FFDE59;
+    }
+
 
