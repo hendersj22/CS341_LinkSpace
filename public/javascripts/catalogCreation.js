@@ -21,10 +21,10 @@ $(document).ready(function() {
 
     $("#save").click(function() {
         const title = $(".catalog_title").val();
-        var urls = $(".catalog_link");
-        var descriptions = $(".catalog_description");
+        let urls = $(".catalog_link");
+        let descriptions = $(".catalog_description");
         
-        var reqBody = {
+        let reqBody = {
             "Name": title,
             "Links": []
         };

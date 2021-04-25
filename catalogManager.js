@@ -45,9 +45,21 @@ async function deleteCatalog(catalogID, userID) {
         throw Error("Invalid catalog id");
     }
 
+    const result = await dbms.dbquery(`SELECT User_ID
+                                 FROM Catalog
+                                 WHERE Catalog_ID = ${catalogID};`);
+    const catalogUserID = result[0]["User_ID"];
+
+    if (userID !== catalogUserID) {
+        throw Error("Cannot delete someone else's catalog")
+    }
 
     //Delete the catalog entry from the database
-    await dbms.dbquery(`DELETE FROM Catalog WHERE Catalog_ID={$catalogID} AND User_ID={$userID}`);
+    await dbms.dbquery(`DELETE FROM Catalog
+                                WHERE Catalog_ID=${catalogID}`);
+
+    await dbms.dbquery(`DELETE FROM List_Entry
+                                WHERE Catalog_ID=${catalogID}`);
 }
 
 /*

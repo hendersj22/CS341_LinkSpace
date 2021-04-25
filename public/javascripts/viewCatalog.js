@@ -18,6 +18,7 @@ $(document).ready(function() {
             $(".catalog").append(descriptionHTML);
         }
         editCatalogClickHandler();
+        deleteCatalogClickHandler();
     })
         .fail(function() {
             alert("Server error");

@@ -28,17 +28,11 @@ function deleteCatalogClickHandler() {
     let deleteButton = $("#delete");
    
     deleteButton.click(function() {
-        $.get(location.pathname + "/info", function(catalogInfo) {
-            var idDelete = catalogInfo["Catalog_ID"];
-            
-        })
         $.post(location.pathname + "/delete", function(idDelete) {
-            
-            window.location = "/index"
+            window.location = "/"
         })
-        
         .fail(function() {
-            alert("Catalog ID not found");
+            alert("You cannot delete someone else's catalog.");
         });
     });
 }
