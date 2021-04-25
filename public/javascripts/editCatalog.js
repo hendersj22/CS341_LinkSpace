@@ -24,6 +24,7 @@ $( document ).ready(function() {
 
         document.getElementById('catalog').appendChild(title);
         $('.catalog_title').attr("value", catalogInfo["Name"]);
+        $('.catalog_title').attr("maxlength", "45");
 
         var linksArrayLength = catalogInfo.Links.length;
         for(let i = 0; i < linksArrayLength; i++)
@@ -43,6 +44,7 @@ $( document ).ready(function() {
             description.setAttribute("type", "textCatalog"); 
             description.setAttribute("class", "catalog_description");
             description.setAttribute("Placeholder", "Add Description");
+            description.setAttribute("maxlength", "150");
             document.getElementById('catalog_entry').appendChild(link);
             document.getElementById('catalog_entry').appendChild(description);
 
@@ -62,6 +64,7 @@ $( document ).ready(function() {
         description.setAttribute("type", "textCatalog"); 
         description.setAttribute("class", "catalog_description");
         description.setAttribute("Placeholder", "Add Description");
+        description.setAttribute("maxlength", "150");
         document.getElementById('catalog_entry').appendChild(link);
         document.getElementById('catalog_entry').appendChild(description);
     });

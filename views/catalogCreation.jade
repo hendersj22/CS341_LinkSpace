@@ -25,10 +25,11 @@ block content
         .grid-container
             .grid-item
                 .catalog(id="catalog")
-                    input.catalog_title(type='textCatalogTitle' placeholder='Add Title', class = 'cat0')
+                    input.catalog_title(type='textCatalogTitle' placeholder='Add Title', class = 'cat0', maxlength = "45")
                 .catalog_entry(id="catalog_entry")
                     input.catalog_link(type='textCatalog' placeholder='Add Link' class='catalog_link')
-                    input.catalog_description(type='textCatalog' placeholder='Add Description' class='catalog_description')
+                    input.catalog_description(type='textCatalog' placeholder='Add Description' class='catalog_description', maxlength = "150")
                 .catalog_image
                     button.add_links(type='button' id='addLinks') Add New Link
                     button.catalog_add(type='button' id='save') Save Catalog
+    
