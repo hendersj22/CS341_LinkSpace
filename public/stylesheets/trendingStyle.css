@@ -3,7 +3,7 @@
 
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 33% 33% 33%;
     grid-column-gap: 18px;
     grid-row-gap: 16px;
     padding-left: 40px;
