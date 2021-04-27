@@ -148,6 +148,11 @@ a {
   position: absolute;
 }
 
+.catalog_image :hover{
+  transition: .25s;
+  box-shadow: 4px 4px 4px grey;
+}
+
 #copy {
     margin-top: 200px;
     margin-left: 20px;

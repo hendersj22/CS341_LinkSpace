@@ -175,6 +175,12 @@ input:focus::-webkit-input-placeholder {
   margin-left: 150px;
 }
 
+.catalog_image :hover{
+  transition: .25s;
+  box-shadow: 4px 4px 4px grey;
+}
+
+
 ::placeholder {
   color: #929292;
 }

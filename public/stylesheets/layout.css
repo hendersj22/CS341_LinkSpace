@@ -48,6 +48,13 @@ div.topnav #create {
   outline: none;
 }
 
+div.topnav #create:hover{
+  background-color: #ffab2c;
+  transition: .25s;
+  box-shadow: 4px 4px 4px grey;
+  
+}
+
 .searchbar {
   color: #ffffff;
   background-color: #7cdadf;
