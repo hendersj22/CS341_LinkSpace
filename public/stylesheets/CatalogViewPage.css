@@ -41,7 +41,7 @@ html, body, .container
 /* Style the big container for the catalog */
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 33% 33% 33%;
   grid-column-gap: 18px;
   grid-row-gap: 16px;
 
@@ -146,6 +146,11 @@ a {
   margin-bottom: 6px;
   margin-right: 16px;
   position: absolute;
+}
+
+.catalog_image :hover{
+  transition: .25s;
+  box-shadow: 4px 4px 4px grey;
 }
 
 #copy {
