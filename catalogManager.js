@@ -501,6 +501,10 @@ async function search(query, order) {
         result[row]["Author"] = await getAuthor(catalogID);
     }
 
+    async function compareID(id, user) {
+        return (id == user);
+    }
+
     // Example output:
     // result = [
     //      {"Catalog_ID": 0, "Name": "My Catalog 1", "User_ID": 2, "Author": "benl"},

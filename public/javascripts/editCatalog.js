@@ -81,13 +81,6 @@ $( document ).ready(function() {
 
         let canSubmit = true;
 
-        //Prevent edit Catalog
-        if (userID !==catalogUserID) {
-            throw Error("Cannot edit someone else's catalog")
-            canSubmit = false;
-            break;
-        }
-
         for(let i = 0; i < urls.length; i++){
             let entryID = urls[i].name;
             let url = urls[i].value;

@@ -183,6 +183,11 @@ router.post("/*/edit", async function(req, res, next) {
     const newName = req.body["Name"];
     const newLinks = req.body["Links"];
 
+    if (!catalogManager.compareID(userID,catalogUser)) {
+      console.log("Error editing - Not your catalog");
+      return res.sendStatus(500);
+    }
+
     try{
         //update name if newName is not null or undefined
         if (newName) {
