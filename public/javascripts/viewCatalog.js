@@ -14,8 +14,8 @@ $(document).ready(function() {
             const urlHTML = `<a class="catalog_link" href="${url}">${url}</a>`
             const descriptionHTML = `<p class="catalog_description">${description}</p>`
 
-            $(".catalog").append(urlHTML);
-            $(".catalog").append(descriptionHTML);
+            $(".catalog_entries").append(urlHTML);
+            $(".catalog_entries").append(descriptionHTML);
         }
         editCatalogClickHandler();
         deleteCatalogClickHandler();

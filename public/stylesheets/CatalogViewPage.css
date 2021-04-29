@@ -35,19 +35,18 @@ html, body, .container
 .main {
   margin-left: 160px; 
   padding: 0px 10px;
-  padding-top: 150px;
+  padding-top: 50px;
 }
 
 /* Style the big container for the catalog */
 .grid-container {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-columns: auto auto auto;
   grid-column-gap: 18px;
   grid-row-gap: 16px;
 
   padding-left: 150px;
   padding-right: 160px;
-  padding-top: 50px;
 
   justify-content: center;
   overflow: hidden;
@@ -60,8 +59,8 @@ html, body, .container
   border-color: #00C2CB;
   border-style:solid;
 
-  height: 480px;
-  width: 800px;
+  height: 800px;
+  width: 1000px;
   overflow-y: auto;
 }
 
@@ -90,7 +89,16 @@ p{
 
 .catalog {
   float:left;
-  width:550px;
+  width:950px;
+  overflow: hidden;
+  padding-left: 25px;
+  word-wrap: break-word;
+  position: sticky;
+}
+
+.catalog_entries {
+  float:left;
+  width:950px;
   overflow: hidden;
   padding-left: 25px;
   word-wrap: break-word;
@@ -100,16 +108,16 @@ p{
 .catalog_title {
   font-size: 50px;
   font-weight: bold;
-
+  display:inline-block;
   padding-top: 14px;
   padding-bottom: 6px;
-  width: 525px;
+  width: 950px;
   word-wrap: break-word;
 }
 
 .catalog_link {
   font-weight: normal;
-  font-size: 20px;
+  font-size: 30px;
   padding-top: 15px;
   overflow: hidden;
 }
@@ -122,40 +130,35 @@ p{
 
 a {
   overflow: hidden;
-  width: 300px;
+  width: 500px;
 }
 
 .catalog_description{
   padding-left: 25px;
   font-weight:lighter;
   color: rgb(187, 184, 184);  
-  font-size: 13px;
-  width: 550px;
+  font-size: 18px;
+  width: 700px;
   word-wrap: break-word;
   overflow-x: hidden;
+  margin-bottom: 20px;
 } 
 
 /*Default Image*/
 .catalog_image {
   height: 180px;
   width: 180px;
-  background-color: rgb(187, 184, 184);
   display: inline-block;
   border-radius: 8px;
   margin-top: 18px;
   margin-bottom: 6px;
-  margin-right: 16px;
   position: absolute;
 }
 
-.catalog_image :hover{
-  transition: .25s;
-  box-shadow: 4px 4px 4px grey;
-}
-
 #copy {
-    margin-top: 200px;
-    margin-left: 20px;
+    margin-right: 50px;
+    margin-bottom: 30px;
+    margin-top: 10px;
     color: black;
     border-radius: 30px;
     background-color: #FFDE59;
@@ -166,11 +169,13 @@ a {
     height: 30px;
     cursor: pointer;
     outline: none;
+    display: inline-block;
 }
 
 #edit {
-    margin-top: 20px;
-    margin-left: 20px;
+    margin-right: 50px;
+    margin-bottom: 30px;
+    margin-top: 10px;
     color: black;
     border-radius: 30px;
     background-color: #FFDE59;
@@ -181,11 +186,13 @@ a {
     height: 30px;
     cursor: pointer;
     outline: none;
+    display: inline-block;
 }
 
 #delete {
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-right: 50px;
+  margin-bottom: 30px;
+  margin-top: 10px;
   color: black;
   border-radius: 30px;
   background-color: #FFDE59;
@@ -196,5 +203,5 @@ a {
   height: 30px;
   cursor: pointer;
   outline: none;
+  display: inline-block;
 }
-
