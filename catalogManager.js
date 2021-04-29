@@ -306,6 +306,7 @@ async function getTrendingCatalogs(order) {
     // Gets the links for each of those catalogs
     for (let row = 0; row < result.length; row++) {
         const catalogID = result[row]["Catalog_ID"];
+        result[row]["Author"] = await getAuthor(catalogID);
         result[row]["Links"] = await getListEntries(catalogID);
     }
 

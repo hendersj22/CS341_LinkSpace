@@ -17,9 +17,6 @@ block content
         button#mycatalogs(style='background-color: #FFDE59;')
             i.material-icons collections_bookmark
             |  My Catalogs
-        button#following
-            i.material-icons person
-            |  Following
         button#trending
             i#trendingicon.material-icons trending_up
             |  Trending
@@ -29,8 +26,7 @@ block content
                 .catalog
                     p.catalog_title Loading...
                     p.catalog_author
-                .catalog_image
                     button#copy(type='button') Copy Catalog
                     button#edit(type='button') Edit Catalog
                     button#delete(type='button') Delete Catalog
-                    
+                .catalog_entries
