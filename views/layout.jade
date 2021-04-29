@@ -2,11 +2,32 @@ doctype html
 html
   head
     link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
-    link(rel='stylesheet' href='/stylesheets/layout.css')
+    link(rel='stylesheet' href='/stylesheets/darkLayout.css' id="dark_mode")
+    link(rel='stylesheet' href='/stylesheets/layout.css' id="light_mode")
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')
     script(src='/javascripts/searchBar.js')
+    
+    script.
+      function darkLoad(){
+         $('body').hide();
+        $.get("/settings/list", function(settings) {
+          const night_mode = settings["Night_Mode"];
+          if(night_mode){
+            $("#dark_mode").prop("disabled", false)
+            $("#light_mode").prop("disabled", true)
+          }
+          else{
+            $("#dark_mode").prop("disabled", true)
+            $("#light_mode").prop("disabled", false)
+            
+          }
+           $('body').show();
+        });
+      }
     block head
-  body
+  body(
+    onload="darkLoad()"
+  )
     .topnav
       img(src='/Logo_white.svg' alt='LINKSPACE')
       button#create(type='button') Create

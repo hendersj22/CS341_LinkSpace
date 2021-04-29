@@ -149,11 +149,11 @@ input:-webkit-autofill {
 }
 
 .sidenav button:hover {
-  background-color: #00C2CB;
+  background-color: #FFDE59;  
 }
 
 div.topnav #create:hover{ 
-  background-color: #00C2CB;
+  background-color: #FFDE59;  
   box-shadow: 4px 4px 4px grey;
  }
 
@@ -195,11 +195,12 @@ div.topnav #create:hover{
   background-color: grey;
   min-width: 140px;
   box-shadow: 3px 3px 5px grey;
-  float: right;
+  position: absolute;
+  top:4%;
+  right:0;
   margin-top: 14px;
   margin-right: 20px;
   border-radius: 10px;
-  position: relative;
   z-index: 5;
 }
 
@@ -214,8 +215,9 @@ div.topnav #create:hover{
 }
 
 .dropdown-content p:hover{  
-  background-color: #00C2CB;  
+  background-color: #FFDE59;   
   cursor: pointer;
 }
+
 
 .show {display: block;}
